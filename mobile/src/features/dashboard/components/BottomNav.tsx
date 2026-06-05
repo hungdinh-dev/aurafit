@@ -12,6 +12,7 @@ import { Text } from '@/components/ui/text';
 import { Target, Dumbbell, TrendingUp, User } from 'lucide-react-native';
 import { colors } from '@/src/theme/colors';
 import { useThemeStore } from '@/src/theme/themeStore';
+import { useLanguageStore } from '@/src/localization/translations';
 
 interface BottomNavProps {
   activeTab: string;
@@ -25,6 +26,7 @@ export default function BottomNav({
   scrollY
 }: BottomNavProps) {
   const { theme } = useThemeStore();
+  const { t } = useLanguageStore();
 
   const getTabClass = (tabName: string) => {
     return `w-24 h-10 rounded-full items-center justify-center relative ${
@@ -46,16 +48,14 @@ export default function BottomNav({
   };
 
   // Tooltip component to render above active tab
-  const renderTooltip = (tabName: string, label: string) => {
+  const renderTooltip = (tabName: string, labelKey: 'home' | 'workout' | 'leaderboard' | 'profile') => {
     if (activeTab !== tabName) return null;
     return (
-      <>
-      </>
-      // <Box className="absolute -top-7 bg-brand-secondary dark:bg-brand-neutral border border-brand-primary/30 px-2 py-0.5 rounded shadow z-50 items-center justify-center min-w-[50px]">
-      //   <Text className="text-[6.5px] text-brand-primary font-extrabold uppercase tracking-widest text-center leading-none">
-      //     {label}
-      //   </Text>
-      // </Box>
+      <Box className="absolute -top-8 bg-brand-secondary dark:bg-brand-neutral border border-brand-primary/30 px-2 py-0.5 rounded shadow z-50 items-center justify-center min-w-[50px]">
+        <Text className="text-[7px] text-brand-primary font-extrabold uppercase tracking-widest text-center leading-none">
+          {t(labelKey)}
+        </Text>
+      </Box>
     );
   };
 
@@ -98,7 +98,7 @@ export default function BottomNav({
           className={getTabClass('dashboard')}
           style={{ alignItems: 'center', justifyContent: 'center' }}
         >
-          {renderTooltip('dashboard', 'HOME')}
+          {renderTooltip('dashboard', 'home')}
           <Target
             size={18}
             color={getIconColor('dashboard')}
@@ -112,7 +112,7 @@ export default function BottomNav({
           className={getTabClass('workout')}
           style={{ alignItems: 'center', justifyContent: 'center' }}
         >
-          {renderTooltip('workout', 'WORKOUT')}
+          {renderTooltip('workout', 'workout')}
           <Dumbbell
             size={18}
             color={getIconColor('workout')}
@@ -126,7 +126,7 @@ export default function BottomNav({
           className={getTabClass('leaderboard')}
           style={{ alignItems: 'center', justifyContent: 'center' }}
         >
-          {renderTooltip('leaderboard', 'LEADER')}
+          {renderTooltip('leaderboard', 'leaderboard')}
           <TrendingUp
             size={18}
             color={getIconColor('leaderboard')}
@@ -140,7 +140,7 @@ export default function BottomNav({
           className={getTabClass('profile')}
           style={{ alignItems: 'center', justifyContent: 'center' }}
         >
-          {renderTooltip('profile', 'PROFILE')}
+          {renderTooltip('profile', 'profile')}
           <User
             size={18}
             color={getIconColor('profile')}

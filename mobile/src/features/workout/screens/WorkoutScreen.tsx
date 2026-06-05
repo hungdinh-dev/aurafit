@@ -4,8 +4,11 @@ import { VStack } from '@/components/ui/vstack';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Dumbbell } from 'lucide-react-native';
+import { useLanguageStore } from '@/src/localization/translations';
 
 export default function WorkoutScreen() {
+  const { t } = useLanguageStore();
+
   return (
     <Box className="flex-1 bg-brand-light-bg dark:bg-brand-dark-bg justify-center items-center px-6">
       <VStack space="lg" className="items-center max-w-xs">
@@ -13,10 +16,10 @@ export default function WorkoutScreen() {
           <Dumbbell size={28} className="text-brand-primary" />
         </Box>
         <Heading size="xl" className="text-brand-light-text dark:text-brand-dark-text text-center uppercase tracking-tighter font-extrabold leading-none">
-          Workout Hub
+          {t('workoutHubTitle')}
         </Heading>
         <Text className="text-xs text-brand-light-text-muted dark:text-brand-dark-text-muted text-center font-light leading-relaxed">
-          Create, schedule, and perform physical syntheses. Swipe left to return or check metrics in other nodes.
+          {t('workoutHubDesc')}
         </Text>
       </VStack>
     </Box>

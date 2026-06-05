@@ -16,14 +16,12 @@ import {
   Check, 
   X, 
   Database, 
-  Mail, 
-  Lock, 
-  LogOut, 
   KeyRound,
   ChevronRight
 } from 'lucide-react-native';
 import { getProfile, updateProfile, UserProfile } from '../services/profileService';
 import { useThemeStore } from '@/src/theme/themeStore';
+import { useLanguageStore } from '@/src/localization/translations';
 import { supabase, isSupabaseConfigured } from '@/src/lib/supabase';
 
 const CURRENT_USER_ID_MOCK = '00000000-0000-0000-0000-000000000000';
@@ -53,6 +51,7 @@ export default function ProfileScreen() {
   const [session, setSession] = useState<any>(null);
   const [isSandboxBypassed, setIsSandboxBypassed] = useState(false);
   const { theme } = useThemeStore();
+  const { t } = useLanguageStore();
 
   // Auth States
   const [isSignUpMode, setIsSignUpMode] = useState(false);
@@ -156,7 +155,7 @@ export default function ProfileScreen() {
 
   const handleSignIn = async () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Yêu cầu', 'Vui lòng điền đầy đủ Email và Mật khẩu.');
+      Alert.alert(t('cancel'), t('requiredFields'));
       return;
     }
 
@@ -170,17 +169,16 @@ export default function ProfileScreen() {
           username: email.split('@')[0],
           full_name: 'Offline Explorer',
         });
-        Alert.alert('Thành công (Sandbox)', 'Đã mô phỏng đăng nhập thành công vào Sandbox.');
+        Alert.alert('Sandbox', t('saveLocalSuccess'));
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email: email.trim(),
           password: password.trim(),
         });
         if (error) throw error;
-        Alert.alert('Thành công', 'Đã kết nối với database node.');
       }
     } catch (error: any) {
-      Alert.alert('Lỗi đăng nhập', error.message);
+      Alert.alert('Error', error.message);
     } finally {
       setAuthLoading(false);
     }
@@ -188,15 +186,15 @@ export default function ProfileScreen() {
 
   const handleSignUp = async () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Yêu cầu', 'Vui lòng điền đầy đủ Email và Mật khẩu.');
+      Alert.alert(t('cancel'), t('requiredFields'));
       return;
     }
     if (password.length < 6) {
-      Alert.alert('Yêu cầu', 'Mật khẩu phải chứa ít nhất 6 ký tự.');
+      Alert.alert(t('cancel'), t('passwordMinLength'));
       return;
     }
     if (!signUpUsername.trim() || !signUpFullName.trim()) {
-      Alert.alert('Yêu cầu', 'Vui lòng cung cấp Username và Họ tên.');
+      Alert.alert(t('cancel'), t('requiredFields'));
       return;
     }
 
@@ -209,7 +207,7 @@ export default function ProfileScreen() {
           username: signUpUsername.trim(),
           full_name: signUpFullName.trim(),
         });
-        Alert.alert('Thành công (Sandbox)', 'Tài khoản sandbox được tạo cục bộ thành công.');
+        Alert.alert('Sandbox', t('saveLocalSuccess'));
       } else {
         const { error } = await supabase.auth.signUp({
           email: email.trim(),
@@ -222,11 +220,11 @@ export default function ProfileScreen() {
           }
         });
         if (error) throw error;
-        Alert.alert('Đăng ký thành công', 'Kiểm tra email của bạn để xác thực hoặc bắt đầu đăng nhập.');
+        Alert.alert(t('signUp'), t('signUpSuccess'));
         setIsSignUpMode(false);
       }
     } catch (error: any) {
-      Alert.alert('Lỗi đăng ký', error.message);
+      Alert.alert('Error', error.message);
     } finally {
       setAuthLoading(false);
     }
@@ -234,12 +232,12 @@ export default function ProfileScreen() {
 
   const handleSignOut = async () => {
     Alert.alert(
-      'Đăng xuất',
-      'Bạn muốn ngắt kết nối phiên làm việc này?',
+      t('signOut'),
+      t('signOutConfirm'),
       [
-        { text: 'Hủy', style: 'cancel' },
+        { text: t('cancel'), style: 'cancel' },
         { 
-          text: 'Xác nhận', 
+          text: t('confirm'), 
           style: 'destructive',
           onPress: async () => {
             setIsLoading(true);
@@ -251,7 +249,7 @@ export default function ProfileScreen() {
               setIsSandboxBypassed(false);
               setProfile(MOCK_PROFILE);
             } catch (error: any) {
-              Alert.alert('Lỗi', error.message);
+              Alert.alert('Error', error.message);
             } finally {
               setIsLoading(false);
             }
@@ -271,7 +269,7 @@ export default function ProfileScreen() {
 
   const handleSavePress = async () => {
     if (!editUsername.trim() || !editFullName.trim()) {
-      Alert.alert('Lỗi', 'Username và tên đầy đủ không được bỏ trống.');
+      Alert.alert('Error', t('requiredFields'));
       return;
     }
 
@@ -296,16 +294,16 @@ export default function ProfileScreen() {
           ...prev,
           ...updates,
         }));
-        Alert.alert('Thành công (Local)', 'Đã lưu thay đổi vào bộ nhớ cục bộ (Mock Sandbox).');
+        Alert.alert('Local', t('saveLocalSuccess'));
       } else {
         // Save to real database
         const updated = await updateProfile(activeUserId, updates);
         setProfile(updated);
-        Alert.alert('Thành công', 'Hồ sơ đã được lưu đồng bộ lên Supabase Database.');
+        Alert.alert('Success', t('saveSuccess'));
       }
       setIsEditing(false);
     } catch (error: any) {
-      Alert.alert('Lỗi', 'Không thể lưu thay đổi: ' + error.message);
+      Alert.alert('Error', error.message);
     } finally {
       setIsLoading(false);
     }
@@ -318,9 +316,6 @@ export default function ProfileScreen() {
     return (
       <Box className="flex-1 bg-brand-light-bg dark:bg-brand-dark-bg items-center justify-center">
         <ActivityIndicator size="large" color="#8EB69B" />
-        <Text className="text-xs text-brand-light-text-muted dark:text-brand-dark-text-muted mt-2">
-          Đang kết nối dữ liệu...
-        </Text>
       </Box>
     );
   }
@@ -333,7 +328,7 @@ export default function ProfileScreen() {
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24, paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
-        <VStack space="xl" className="w-full">
+        <VStack space="xl" className="w-full justify-center flex-1">
           {/* Logo / Title Area */}
           <VStack space="xs" className="items-center mb-2">
             <Box className="w-14 h-14 rounded-full border border-brand-primary/40 items-center justify-center bg-brand-light-card dark:bg-brand-dark-card shadow-md mb-2">
@@ -342,9 +337,6 @@ export default function ProfileScreen() {
             <Heading size="xl" className="text-brand-light-text dark:text-brand-dark-text font-extrabold uppercase tracking-tight text-center">
               AuraFit Node
             </Heading>
-            <Text className="text-xs text-brand-light-text-muted dark:text-brand-dark-text-muted text-center font-light px-4">
-              Kết nối hồ sơ đồng bộ sinh trắc học và lịch sử luyện tập của bạn
-            </Text>
           </VStack>
 
           {/* Offline/Config Notice */}
@@ -353,10 +345,7 @@ export default function ProfileScreen() {
               <Database size={16} className="text-amber-500 mt-0.5" />
               <VStack className="flex-1">
                 <Text className="text-[10px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider">
-                  Chế độ Sandbox (Offline)
-                </Text>
-                <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted mt-0.5 leading-relaxed">
-                  Thiết lập file mobile/.env để chuyển sang Supabase thực. Nhấp nút "Truy cập Sandbox" để chạy thử.
+                  {t('sandboxMode')}
                 </Text>
               </VStack>
             </HStack>
@@ -368,12 +357,12 @@ export default function ProfileScreen() {
               <HStack className="border-b border-brand-light-border/40 dark:border-brand-dark-border/40 pb-3 justify-around">
                 <Pressable onPress={() => setIsSignUpMode(false)} className="pb-1">
                   <Text className={`text-xs font-bold uppercase tracking-widest ${!isSignUpMode ? 'text-brand-primary' : 'text-brand-light-text-muted dark:text-brand-dark-text-muted'}`}>
-                    Đăng Nhập
+                    {t('signIn')}
                   </Text>
                 </Pressable>
                 <Pressable onPress={() => setIsSignUpMode(true)} className="pb-1">
                   <Text className={`text-xs font-bold uppercase tracking-widest ${isSignUpMode ? 'text-brand-primary' : 'text-brand-light-text-muted dark:text-brand-dark-text-muted'}`}>
-                    Đăng Ký
+                    {t('signUp')}
                   </Text>
                 </Pressable>
               </HStack>
@@ -383,7 +372,7 @@ export default function ProfileScreen() {
                 <VStack space="md">
                   <VStack space="xs">
                     <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                      Họ và Tên
+                      {t('fullName')}
                     </Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
@@ -398,7 +387,7 @@ export default function ProfileScreen() {
 
                   <VStack space="xs">
                     <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                      Username độc nhất
+                      {t('username')}
                     </Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
@@ -417,7 +406,7 @@ export default function ProfileScreen() {
               {/* Core Credentials Fields */}
               <VStack space="xs">
                 <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                  Email
+                  {t('email')}
                 </Text>
                 <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                   <InputField
@@ -434,7 +423,7 @@ export default function ProfileScreen() {
 
               <VStack space="xs">
                 <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                  Mật khẩu
+                  {t('password')}
                 </Text>
                 <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                   <InputField
@@ -461,7 +450,7 @@ export default function ProfileScreen() {
                   onPress={isSignUpMode ? handleSignUp : handleSignIn}
                 >
                   <ButtonText className="text-brand-secondary dark:text-brand-neutral font-extrabold uppercase text-xs tracking-wider">
-                    {isSignUpMode ? 'Đăng Ký Thành Viên' : 'Kết Nối'}
+                    {isSignUpMode ? t('signUp') : t('connect')}
                   </ButtonText>
                 </Button>
               )}
@@ -477,7 +466,7 @@ export default function ProfileScreen() {
               onPress={() => setIsSandboxBypassed(true)}
             >
               <ButtonText className="text-brand-primary font-bold text-xs mr-1">
-                Truy cập Sandbox offline
+                {t('offlineBypass')}
               </ButtonText>
               <ChevronRight size={14} className="text-brand-primary" />
             </Button>
@@ -504,11 +493,11 @@ export default function ProfileScreen() {
           <HStack space="xs" className="items-center flex-1">
             <Database size={14} className={isOfflineMode ? 'text-amber-500' : 'text-brand-primary'} />
             <Text className={`text-[9px] font-bold uppercase tracking-wider ${isOfflineMode ? 'text-amber-500' : 'text-brand-primary'}`}>
-              {isOfflineMode ? 'Sandbox Offline Mode' : 'Connected Live Node'}
+              {isOfflineMode ? t('sandboxMode') : t('connectedNode')}
             </Text>
           </HStack>
           <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted">
-            {isOfflineMode ? 'Mock Local Saving' : `Session: ${session?.user?.email}`}
+            {isOfflineMode ? 'Local' : `Session: ${session?.user?.email}`}
           </Text>
         </HStack>
 
@@ -570,7 +559,7 @@ export default function ProfileScreen() {
                 <VStack space="md">
                   <VStack space="xs">
                     <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                      Họ và Tên
+                      {t('fullName')}
                     </Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
@@ -582,7 +571,7 @@ export default function ProfileScreen() {
                   </VStack>
                   <VStack space="xs">
                     <Text className="text-[9px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold uppercase tracking-wider">
-                      Username
+                      {t('username')}
                     </Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
@@ -601,7 +590,7 @@ export default function ProfileScreen() {
               <VStack className="items-center flex-1">
                 <Zap size={16} className="text-brand-primary mb-1" />
                 <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">
-                  Level
+                  {t('level')}
                 </Text>
                 <Heading size="sm" className="text-brand-light-text dark:text-brand-dark-text font-bold mt-0.5">
                   {profile.level}
@@ -611,7 +600,7 @@ export default function ProfileScreen() {
               <VStack className="items-center flex-1 border-l border-r border-brand-light-border/40 dark:border-brand-dark-border/40">
                 <Flame size={16} className="text-amber-500 mb-1" />
                 <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">
-                  Streak
+                  {t('streak')}
                 </Text>
                 <Heading size="sm" className="text-brand-light-text dark:text-brand-dark-text font-bold mt-0.5">
                   {profile.streak_days}d
@@ -621,7 +610,7 @@ export default function ProfileScreen() {
               <VStack className="items-center flex-1">
                 <Shield size={16} className="text-brand-primary mb-1" />
                 <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">
-                  Shields
+                  {t('auraShields')}
                 </Text>
                 <Heading size="sm" className="text-brand-light-text dark:text-brand-dark-text font-bold mt-0.5">
                   {profile.aura_shields}
@@ -632,28 +621,28 @@ export default function ProfileScreen() {
             {/* Biometrics */}
             <VStack space="md" className="pt-4 border-t border-brand-light-border/40 dark:border-brand-dark-border/40">
               <Heading size="xs" className="text-brand-light-text dark:text-brand-dark-text uppercase tracking-widest text-[9px] font-bold">
-                Chỉ số Sinh trắc
+                {t('biometrics')}
               </Heading>
 
               {!isEditing ? (
                 <HStack className="justify-between">
                   <VStack>
-                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">Chiều Cao</Text>
+                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">{t('height')}</Text>
                     <Text className="text-xs text-brand-light-text dark:text-brand-dark-text font-semibold mt-0.5">{profile.metadata?.height || 170} cm</Text>
                   </VStack>
                   <VStack>
-                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">Cân Nặng</Text>
+                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">{t('weight')}</Text>
                     <Text className="text-xs text-brand-light-text dark:text-brand-dark-text font-semibold mt-0.5">{profile.metadata?.weight || 60} kg</Text>
                   </VStack>
                   <VStack>
-                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">Cardio Age</Text>
-                    <Text className="text-xs text-brand-light-text dark:text-brand-dark-text font-semibold mt-0.5">{profile.cardio_age || 30} tuổi</Text>
+                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">{t('cardioAgeLabel')}</Text>
+                    <Text className="text-xs text-brand-light-text dark:text-brand-dark-text font-semibold mt-0.5">{profile.cardio_age || 30} {t('years')}</Text>
                   </VStack>
                 </HStack>
               ) : (
                 <HStack space="md" className="w-full">
                   <VStack space="xs" className="flex-1">
-                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">Chiều cao (cm)</Text>
+                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">{t('height')} (cm)</Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
                         value={editHeight}
@@ -664,7 +653,7 @@ export default function ProfileScreen() {
                     </Input>
                   </VStack>
                   <VStack space="xs" className="flex-1">
-                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">Cân nặng (kg)</Text>
+                    <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted uppercase tracking-widest">{t('weight')} (kg)</Text>
                     <Input variant="underlined" size="sm" className="border-brand-light-border dark:border-brand-dark-border">
                       <InputField
                         value={editWeight}
@@ -687,9 +676,8 @@ export default function ProfileScreen() {
           className="border border-red-500/30 rounded-xl py-2 flex-row items-center justify-center bg-red-500/5 dark:bg-red-500/10"
           onPress={handleSignOut}
         >
-          <LogOut size={14} className="text-red-500 mr-2" />
           <ButtonText className="text-red-500 font-bold text-xs uppercase tracking-wider">
-            {isOfflineMode ? 'Rời Sandbox' : 'Ngắt kết nối / Đăng xuất'}
+            {t('signOut')}
           </ButtonText>
         </Button>
       </VStack>
