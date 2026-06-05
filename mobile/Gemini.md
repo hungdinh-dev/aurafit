@@ -28,8 +28,11 @@ Guide the development, database schema, APIs, mobile screen layouts, 3D web-view
 - Do not bypass verification steps (compiling, syntax checks).
 - Provide clean, functional, high-performance code. No placeholders.
 - Maintain Gemini.md as the core context file in the root.
-- Use Progressive Disclosure: Keep Gemini.md strictly as a high-level context file. Detailed technical domains (e.g. database schema, 3D postMessage bridge protocol) should be placed in separate markdown files under a `docs/` folder.
 </requirements>
+
+<additional_documentation>
+- [Project Roadmap & TODOs](file:///c:/Projects/Personal/aurafit/docs/roadmap_todo.md)
+</additional_documentation>
 
 <tone>
 Be technical. Be direct. No fluff. No marketing language.
