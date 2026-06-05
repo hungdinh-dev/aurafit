@@ -1,0 +1,20 @@
+{
+  "primary": "#8EB69B",
+  "secondary": "#163832",
+  "tertiary": "#DAF1DE",
+  "neutral": "#000000",
+  "dark": {
+    "background": "#0A0F0D",
+    "card": "#111A17",
+    "border": "#1E352F",
+    "text": "#DAF1DE",
+    "textMuted": "#8EB69B"
+  },
+  "light": {
+    "background": "#F4FAF6",
+    "card": "#E3EFE8",
+    "border": "#CBE5D7",
+    "text": "#163832",
+    "textMuted": "#5C8276"
+  }
+}

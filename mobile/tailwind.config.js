@@ -1,3 +1,5 @@
+const colorsData = require('./src/theme/colors.json');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'class',
@@ -9,16 +11,35 @@ module.exports = {
     './src/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
-  important: 'html',
   safelist: [
     {
       pattern:
         /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark|primary)/,
     },
+    {
+      pattern:
+        /(bg|border|text|stroke|fill)-(brand)-(primary|secondary|tertiary|neutral|dark-bg|dark-card|dark-border|dark-text|dark-text-muted|light-bg|light-card|light-border|light-text|light-text-muted)/,
+    },
   ],
   theme: {
     extend: {
       colors: {
+        brand: {
+          primary: colorsData.primary,
+          secondary: colorsData.secondary,
+          tertiary: colorsData.tertiary,
+          neutral: colorsData.neutral,
+          'dark-bg': colorsData.dark.background,
+          'dark-card': colorsData.dark.card,
+          'dark-border': colorsData.dark.border,
+          'dark-text': colorsData.dark.text,
+          'dark-text-muted': colorsData.dark.textMuted,
+          'light-bg': colorsData.light.background,
+          'light-card': colorsData.light.card,
+          'light-border': colorsData.light.border,
+          'light-text': colorsData.light.text,
+          'light-text-muted': colorsData.light.textMuted,
+        },
         primary: {
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',

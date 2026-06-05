@@ -15,17 +15,21 @@ export function GluestackUIProvider({
   children?: React.ReactNode;
   style?: ViewProps['style'];
 }) {
-  const { colorScheme, setColorScheme } = useColorScheme();
+  const { setColorScheme } = useColorScheme();
 
+  // Sync NativeWind's color scheme with our mode prop
   useEffect(() => {
     setColorScheme(mode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
+  // Use `mode` directly for config vars (not `colorScheme` which may lag behind)
+  const currentMode = mode === 'system' ? 'light' : mode;
+
   return (
     <View
       style={[
-        config[colorScheme!],
+        config[currentMode],
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}
