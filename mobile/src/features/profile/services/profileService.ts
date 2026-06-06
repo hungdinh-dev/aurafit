@@ -69,3 +69,19 @@ export async function createProfile(profile: UserProfile): Promise<UserProfile> 
   }
   return data as UserProfile;
 }
+
+/**
+ * GET Leaderboard (Read top profiles ordered by XP)
+ */
+export async function getLeaderboard(limitNum: number = 10): Promise<UserProfile[]> {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .order('xp', { ascending: false })
+    .limit(limitNum);
+
+  if (error) {
+    throw error;
+  }
+  return data as UserProfile[];
+}
