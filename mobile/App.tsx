@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { GluestackUIProvider } from '@/src/components/ui/gluestack-ui-provider';
 import DashboardScreen from '@/src/features/dashboard/screens/DashboardScreen';
 import { useThemeStore } from '@/src/theme/themeStore';
 import { useColorScheme } from 'nativewind';

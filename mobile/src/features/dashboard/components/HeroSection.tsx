@@ -7,22 +7,28 @@ import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Button, ButtonText } from '@/components/ui/button';
 import ScrollReveal from '@/src/components/ScrollReveal';
+import { useThemeStore } from '@/src/theme/themeStore';
 
 interface HeroSectionProps {
   scrollY: SharedValue<number>;
 }
 
 export default function HeroSection({ scrollY }: HeroSectionProps) {
+  const { theme } = useThemeStore();
+  const bgSource = theme === 'dark'
+    ? require('@/assets/aura-bg-black.png')
+    : require('@/assets/aura-bg-white.jpg');
+
   return (
-    <Box className="relative w-full h-[520px] overflow-hidden justify-center items-center px-6 bg-brand-light-bg dark:bg-brand-dark-bg">
+    <Box className="relative w-full h-[520px] overflow-hidden justify-center items-center bg-brand-light-bg dark:bg-brand-dark-bg">
       {/* Background Image with Dark Vignette overlay */}
       <ImageBackground
-        source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuApmv9AwN8L093pVf6o_aRV6Zo6Bl5OdEIAQQouE7xYp8cJRGO-3e8ZwXJNhx6dqfF-Lf4KL0LCzNoCaqIAo5t3Nppa-0QbTCrahZtMFIBOFOIlE_Agktbv1oGpiXrM37yl6M1G5HI_9mXF9nB2U58evW7BcZyLPux5rTUwL70HxntCWjPAoQtO-2RQkElPuwigJLVvPjusJ5nPzWFntYNIN3e97l5thr1OO1t33NWbskSbtpaebHz1R_m2F356kw3m73EpGlYPvg' }}
+        source={bgSource}
         className="absolute inset-0 w-full h-full opacity-45 dark:opacity-60"
-        resizeMode="cover"
+        resizeMode="contain"
       />
       {/* Dark/Light radial overlay gradient effect */}
-      <Box className="absolute inset-0 bg-brand-light-bg/75 dark:bg-brand-dark-bg/60" />
+      <Box className="absolute inset-0 bg-brand-light-bg/40 dark:bg-brand-dark-bg/50" />
 
       {/* Main Hero Card Container wrapped in ScrollReveal */}
       <ScrollReveal scrollY={scrollY} delay={50}>
@@ -38,15 +44,15 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
           </Text>
 
           {/* Buttons using Gluestack UI styled with brand theme colors */}
-          <VStack space="sm" className="w-full max-w-[260px]">
+          <VStack space="sm" className="w-full max-w-[170px]">
             <Button
               size="md"
               variant="solid"
               action="primary"
-              className="w-full bg-brand-primary active:opacity-85 rounded-full py-3 border-0"
+              className="w-full bg-brand-primary active:opacity-85 rounded-full border-0"
               onPress={() => Alert.alert('Ascension', 'Bắt đầu quá trình rèn luyện Aura...')}
             >
-              <ButtonText className="text-brand-secondary font-bold text-[11px] uppercase tracking-wider text-center">
+              <ButtonText className="w-full text-brand-secondary font-bold text-[11px] uppercase tracking-wider text-center">
                 BEGIN ASCENSION
               </ButtonText>
             </Button>
@@ -55,10 +61,10 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
               size="md"
               variant="outline"
               action="secondary"
-              className="w-full border-brand-primary active:bg-brand-primary/10 rounded-full py-3"
+              className="w-full border-brand-primary active:bg-brand-primary/10 rounded-full"
               onPress={() => Alert.alert('Methodology', 'Học thuyết AuraFit dựa trên nghiên cứu phục hồi tim mạch và hypertrophy cơ bắp.')}
             >
-              <ButtonText className="text-brand-primary font-bold text-[11px] uppercase tracking-wider text-center">
+              <ButtonText className="w-full text-brand-primary font-bold text-[11px] uppercase tracking-wider text-center">
                 EXPLORE METHOD
               </ButtonText>
             </Button>
