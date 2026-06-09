@@ -6,8 +6,8 @@ Tài liệu này dùng để theo dõi tiến độ phát triển các tính nă
 
 ## 🚀 Trạng thái Dự án (Project Status Summary)
 - **Thiết lập Môi trường**: 🟩 Hoàn thành (Expo SDK 54, Vite 3D, NativeWind v4, Gluestack UI v3).
-- **Cơ sở dữ liệu & API**: ⬜ Chưa bắt đầu.
-- **Tính năng Solo (Tập luyện & Sức khỏe)**: ⬜ Chưa bắt đầu.
+- **Cơ sở dữ liệu & API**: 🟩 Hoàn thành thiết kế & tạo bảng (Onboarding & Workout Hub).
+- **Tính năng Solo (Tập luyện & Sức khỏe)**: 🟧 Đang tiến hành (Onboarding & Profile Hub hoàn thành).
 - **Tương tác 3D (Anatomy & Fatigue)**: ⬜ Chưa bắt đầu.
 - **Game hóa (EXP & Aura)**: ⬜ Chưa bắt đầu.
 - **Social (Chat, Địa điểm, Diễn đàn)**: ⬜ Chưa bắt đầu.
@@ -17,14 +17,14 @@ Tài liệu này dùng để theo dõi tiến độ phát triển các tính nă
 ## 📌 Bảng theo dõi Chi tiết (Detailed TODO List)
 
 ### 1. Cơ sở dữ liệu & API (Supabase Backend)
-- [ ] Thiết kế và tạo bảng `users` (lưu profile, EXP, level, tuổi, giới tính, BMI, PAI, chiều cao, cân nặng, số đo các vòng).
-- [ ] Thiết kế bảng `exercises` và `workout_templates` (danh mục bài tập gốc & bài tập mẫu, hỗ trợ các biến thể để swap bài).
-- [ ] Thiết kế bảng `workout_logs` & `set_logs` (lịch sử tập chi tiết từng set, trọng lượng, số rep đạt được, trạng thái mệt mỏi).
+- [x] Thiết kế và tạo bảng `users` (lưu profile, EXP, level, tuổi, giới tính, BMI, PAI, chiều cao, cân nặng, số đo các vòng).
+- [x] Thiết kế bảng `exercises` và `workout_templates` (danh mục bài tập gốc & bài tập mẫu, hỗ trợ các biến thể để swap bài).
+- [x] Thiết kế bảng `workout_logs` & `set_logs` (lịch sử tập chi tiết từng set, trọng lượng, số rep đạt được, trạng thái mệt mỏi).
 - [ ] Thiết kế bảng `food_logs` (lưu thông tin calo nạp, protein nạp, ảnh chụp món ăn locket-style, thời gian chụp).
-- [ ] Thiết kế bảng `lifestyle_metrics` (giới hạn thời gian MXH, trang sách đã đọc + ảnh sách, lượng nước uống, giờ dậy + chất lượng ngủ, các môn cardio ngoài lề như cầu lông/đá bóng).
+- [x] Thiết kế bảng `lifestyle_metrics` (giới hạn thời gian MXH, trang sách đã đọc + ảnh sách, lượng nước uống, giờ dậy + chất lượng ngủ, các môn cardio ngoài lề như cầu lông/đá bóng).
 - [ ] Thiết kế bảng `muscle_fatigue` (lưu chỉ số mỏi cơ từng vùng & thời gian cập nhật).
 - [ ] Thiết kế các bảng Social: `friendships`, `gym_facilities`, `chats`, `forum_posts`.
-- [ ] Cấu hình Supabase Row Level Security (RLS) để bảo mật dữ liệu cá nhân.
+- [x] Cấu hình Supabase Row Level Security (RLS) để bảo mật dữ liệu cá nhân.
 
 ### 2. Trình theo dõi Tập luyện & Sức khỏe (Solo Mode)
 
