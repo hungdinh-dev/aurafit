@@ -19,6 +19,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [profile, setProfile] = useState<any>(null);
   const [userEmail, setUserEmail] = useState<string>('');
+  const logo = require('@/assets/app-logo.png')
+
+  console.log("logo", logo)
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -63,7 +66,7 @@ export default function Header() {
       <HStack space="md" className="items-center">
         <Avatar size="sm" className="border border-brand-primary/30">
           <AvatarImage
-            source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBZ7etWtLhaTI7H6Zh4RJtjxyzoiFx3r8g0zBEUKz_9CxO6D6nmBvRcJ49IdfbLeEk_v9sUHVkl2Y9iYvPr4XNNNR8XZAxaJu1phV1H9tGpnlIf1bfbvZE3naEg8rp_ulypN_nNLsOhONMb4Dm3ipd7dcjPuulDE3rDk8qTlzqhygcSg0KpnuHmU31MtlcAVWPV-M3gy1Lgf_fg1FVKs6dYQn2SXrBugeHz2G1ylz1tCuxGcDqBGiGGeb6VTXAyM7ottIiT8x5x0A' }}
+            source={logo}
           />
         </Avatar>
         <VStack>
@@ -145,7 +148,7 @@ export default function Header() {
                   <>
                     <Box className="w-5 h-5 rounded-full bg-brand-primary shadow-sm" />
                     <Box className="pr-1.5">
-                      <Moon size={10} color={"white"}/>
+                      <Moon size={10} color={"white"} />
                     </Box>
                   </>
                 ) : (

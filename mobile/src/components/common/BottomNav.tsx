@@ -86,22 +86,26 @@ export default function BottomNav({
     };
   });
 
-  const Container = Platform.OS === 'web' ? View : Animated.View;
-  const containerStyle = Platform.OS === 'web' 
-    ? { zIndex: 99 } 
-    : [animatedNavStyle, { zIndex: 99, elevation: 10 }];
-
   return (
-    <Container 
-      style={containerStyle as any} 
+    <Animated.View 
+      style={[animatedNavStyle, { zIndex: 99, elevation: 10 }]} 
       className="absolute bottom-6 left-6 right-6"
     >
-      <HStack className="justify-around items-center py-2 px-4 bg-brand-light-card/85 dark:bg-brand-dark-card/85 backdrop-blur-lg border border-brand-light-border dark:border-brand-dark-border rounded-full shadow-2xl">
+      <View 
+        style={{ 
+          flexDirection: 'row', 
+          justifyContent: 'space-around', 
+          alignItems: 'center', 
+          paddingVertical: 8, 
+          paddingHorizontal: 16 
+        }}
+        className="bg-brand-light-card/85 dark:bg-brand-dark-card/85 backdrop-blur-lg border border-brand-light-border dark:border-brand-dark-border rounded-full shadow-2xl"
+      >
         {/* Tab 1: Dashboard (Target) */}
         <Pressable
           onPress={() => onTabPress('dashboard')}
           className={getTabClass('dashboard')}
-          style={{ alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
+          style={{ flex: 1, height: 40, alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
         >
           {renderTooltip('dashboard', 'home')}
           <Target
@@ -115,7 +119,7 @@ export default function BottomNav({
         <Pressable
           onPress={() => onTabPress('workout')}
           className={getTabClass('workout')}
-          style={{ alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
+          style={{ flex: 1, height: 40, alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
         >
           {renderTooltip('workout', 'workout')}
           <Dumbbell
@@ -129,7 +133,7 @@ export default function BottomNav({
         <Pressable
           onPress={() => onTabPress('leaderboard')}
           className={getTabClass('leaderboard')}
-          style={{ alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
+          style={{ flex: 1, height: 40, alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
         >
           {renderTooltip('leaderboard', 'leaderboard')}
           <TrendingUp
@@ -143,7 +147,7 @@ export default function BottomNav({
         <Pressable
           onPress={() => onTabPress('profile')}
           className={getTabClass('profile')}
-          style={{ alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
+          style={{ flex: 1, height: 40, alignItems: 'center', justifyContent: 'center', ...(Platform.OS === 'web' ? { cursor: 'pointer' } : {}) }}
         >
           {renderTooltip('profile', 'profile')}
           <User
@@ -152,7 +156,7 @@ export default function BottomNav({
             className={getIconColorClass('profile')}
           />
         </Pressable>
-      </HStack>
-    </Container>
+      </View>
+    </Animated.View>
   );
 }

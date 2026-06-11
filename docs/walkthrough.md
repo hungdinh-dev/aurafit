@@ -78,3 +78,27 @@ Chúng ta đã tiến hành cấu hình lại toàn bộ luồng giao diện c�
   - `npx tsc --noEmit` thành công 100% không có bất kỳ lỗi nào về import hay kiểu dữ liệu.
   - Giao diện tự động cập nhật hiển thị mượt mà trên màn hình iPhone thật của bạn!
 
+---
+
+## 5. Nhật Ký Thay Đổi & Nâng Cấp - Ngày 11/06/2026 17:00 (UTC+7)
+
+### Nâng Cấp Giao Diện Tuần Ngang & Logic Chuỗi Khiên (Aura Shields)
+
+Chúng tôi đã hoàn thành việc nâng cấp cấu trúc dịch vụ tập luyện, xây dựng giao diện lịch tuần ngang chuẩn thiết kế, tích hợp cơ chế bảo vệ chuỗi (Streak) bằng khiên (Shields) dựa trên mức độ khó, và tạo tệp lưu trữ ý tưởng.
+
+#### Các thay đổi mã nguồn chi tiết:
+* **Tệp cấu hình ý tưởng [ideas.md](file:///C:/Projects/Personal/aurafit/ideas.md) [NEW]:** Tạo tệp ở gốc dự án để bạn dễ dàng lưu trữ và mở rộng ý tưởng sau này mà không cần gõ lại ở prompt.
+* **Tệp dịch vụ [workoutService.ts](file:///C:/Projects/Personal/aurafit/mobile/src/features/workout/services/workoutService.ts) [MODIFY]:** Bổ sung các hàm API `saveWorkoutPlan` và `saveWorkoutPlanExercises` hỗ trợ lưu giáo án tùy chỉnh online và offline sandbox.
+* **Component [CustomizePlanModal.tsx](file:///C:/Projects/Personal/aurafit/mobile/src/features/workout/components/CustomizePlanModal.tsx) [NEW]:** Xây dựng Modal chỉnh sửa giáo án toàn diện cho phép đổi tên, độ khó, điều chỉnh hiệp/số lần lặp/tỷ lệ tạ và thêm bớt các bài tập từ danh mục.
+* **Component [WorkoutOverview.tsx](file:///C:/Projects/Personal/aurafit/mobile/src/features/workout/components/WorkoutOverview.tsx) [MODIFY]:** 
+  - Tái thiết kế giao diện theo ảnh tham chiếu.
+  - Hiển thị Badge chỉ số **Streak** `🔥` và **Khiên bảo vệ** `🛡️` ở Header.
+  - Thiết kế lịch tuần ngang (MON &rarr; SUN). Hiển thị trực quan trạng thái: Đã tập (Tích xanh), Ngày nghỉ/Hồi phục (Trăng khuyết `🌙`), Ngày có lịch tập chưa làm (Vòng tròn rỗng).
+  - Tích hợp màn hình ngày nghỉ (Rest Day) giải thích cách dùng khiên bảo toàn chuỗi.
+  - Đặt nút **Bắt đầu (Start)** màu vàng/xanh neon nổi bật cạnh nút **Tùy chỉnh (+)**.
+* **Màn hình [WorkoutScreen.tsx](file:///C:/Projects/Personal/aurafit/mobile/src/features/workout/screens/WorkoutScreen.tsx) [MODIFY]:** Tích hợp múi giờ Việt Nam (UTC+7) tự động chọn đúng ngày hiện tại trong tuần và điều phối `CustomizePlanModal`.
+
+#### Kết Quả Xác Minh:
+* Chạy TypeScript compiler (`npx tsc --noEmit`) trong thư mục `mobile/`, kết quả **thành công 100% không có bất kỳ lỗi kiểu dữ liệu (TS errors) nào**.
+
+
