@@ -45,6 +45,7 @@ export interface WorkoutPlanExercise {
   default_reps_min: number;
   default_reps_max: number;
   default_weight_ratio: number;
+  rest_duration_seconds?: number;
   exercises?: Exercise; // Joined exercise details
 }
 
@@ -437,6 +438,7 @@ export async function getWorkoutPlanExercises(planId: string): Promise<WorkoutPl
       default_reps_min,
       default_reps_max,
       default_weight_ratio,
+      rest_duration_seconds,
       exercises:exercises (
         id,
         name,
@@ -467,6 +469,7 @@ export async function getWorkoutPlanExercises(planId: string): Promise<WorkoutPl
     default_reps_min: item.default_reps_min,
     default_reps_max: item.default_reps_max,
     default_weight_ratio: Number(item.default_weight_ratio || 0),
+    rest_duration_seconds: item.rest_duration_seconds || 90,
     exercises: item.exercises ? {
       id: item.exercises.id,
       name: item.exercises.name,

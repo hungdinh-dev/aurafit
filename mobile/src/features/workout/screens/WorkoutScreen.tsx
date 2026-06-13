@@ -23,7 +23,7 @@ import {
   MOCK_PLAN_EXERCISES,
   MOCK_EXERCISES
 } from '../services/workoutService';
-import { getProfile } from '@/src/features/profile/services/profileService';
+import { getProfile, updateProfile } from '@/src/features/profile/services/profileService';
 
 // Sub-components
 import WorkoutOverview from '../components/WorkoutOverview';
@@ -34,6 +34,116 @@ import AddExerciseModal from '../components/AddExerciseModal';
 import CustomizePlanModal from '../components/CustomizePlanModal';
 
 const CURRENT_USER_ID_MOCK = '00000000-0000-0000-0000-000000000000';
+
+// Helper to check and reset streak if there are unshielded missed days
+const checkAndUpdateStreakAndShields = (
+  currentProfile: any,
+  allWorkouts: Workout[],
+  allPlans: WorkoutPlan[]
+) => {
+  if (!currentProfile) return null;
+
+  const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+  const vnDate = new Date(utc + 3600000 * 7);
+  const currentDayOfWeek = vnDate.getDay() === 0 ? 7 : vnDate.getDay();
+
+  const getStartOfWeek = (d: Date) => {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+    date.setDate(diff);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+
+  const startOfWeek = getStartOfWeek(vnDate);
+  const startOfWeekStr = startOfWeek.toISOString();
+
+  const metadata = currentProfile.metadata || {};
+  let shieldedDays: number[] = metadata.shielded_days || [];
+  let savedStartOfWeek = metadata.start_of_week;
+  let currentStreak = currentProfile.streak_days || 0;
+  let profileChanged = false;
+  let newMetadata = { ...metadata };
+
+  // 1. Check if week has rolled over
+  if (savedStartOfWeek && savedStartOfWeek !== startOfWeekStr) {
+    // Week rolled over! Check previous week
+    const prevStartOfWeek = new Date(startOfWeek);
+    prevStartOfWeek.setDate(startOfWeek.getDate() - 7);
+    const prevEndOfWeek = new Date(startOfWeek);
+
+    const prevCompletedDays = Array(8).fill(false);
+    allWorkouts.forEach(w => {
+      const wDate = new Date(w.created_at);
+      if (wDate >= prevStartOfWeek && wDate < prevEndOfWeek) {
+        const day = wDate.getDay();
+        const dayIndex = day === 0 ? 7 : day;
+        prevCompletedDays[dayIndex] = true;
+      }
+    });
+
+    const prevShieldedDays = metadata.shielded_days || [];
+    let prevWeekHasUnshieldedMiss = false;
+
+    for (let d = 1; d <= 7; d++) {
+      const dayHasPlan = allPlans.some(p => p.day_of_week === d);
+      if (dayHasPlan && !prevCompletedDays[d] && !prevShieldedDays.includes(d)) {
+        prevWeekHasUnshieldedMiss = true;
+        break;
+      }
+    }
+
+    if (prevWeekHasUnshieldedMiss && currentStreak > 0) {
+      currentStreak = 0;
+      profileChanged = true;
+    }
+
+    shieldedDays = [];
+    newMetadata.shielded_days = shieldedDays;
+    newMetadata.start_of_week = startOfWeekStr;
+    profileChanged = true;
+  } else if (!savedStartOfWeek) {
+    newMetadata.start_of_week = startOfWeekStr;
+    newMetadata.shielded_days = shieldedDays;
+    profileChanged = true;
+  }
+
+  // 2. Check current week's past days (d < currentDayOfWeek - 1)
+  const thisWeekCompletedDays = Array(8).fill(false);
+  allWorkouts.forEach(w => {
+    const wDate = new Date(w.created_at);
+    if (wDate >= startOfWeek) {
+      const day = wDate.getDay();
+      const dayIndex = day === 0 ? 7 : day;
+      thisWeekCompletedDays[dayIndex] = true;
+    }
+  });
+
+  let currentWeekHasUnshieldedMiss = false;
+  for (let d = 1; d < currentDayOfWeek - 1; d++) {
+    const dayHasPlan = allPlans.some(p => p.day_of_week === d);
+    if (dayHasPlan && !thisWeekCompletedDays[d] && !shieldedDays.includes(d)) {
+      currentWeekHasUnshieldedMiss = true;
+      break;
+    }
+  }
+
+  if (currentWeekHasUnshieldedMiss && currentStreak > 0) {
+    currentStreak = 0;
+    profileChanged = true;
+  }
+
+  if (profileChanged) {
+    return {
+      ...currentProfile,
+      streak_days: currentStreak,
+      metadata: newMetadata
+    };
+  }
+
+  return null;
+};
 
 interface ActiveSet {
   set_number: number;
@@ -89,6 +199,7 @@ export default function WorkoutScreen() {
   const [isActiveSession, setIsActiveSession] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [activeExercises, setActiveExercises] = useState<ActiveExercise[]>([]);
+  const [expandedExerciseId, setExpandedExerciseId] = useState<string | null>(null);
   
   // Rest Timer States
   const [isResting, setIsResting] = useState(false);
@@ -98,6 +209,7 @@ export default function WorkoutScreen() {
   // Swapping / Extras Modals
   const [showSwapModal, setShowSwapModal] = useState(false);
   const [swappingIndex, setSwappingIndex] = useState<number | null>(null);
+  const [swappingPlanExerciseId, setSwappingPlanExerciseId] = useState<string | null>(null);
   const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
   const [showCustomizeModal, setShowCustomizeModal] = useState(false);
   
@@ -109,25 +221,44 @@ export default function WorkoutScreen() {
   useEffect(() => {
     const initializeData = async () => {
       setIsLoading(true);
+      const todayDay = getVietnamDayOfWeek();
+      const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+      const vnDate = new Date(utc + 3600000 * 7);
+      const getStartOfWeek = (d: Date) => {
+        const date = new Date(d);
+        const day = date.getDay();
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+        date.setDate(diff);
+        date.setHours(0, 0, 0, 0);
+        return date;
+      };
+      const startOfWeek = getStartOfWeek(vnDate);
+
       if (!isSupabaseConfigured) {
         setPlans(MOCK_WORKOUT_PLANS);
         setCatalogExercises(MOCK_EXERCISES);
-        setWorkouts(getMockWorkoutsHistory());
+        const wLogs = getMockWorkoutsHistory();
+        setWorkouts(wLogs);
         
-        // Default mock profile with streak and shields
-        setUserProfile({ 
+        const mockProfile = { 
           weight: 65, 
           xp: 125, 
           level: 1, 
           streak_days: 12, 
           aura_shields: 3, 
-          train_days: 4 
-        });
+          train_days: 4,
+          metadata: {
+            start_of_week: startOfWeek.toISOString(),
+            shielded_days: []
+          }
+        };
         
-        const todayDay = getVietnamDayOfWeek();
         setSelectedDay(todayDay);
         const matchingPlan = MOCK_WORKOUT_PLANS.find(p => p.day_of_week === todayDay);
         setSelectedPlan(matchingPlan || null);
+        
+        const updated = checkAndUpdateStreakAndShields(mockProfile, wLogs, MOCK_WORKOUT_PLANS);
+        setUserProfile(updated || mockProfile);
         
         setIsOfflineMode(true);
         setIsLoading(false);
@@ -139,18 +270,22 @@ export default function WorkoutScreen() {
         setSession(currentSession);
         const userId = currentSession?.user?.id || CURRENT_USER_ID_MOCK;
         
+        let profileData: any;
         if (currentSession?.user) {
-          const profileData = await getProfile(userId);
-          setUserProfile(profileData);
+          profileData = await getProfile(userId);
         } else {
-          setUserProfile({ 
+          profileData = { 
             weight: 65, 
             xp: 125, 
             level: 1, 
             streak_days: 12, 
             aura_shields: 3, 
-            train_days: 4 
-          });
+            train_days: 4,
+            metadata: {
+              start_of_week: startOfWeek.toISOString(),
+              shielded_days: []
+            }
+          };
         }
 
         const exercisesData = await getExercises();
@@ -159,31 +294,63 @@ export default function WorkoutScreen() {
         const plansData = await getWorkoutPlans(userId);
         setPlans(plansData);
         
-        const todayDay = getVietnamDayOfWeek();
         setSelectedDay(todayDay);
         const matchingPlan = plansData.find(p => p.day_of_week === todayDay);
         setSelectedPlan(matchingPlan || null);
 
         const workoutLogs = await getWorkouts(userId);
         setWorkouts(workoutLogs);
+
+        // Run streak validation
+        const profileWithMetadata = {
+          ...profileData,
+          metadata: profileData.metadata && typeof profileData.metadata === 'object' ? profileData.metadata : {
+            start_of_week: startOfWeek.toISOString(),
+            shielded_days: []
+          }
+        };
+
+        const updatedProfile = checkAndUpdateStreakAndShields(profileWithMetadata, workoutLogs, plansData);
+        if (updatedProfile) {
+          if (currentSession?.user) {
+            const fresh = await updateProfile(userId, {
+              streak_days: updatedProfile.streak_days,
+              metadata: updatedProfile.metadata
+            });
+            setUserProfile(fresh);
+          } else {
+            setUserProfile(updatedProfile);
+          }
+        } else {
+          setUserProfile(profileWithMetadata);
+        }
+
         setIsOfflineMode(false);
       } catch (error: any) {
         console.log('Error initializing Workout Hub:', error.message);
         setPlans(MOCK_WORKOUT_PLANS);
         setCatalogExercises(MOCK_EXERCISES);
-        setWorkouts(getMockWorkoutsHistory());
-        setUserProfile({ 
+        const wLogs = getMockWorkoutsHistory();
+        setWorkouts(wLogs);
+        
+        const mockProfile = { 
           weight: 65, 
           xp: 125, 
           level: 1, 
           streak_days: 12, 
           aura_shields: 3, 
-          train_days: 4 
-        });
-        const todayDay = getVietnamDayOfWeek();
+          train_days: 4,
+          metadata: {
+            start_of_week: startOfWeek.toISOString(),
+            shielded_days: []
+          }
+        };
         setSelectedDay(todayDay);
         const matchingPlan = MOCK_WORKOUT_PLANS.find(p => p.day_of_week === todayDay);
         setSelectedPlan(matchingPlan || null);
+
+        const updated = checkAndUpdateStreakAndShields(mockProfile, wLogs, MOCK_WORKOUT_PLANS);
+        setUserProfile(updated || mockProfile);
         setIsOfflineMode(true);
       } finally {
         setIsLoading(false);
@@ -345,9 +512,16 @@ export default function WorkoutScreen() {
   };
 
   // Start Workout Action
-  const handleBeginAscension = () => {
+  const handleBeginAscension = (initialExpandExerciseId?: string) => {
     if (!selectedPlan || planExercises.length === 0) {
       Alert.alert('Lỗi', 'Không thể bắt đầu do chưa có bài tập nào.');
+      return;
+    }
+
+    // Check if the selected day is the current day (Vietnam Time)
+    const todayDay = getVietnamDayOfWeek();
+    if (selectedDay !== todayDay) {
+      Alert.alert('Không thể bắt đầu', 'Bạn chỉ có thể thực hiện bài tập của ngày hôm nay.');
       return;
     }
 
@@ -369,7 +543,7 @@ export default function WorkoutScreen() {
       }
 
       return {
-        id: `active-ex-${idx}-${pe.exercise_id}`,
+        id: pe.id, // Use plan exercise id as identifier
         exercise_id: pe.exercise_id,
         name: exerciseName,
         primary_muscle: pe.exercises?.primary_muscle || 'Toàn thân',
@@ -379,7 +553,7 @@ export default function WorkoutScreen() {
         default_reps_min: pe.default_reps_min,
         default_reps_max: pe.default_reps_max,
         default_weight_ratio: ratio,
-        rest_duration_seconds: 90
+        rest_duration_seconds: pe.rest_duration_seconds || 90
       };
     });
 
@@ -387,6 +561,66 @@ export default function WorkoutScreen() {
     setIsActiveSession(true);
     setElapsedSeconds(0);
     setIsResting(false);
+    if (initialExpandExerciseId) {
+      setExpandedExerciseId(initialExpandExerciseId);
+    } else if (initialActive.length > 0) {
+      setExpandedExerciseId(initialActive[0].id);
+    }
+  };
+
+  // Swap Plan Exercise handler
+  const handleSwapPlanExercise = (planExerciseId: string, index: number) => {
+    setSwappingIndex(index);
+    setSwappingPlanExerciseId(planExerciseId);
+    setShowSwapModal(true);
+  };
+
+  // Use Aura Shield logic
+  const handleUseShield = async (day: number) => {
+    if (!userProfile) return;
+    const currentShields = userProfile.aura_shields || 0;
+    if (currentShields <= 0) {
+      Alert.alert('Không đủ khiên', 'Bạn đã hết khiên bảo vệ. Hãy hoàn thành các buổi tập để nhận thêm khiên!');
+      return;
+    }
+
+    const metadata = userProfile.metadata || {};
+    const shieldedDays = metadata.shielded_days || [];
+    if (shieldedDays.includes(day)) {
+      Alert.alert('Thông báo', 'Ngày này đã được bảo vệ bằng khiên.');
+      return;
+    }
+
+    const nextShields = currentShields - 1;
+    const updatedMetadata = {
+      ...metadata,
+      shielded_days: [...shieldedDays, day]
+    };
+
+    setIsLoading(true);
+    try {
+      const isActuallyOffline = isOfflineMode || !session;
+      if (isActuallyOffline) {
+        setUserProfile((prev: any) => ({
+          ...prev,
+          aura_shields: nextShields,
+          metadata: updatedMetadata
+        }));
+        Alert.alert('Thành công', 'Đã sử dụng 1 khiên bảo vệ chuỗi tập luyện thành công!');
+      } else {
+        const activeUserId = session?.user?.id || CURRENT_USER_ID_MOCK;
+        const updated = await updateProfile(activeUserId, {
+          aura_shields: nextShields,
+          metadata: updatedMetadata
+        });
+        setUserProfile(updated);
+        Alert.alert('Thành công', 'Đã sử dụng 1 khiên bảo vệ chuỗi tập luyện thành công!');
+      }
+    } catch (err: any) {
+      Alert.alert('Lỗi sử dụng khiên', err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Save/Update Plan custom details handler
@@ -601,7 +835,57 @@ export default function WorkoutScreen() {
     }));
   };
 
-  const handleExecuteSwap = (newEx: Exercise) => {
+  const handleExecuteSwap = async (newEx: Exercise) => {
+    if (swappingPlanExerciseId) {
+      // Swapping in the detailed plan list before starting the workout!
+      const activeUserId = session?.user?.id || CURRENT_USER_ID_MOCK;
+      setIsLoading(true);
+      try {
+        const updatedExercises = planExercises.map((pe) => {
+          if (pe.id === swappingPlanExerciseId) {
+            return {
+              ...pe,
+              exercise_id: newEx.id,
+              exercises: newEx
+            };
+          }
+          return pe;
+        });
+
+        if (isOfflineMode || !session) {
+          // Offline Sandbox
+          if (selectedPlan) {
+            MOCK_PLAN_EXERCISES[selectedPlan.id] = updatedExercises;
+            setPlanExercises(updatedExercises);
+          }
+        } else {
+          // Supabase flow
+          const mappedToSave = updatedExercises.map(pe => ({
+            plan_id: pe.plan_id,
+            exercise_id: pe.exercise_id,
+            sequence_order: pe.sequence_order,
+            default_sets: pe.default_sets,
+            default_reps_min: pe.default_reps_min,
+            default_reps_max: pe.default_reps_max,
+            default_weight_ratio: pe.default_weight_ratio
+          }));
+          await saveWorkoutPlanExercises(selectedPlan!.id, mappedToSave);
+          
+          const freshExercises = await getWorkoutPlanExercises(selectedPlan!.id);
+          setPlanExercises(freshExercises);
+        }
+        Alert.alert('Thành công', `Đã tráo đổi sang bài tập ${newEx.name}!`);
+      } catch (err: any) {
+        Alert.alert('Lỗi đổi bài tập', err.message);
+      } finally {
+        setIsLoading(false);
+        setSwappingPlanExerciseId(null);
+        setSwappingIndex(null);
+        setShowSwapModal(false);
+      }
+      return;
+    }
+
     if (swappingIndex === null) return;
 
     setActiveExercises(prev => {
@@ -844,6 +1128,8 @@ export default function WorkoutScreen() {
           onShowAddExtraModal={() => setShowAddExerciseModal(true)}
           onFinishWorkout={handleFinishWorkout}
           onCancelWorkout={handleCancelWorkout}
+          expandedExerciseId={expandedExerciseId}
+          setExpandedExerciseId={setExpandedExerciseId}
         />
 
         <RestTimerOverlay
@@ -855,7 +1141,11 @@ export default function WorkoutScreen() {
 
         <SwapExerciseModal
           visible={showSwapModal}
-          onClose={() => setShowSwapModal(false)}
+          onClose={() => {
+            setShowSwapModal(false);
+            setSwappingPlanExerciseId(null);
+            setSwappingIndex(null);
+          }}
           catalogExercises={catalogExercises}
           activeExercises={activeExercises}
           swappingIndex={swappingIndex}
@@ -890,6 +1180,8 @@ export default function WorkoutScreen() {
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
         onOpenCustomizePlan={() => setShowCustomizeModal(true)}
+        onUseShield={handleUseShield}
+        onSwapPlanExercise={handleSwapPlanExercise}
       />
 
       <CustomizePlanModal

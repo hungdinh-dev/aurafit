@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, ScrollView, Image } from 'react-native';
+import { Pressable, ScrollView, Image, Alert } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
@@ -20,7 +20,8 @@ import {
   Check,
   Moon,
   Plus,
-  HelpCircle
+  HelpCircle,
+  ArrowLeftRight
 } from 'lucide-react-native';
 import { Workout, WorkoutPlan, WorkoutPlanExercise } from '../services/workoutService';
 
@@ -31,7 +32,7 @@ interface WorkoutOverviewProps {
   planExercises: WorkoutPlanExercise[];
   workouts: Workout[];
   isOfflineMode: boolean;
-  onBeginAscension: () => void;
+  onBeginAscension: (initialExerciseId?: string) => void;
   onDeleteWorkoutLog: (id: string) => void;
   getExerciseImage: (name: string) => string;
   t: (key: any) => string;
@@ -39,6 +40,8 @@ interface WorkoutOverviewProps {
   selectedDay: number;
   setSelectedDay: (day: number) => void;
   onOpenCustomizePlan: () => void;
+  onUseShield: (day: number) => void;
+  onSwapPlanExercise: (planExerciseId: string, index: number) => void;
 }
 
 export default function WorkoutOverview({
@@ -55,7 +58,9 @@ export default function WorkoutOverview({
   userProfile,
   selectedDay,
   setSelectedDay,
-  onOpenCustomizePlan
+  onOpenCustomizePlan,
+  onUseShield,
+  onSwapPlanExercise
 }: WorkoutOverviewProps) {
   const streak = userProfile?.streak_days || 0;
   const shields = userProfile?.aura_shields || 0;
@@ -104,6 +109,23 @@ export default function WorkoutOverview({
   const dayHasPlan = (dayNum: number): boolean => {
     return plans.some(p => p.day_of_week === dayNum);
   };
+
+  const currentDayOfWeek = vnDate.getDay() === 0 ? 7 : vnDate.getDay();
+  const metadata = userProfile?.metadata || {};
+  const shieldedDays: number[] = metadata.shielded_days || [];
+
+  // Yesterday logic
+  const yesterdayDay = currentDayOfWeek > 1 ? currentDayOfWeek - 1 : null;
+  const yesterdayHasPlan = yesterdayDay ? dayHasPlan(yesterdayDay) : false;
+  const yesterdayCompleted = yesterdayDay ? completedDays[yesterdayDay] : false;
+  const yesterdayShielded = yesterdayDay ? shieldedDays.includes(yesterdayDay) : false;
+  const showYesterdayWarning = yesterdayHasPlan && !yesterdayCompleted && !yesterdayShielded;
+
+  // Today logic
+  const todayHasPlan = dayHasPlan(currentDayOfWeek);
+  const todayCompleted = completedDays[currentDayOfWeek];
+  const todayShielded = shieldedDays.includes(currentDayOfWeek);
+  const showTodayWarning = todayHasPlan && !todayCompleted && !todayShielded;
 
   // Days list definition
   const weekDays = [
@@ -241,6 +263,70 @@ export default function WorkoutOverview({
           </HStack>
         </Box>
 
+        {/* SHIELD WARNING NOTIFICATION BOX */}
+        {(showYesterdayWarning || showTodayWarning) && (
+          <Box className="bg-amber-500/10 border border-amber-500/20 rounded-3xl p-5 shadow-sm">
+            <VStack space="md">
+              <HStack space="xs" className="items-center">
+                <ShieldAlert size={18} className="text-amber-500" />
+                <Heading size="xs" className="text-amber-600 dark:text-amber-400 font-black uppercase tracking-wider text-xs">
+                  CẢNH BÁO CHUỖI TẬP (STREAK WARNING)
+                </Heading>
+              </HStack>
+
+              {showYesterdayWarning && (
+                <VStack space="xs">
+                  <Text className="text-xs text-brand-light-text dark:text-brand-dark-text leading-relaxed">
+                    Bạn đã bỏ lỡ buổi tập ngày hôm qua (Thứ {yesterdayDay === 7 ? "Nhật" : (yesterdayDay || 0) + 1}). 
+                    Hãy sử dụng 1 khiên để bảo vệ chuỗi <Text className="font-bold text-brand-primary">{streak} ngày</Text> của bạn!
+                  </Text>
+                  <HStack className="justify-end mt-1">
+                    <Button 
+                      size="sm" 
+                      variant="solid" 
+                      action="primary" 
+                      className="bg-brand-primary rounded-xl py-2 px-4 shadow-sm"
+                      disabled={shields === 0}
+                      onPress={() => yesterdayDay && onUseShield(yesterdayDay)}
+                    >
+                      <Shield size={12} className="text-brand-secondary dark:text-brand-neutral mr-1.5" fill="#1C1C1E" />
+                      <ButtonText className="text-brand-secondary dark:text-brand-neutral font-bold text-2xs uppercase">
+                        {shields > 0 ? "Dùng 1 Khiên Cứu Chuỗi" : "Hết Khiên Bảo Vệ"}
+                      </ButtonText>
+                    </Button>
+                  </HStack>
+                </VStack>
+              )}
+
+              {showYesterdayWarning && showTodayWarning && <Box className="h-px bg-amber-500/20 my-1" />}
+
+              {showTodayWarning && (
+                <VStack space="xs">
+                  <Text className="text-xs text-brand-light-text dark:text-brand-dark-text leading-relaxed">
+                    Hôm nay bạn có giáo án cần luyện tập. Hãy bắt đầu tập ngay để giữ vững chuỗi <Text className="font-bold text-brand-primary">{streak} ngày</Text>, 
+                    hoặc bạn có thể dùng 1 khiên để bảo vệ ngày hôm nay.
+                  </Text>
+                  <HStack className="justify-end mt-1">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      action="primary" 
+                      className="border-brand-primary rounded-xl py-2 px-4"
+                      disabled={shields === 0}
+                      onPress={() => onUseShield(currentDayOfWeek)}
+                    >
+                      <Shield size={12} className="text-brand-primary mr-1.5" />
+                      <ButtonText className="text-brand-primary font-bold text-2xs uppercase">
+                        {shields > 0 ? "Dùng 1 Khiên Nghỉ Ngơi" : "Hết Khiên Bảo Vệ"}
+                      </ButtonText>
+                    </Button>
+                  </HStack>
+                </VStack>
+              )}
+            </VStack>
+          </Box>
+        )}
+
         {/* ACTIVE PLAN DETAIL PANEL FOR SELECTED DAY */}
         {selectedPlan ? (
           <VStack space="md">
@@ -283,27 +369,20 @@ export default function WorkoutOverview({
               </VStack>
             </Box>
 
-            {/* START WORKOUT BUTTON & CUSTOMIZE PLAN BUTTON */}
-            <HStack space="sm" className="mt-1">
+            {/* CUSTOMIZE PLAN BUTTON ONLY */}
+            <HStack className="justify-end mt-1">
               <Button 
-                size="md" 
-                variant="solid" 
+                size="sm" 
+                variant="outline" 
                 action="primary" 
-                className="flex-1 bg-brand-primary rounded-2xl py-3.5 shadow-md active:scale-95 flex-row items-center justify-center"
-                onPress={onBeginAscension}
+                className="border-brand-primary hover:bg-brand-primary/5 rounded-2xl py-2 px-4 shadow-sm active:scale-95"
+                onPress={onOpenCustomizePlan}
               >
-                <Play size={16} className="text-brand-secondary dark:text-brand-neutral mr-2" fill="#1C1C1E" />
-                <ButtonText className="text-brand-secondary dark:text-brand-neutral font-black uppercase text-xs tracking-wider">
-                  Bắt Đầu Tập (Start)
+                <Plus size={12} className="text-brand-primary mr-1" />
+                <ButtonText className="text-brand-primary font-bold uppercase text-2xs tracking-wider">
+                  Tùy Chỉnh Giáo Án
                 </ButtonText>
               </Button>
-
-              <Pressable
-                onPress={onOpenCustomizePlan}
-                className="w-14 h-14 bg-brand-light-card dark:bg-brand-dark-card border border-brand-light-border dark:border-brand-dark-border rounded-2xl items-center justify-center active:scale-95 shadow-sm"
-              >
-                <Plus size={20} className="text-brand-primary" />
-              </Pressable>
             </HStack>
 
             {/* Exercises List */}
@@ -342,13 +421,21 @@ export default function WorkoutOverview({
                         {/* Right Side Details */}
                         <VStack className="w-[70%] p-4 justify-between" space="xs">
                           <VStack>
-                            <HStack className="justify-between items-baseline mb-0.5">
+                            <HStack className="justify-between items-center mb-0.5">
                               <Text className="text-[8px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-bold font-mono tracking-widest uppercase">
                                 BÀI SỐ {idx + 1}
                               </Text>
-                              <Text className="text-[9px] text-brand-primary font-bold bg-brand-primary/10 px-1.5 py-0.5 rounded-full">
-                                {exMuscle}
-                              </Text>
+                              <HStack space="xs" className="items-center">
+                                <Pressable
+                                  onPress={() => onSwapPlanExercise(pe.id, idx)}
+                                  className="p-1 rounded bg-brand-primary/10 active:scale-90"
+                                >
+                                  <ArrowLeftRight size={10} className="text-brand-primary" />
+                                </Pressable>
+                                <Text className="text-[9px] text-brand-primary font-bold bg-brand-primary/10 px-1.5 py-0.5 rounded-full ml-1">
+                                  {exMuscle}
+                                </Text>
+                              </HStack>
                             </HStack>
                             
                             <Heading size="xs" className="text-brand-light-text dark:text-brand-dark-text font-black text-xs" numberOfLines={1}>
@@ -371,6 +458,27 @@ export default function WorkoutOverview({
                                 <Text className="text-[10px] text-brand-light-text-muted dark:text-brand-dark-text-muted font-mono">{pe.default_reps_min}-{pe.default_reps_max} reps</Text>
                               </HStack>
                             </HStack>
+
+                            <Pressable
+                              onPress={() => {
+                                if (selectedDay !== currentDayOfWeek) {
+                                  Alert.alert('Không thể bắt đầu', 'Bạn chỉ có thể thực hiện tập luyện ngày hôm nay.');
+                                } else {
+                                  onBeginAscension(pe.id);
+                                }
+                              }}
+                              disabled={selectedDay !== currentDayOfWeek}
+                              className={`flex-row items-center px-2.5 py-1.5 rounded-xl ${
+                                selectedDay === currentDayOfWeek
+                                  ? "bg-brand-primary active:scale-95"
+                                  : "bg-neutral-300 dark:bg-neutral-700 opacity-50"
+                              }`}
+                            >
+                              <Play size={8} className={selectedDay === currentDayOfWeek ? "text-brand-secondary dark:text-brand-neutral mr-1" : "text-neutral-500 mr-1"} fill={selectedDay === currentDayOfWeek ? "#1C1C1E" : "#777"} />
+                              <Text className={`text-[9px] font-bold ${
+                                selectedDay === currentDayOfWeek ? "text-brand-secondary dark:text-brand-neutral" : "text-neutral-500"
+                              }`}>BẮT ĐẦU</Text>
+                            </Pressable>
                           </HStack>
                         </VStack>
                       </HStack>
