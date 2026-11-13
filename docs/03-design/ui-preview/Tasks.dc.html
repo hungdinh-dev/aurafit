@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Nhiệm vụ hằng ngày</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex">
+      <a href="Main.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px; margin-top: -6px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 700">Sống chất lượng</h1>
+      <span style="font-size: 15px; color: #A1A1A8">{{ doneCount }}/4 xong hôm nay · {{ pts }}/10 điểm ngày</span>
+    </div>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px">Thiền 10 phút</span><span style="font-size: 13px; color: #A1A1A8">Đánh dấu · mỗi ngày</span></span>
+        <button onClick="{{ toggleMed }}" role="checkbox" aria-checked="{{ medChecked }}" aria-label="Thiền 10 phút" style="width: 44px; height: 44px; border: 0; background: none; display: flex; align-items: center; justify-content: center">
+          <span style="width: 28px; height: 28px; border-radius: 14px; background: {{ medBg }}; box-shadow: {{ medRing }}; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00140C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span></button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 0 10px 0 16px; border-top: 0.5px solid #38383A">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px">Đọc sách</span><span style="font-size: 13px; color: #A1A1A8">Đếm · Atomic Habits · mục tiêu 20 trang</span></span>
+        <button onClick="{{ pMinus }}" aria-label="Bớt 1 trang" style="width: 36px; height: 36px; border: 0; border-radius: 18px; background: #2C2C2E; color: #FFFFFF; font: 600 18px -apple-system, sans-serif">−</button>
+        <span style="min-width: 52px; text-align: center; font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: {{ pageColor }}">{{ pages }}/20</span>
+        <button onClick="{{ pPlus }}" aria-label="Thêm 1 trang" style="width: 36px; height: 36px; border: 0; border-radius: 18px; background: #2C2C2E; color: #FFFFFF; font: 600 18px -apple-system, sans-serif">+</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 12px 0 16px; border-top: 0.5px solid #38383A">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px">Làm việc tập trung</span><span style="font-size: 13px; color: #A1A1A8">Hẹn giờ · 1/2 phiên 50 phút</span></span>
+        <a href="Focus.dc.html" style="height: 36px; padding: 0 14px; border-radius: 18px; background: #12221D; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none">Bắt đầu</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; min-height: 64px; padding: 12px 16px; border-top: 0.5px solid #38383A; box-sizing: border-box">
+        <div style="display: flex; justify-content: space-between"><span style="font-size: 17px">8.000 bước</span><span style="font-size: 15px; color: #A1A1A8">6.240</span></div>
+        <div style="height: 4px; border-radius: 2px; background: #2C2C2E; overflow: hidden"><div style="width: 78%; height: 100%; background: #5AB0FF"></div></div>
+        <span style="font-size: 13px; color: #A1A1A8">Tự động · từ Apple Health</span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">Thêm từ mẫu (tối đa 7 nhiệm vụ)</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{ templates }}" as="t" hint-placeholder-count="5">
+          <button style="height: 40px; padding: 0 14px; border: 0; border-radius: 20px; background: #1C1C1E; color: #FFFFFF; font: 500 15px -apple-system, 'Segoe UI', sans-serif">+ {{ t.name }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { med: true, pages: 12 };
+  }
+  renderVals() {
+    const med = this.state.med, pages = this.state.pages;
+    const done = (med ? 1 : 0) + (pages >= 20 ? 1 : 0) + 0 + 0;
+    return {
+      medChecked: med ? 'true' : 'false',
+      medBg: med ? '#4BE3A7' : 'transparent',
+      medRing: med ? 'none' : 'inset 0 0 0 2px #48484A',
+      toggleMed: () => this.setState({ med: !med }),
+      pages, pageColor: pages >= 20 ? '#4BE3A7' : '#FFFFFF',
+      pMinus: () => this.setState({ pages: Math.max(0, pages - 1) }),
+      pPlus: () => this.setState({ pages: Math.min(60, pages + 1) }),
+      doneCount: done,
+      pts: Math.round((done / 4) * 10),
+      templates: [{ name: 'Không MXH sau 22h' }, { name: 'Dậy trước 6:30' }, { name: 'Học ngoại ngữ' }, { name: 'Viết nhật ký' }, { name: 'Tự tạo' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

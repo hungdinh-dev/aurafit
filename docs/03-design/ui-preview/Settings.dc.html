@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Cài đặt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 1180px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 40px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex">
+      <a href="Profile.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Cài đặt</h1>
+
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">{{ g.title }}</span>
+        <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+          <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 0 16px; border-top: {{ r.border }}">
+              <span style="flex: 1; font-size: 17px; color: {{ r.color }}">{{ r.label }}</span>
+              <sc-if value="{{ r.isValue }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size: 15px; color: #A1A1A8">{{ r.value }}</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+              </sc-if>
+              <sc-if value="{{ r.isSwitch }}" hint-placeholder-val="{{ false }}">
+                <button role="switch" aria-checked="{{ r.checked }}" aria-label="{{ r.label }}" onClick="{{ r.toggle }}" style="width: 51px; height: 31px; border: 0; border-radius: 16px; padding: 2px; background: {{ r.bg }}; display: flex; justify-content: {{ r.align }}"><span style="width: 27px; height: 27px; border-radius: 14px; background: #FFFFFF"></span></button>
+              </sc-if>
+            </div>
+          </sc-for>
+        </section>
+        <sc-if value="{{ g.hasNote }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 13px; color: #A1A1A8; padding: 0 16px; line-height: 1.4">{{ g.note }}</span>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { fiber: true, sodium: false, water: true, weigh: true, meal: true };
+  }
+  renderVals() {
+    const sw = (key, label) => {
+      const on = this.state[key];
+      return { label, isSwitch: true, isValue: false, checked: on ? 'true' : 'false', bg: on ? '#30D158' : 'rgba(120,120,128,0.32)', align: on ? 'flex-end' : 'flex-start', toggle: () => this.setState({ [key]: !on }) };
+    };
+    const val = (label, value, color) => ({ label, value, isValue: true, isSwitch: false, color: color || '#FFFFFF' });
+    const G = [
+      { title: 'Tài khoản', rows: [val('Ngôn ngữ', 'Tiếng Việt'), val('Nhân vật', 'Kai'), val('Đăng nhập', 'Google')] },
+      { title: 'Huấn luyện viên', rows: [val('Mức khắt khe', 'Tiêu chuẩn'), val('Giọng văn', 'Bestie'), val('Ngày tự do', '1/tuần · bù'), val('Giờ yên lặng', '22:30–6:30'), val('Giờ làm việc', '9:00–17:30')], note: 'Mức khắt khe đổi được tối đa 1 lần/tuần.' },
+      { title: 'Dinh dưỡng', rows: [sw('fiber', 'Hiện chất xơ'), sw('sodium', 'Hiện natri (ước tính thô)'), val('Ảnh AI mỗi ngày', '15')] },
+      { title: 'Nhắc nhở', rows: [sw('water', 'Nhắc uống nước thông minh'), sw('weigh', 'Nhắc cân (T2 · T4 · T6)'), sw('meal', 'Nhắc ghi bữa')], note: 'Không bao giờ nhắc trong giờ yên lặng.' },
+      { title: 'Dữ liệu & quyền riêng tư', rows: [val('Apple Health', 'Đã kết nối'), val('Chia sẻ story bữa ăn', 'Bạn bè'), val('Tải dữ liệu của tôi', ''), val('Đăng xuất', '', '#FF453A')] }
+    ];
+    const groups = G.map((g) => ({
+      title: g.title, hasNote: !!g.note, note: g.note || '',
+      rows: g.rows.map((r, i) => Object.assign({ color: '#FFFFFF' }, r, { border: i === 0 ? '0' : '0.5px solid #38383A' }))
+    }));
+    return { groups };
+  }
+}
+</script>
+</body>
+</html>

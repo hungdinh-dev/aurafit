@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Ghi set</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <a href="Workout.dc.html" aria-label="Quay lại buổi tập" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+      <button onClick="{{ toggleBusy }}" style="height: 44px; padding: 0 14px; border-radius: 22px; color: {{ busyColor }}; font: 600 15px -apple-system, 'Segoe UI', sans-serif; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">{{ busyLabel }}</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 13px; color: #A1A1A8">Bài 2/6 · Set 3/4</span>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700">{{ name }}</h1>
+      <span style="font-size: 15px; color: #A1A1A8">{{ eq }} · mục tiêu 8–10 rep · RIR 2</span>
+      <sc-if value="{{ busy }}" hint-placeholder-val="{{ false }}">
+        <span style="align-self: flex-start; margin-top: 4px; padding: 5px 10px; border-radius: 12px; background: #12221D; color: #8FE3C1; font-size: 13px">Bài dự phòng · giữ nguyên 4 set × 8–10, RIR 2</span>
+      </sc-if>
+    </div>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 0 10px 0 16px">
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 17px">Tạ</span><span style="font-size: 12px; color: #A1A1A8">{{ stepNote }}</span></span>
+        <button onClick="{{ kgMinus }}" aria-label="Giảm tạ" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+        <span style="min-width: 86px; text-align: center; font: 700 26px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ kg }}</span>
+        <button onClick="{{ kgPlus }}" aria-label="Tăng tạ" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 0 10px 0 16px; border-top: 0.5px solid #38383A">
+        <span style="flex: 1; font-size: 17px">Rep</span>
+        <button onClick="{{ repMinus }}" aria-label="Bớt rep" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+        <span style="min-width: 86px; text-align: center; font: 700 26px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ reps }}</span>
+        <button onClick="{{ repPlus }}" aria-label="Thêm rep" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+      </div>
+    </section>
+    <a href="SpecialLoad.dc.html" style="align-self: flex-end; margin-top: -6px; padding-right: 8px; font-size: 13px; text-decoration: none">Tạ đeo · từng bên · dây kháng lực ›</a>
+
+    <fieldset style="margin: 0; border: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+      <legend style="font-size: 13px; color: #A1A1A8; padding: 0 0 8px 16px">Còn làm thêm được mấy rep? (RIR – không bắt buộc)</legend>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{ rirs }}" as="r" hint-placeholder-count="5">
+          <button onClick="{{ r.pick }}" aria-pressed="{{ r.pressed }}" style="height: 52px; border: 0; border-radius: 16px; background: {{ r.bg }}; color: {{ r.color }}; font: 700 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ r.label }}</button>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; color: #A1A1A8; padding: 0 16px">{{ rirDesc }}</span>
+    </fieldset>
+
+    <div style="display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 18px; background: {{ fbBg }}">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ fbColor }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M4 17l6-6 4 4 7-8"></path><path d="M15 7h6v6"></path></svg>
+      <span style="font-size: 15px; line-height: 1.45; color: {{ fbColor }}">{{ feedback }}</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; min-height: 56px; padding: 0 10px 0 16px; border-radius: 22px; background: #1C1C1E">
+      <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 17px">Nghỉ sau set</span><span style="font-size: 12px; color: #A1A1A8">Mặc định bài đa khớp: 2:30</span></span>
+      <button onClick="{{ restMinus }}" aria-label="Bớt 15 giây" style="height: 36px; padding: 0 10px; border: 0; border-radius: 18px; background: #2C2C2E; color: #FFFFFF; font: 600 14px -apple-system, sans-serif">−15</button>
+      <span style="min-width: 52px; text-align: center; font: 700 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ rest }}</span>
+      <button onClick="{{ restPlus }}" aria-label="Thêm 15 giây" style="height: 36px; padding: 0 10px; border: 0; border-radius: 18px; background: #2C2C2E; color: #FFFFFF; font: 600 14px -apple-system, sans-serif">+15</button>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px">
+    <a href="Workout.dc.html" style="height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; color: #00140C; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(75,227,167,0.9); border: 0.5px solid rgba(255,255,255,0.45)">Xong set · bắt đầu nghỉ</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { busy: false, kg: 55, reps: 10, rir: 3, rest: 150 };
+  }
+  renderVals() {
+    const s = this.state;
+    const step = s.busy ? 2.5 : 5;
+    const fmt = (n) => n.toFixed(n % 1 ? 1 : 0).replace('.', ',');
+    const rirD = ['Không làm thêm được rep nào (sát thất bại)', 'Còn 1 rep', 'Còn 2 rep – đúng mục tiêu', 'Còn 3 rep', 'Còn từ 4 rep trở lên – khá nhẹ'];
+    const rirs = ['0', '1', '2', '3', '4+'].map((label, i) => ({
+      label, pressed: s.rir === i ? 'true' : 'false',
+      bg: s.rir === i ? '#4BE3A7' : '#1C1C1E', color: s.rir === i ? '#00140C' : '#FFFFFF',
+      pick: () => this.setState({ rir: i })
+    }));
+    let fb, fbColor, fbBg;
+    if (s.reps >= 10 && s.rir >= 2) { fb = 'Nhẹ so với mục tiêu – lần sau tăng ' + fmt(step) + ' kg.'; fbColor = '#4BE3A7'; fbBg = '#12221D'; }
+    else if (s.reps < 8 || s.rir === 0) { fb = 'Nặng hơn mục tiêu – set sau giữ hoặc giảm ' + fmt(step) + ' kg.'; fbColor = '#FFB36B'; fbBg = '#2A1D10'; }
+    else { fb = 'Đúng mục tiêu – giữ mức tạ này.'; fbColor = '#8CC8FF'; fbBg = '#13263D'; }
+    const m = Math.floor(s.rest / 60), sec = s.rest % 60;
+    return {
+      busy: s.busy,
+      name: s.busy ? 'Kéo xà có hỗ trợ dây' : 'Kéo xô máy',
+      eq: s.busy ? 'Xà đơn + dây kháng lực' : 'Máy cáp',
+      busyLabel: s.busy ? 'Quay lại máy chính' : 'Máy đang bận',
+      busyColor: s.busy ? '#4BE3A7' : '#FFFFFF',
+      stepNote: s.busy ? 'trợ lực dây, bước 2,5 kg' : 'máy ở phòng gym này: bước 5 kg',
+      kg: fmt(s.kg) + ' kg', reps: s.reps, rirs, rirDesc: rirD[s.rir],
+      feedback: fb, fbColor, fbBg,
+      rest: m + ':' + (sec < 10 ? '0' : '') + sec,
+      toggleBusy: () => this.setState({ busy: !s.busy, kg: s.busy ? 55 : 20 }),
+      kgMinus: () => this.setState({ kg: Math.max(0, s.kg - step) }),
+      kgPlus: () => this.setState({ kg: s.kg + step }),
+      repMinus: () => this.setState({ reps: Math.max(0, s.reps - 1) }),
+      repPlus: () => this.setState({ reps: s.reps + 1 }),
+      restMinus: () => this.setState({ rest: Math.max(30, s.rest - 15) }),
+      restPlus: () => this.setState({ rest: Math.min(300, s.rest + 15) })
+    };
+  }
+}
+</script>
+</body>
+</html>

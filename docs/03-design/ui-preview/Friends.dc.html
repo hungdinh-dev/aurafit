@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Bạn bè</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex">
+      <a href="Profile.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Bạn bè</h1>
+
+    <section style="background: #1C1C1E; border-radius: 26px; padding: 14px; display: flex; gap: 14px; align-items: center">
+      <div role="img" aria-label="Mã QR của link mời" style="width: 88px; height: 88px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #000000; font-size: 12px; font-weight: 600; flex-shrink: 0">Mã QR</div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <span style="font-size: 17px; font-weight: 600">Mời bạn tập cùng</span>
+        <span style="font-size: 13px; color: #A1A1A8">Link dùng được 7 ngày · tối đa 5 người</span>
+        <button style="align-self: flex-start; height: 36px; padding: 0 14px; border: 0; border-radius: 18px; background: #12221D; color: #4BE3A7; font: 600 15px -apple-system, 'Segoe UI', sans-serif">Chia sẻ link mời</button>
+      </div>
+    </section>
+
+    <div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 10px; border-radius: 12px; background: rgba(118,118,128,0.24); color: #A1A1A8">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+      <label for="u" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Tìm theo username</label>
+      <input id="u" placeholder="Tìm theo username" style="flex: 1; border: 0; background: none; color: #FFFFFF; font: 400 17px -apple-system, 'Segoe UI', sans-serif; outline: none">
+    </div>
+
+    <sc-if value="{{ hasRequest }}" hint-placeholder-val="{{ true }}">
+      <section style="background: #1C1C1E; border-radius: 22px; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px">
+        <span style="width: 40px; height: 40px; border-radius: 20px; background: #2C3A48; display: flex; align-items: center; justify-content: center; font-weight: 600">H</span>
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 17px">@hoang.fit</span><span style="font-size: 13px; color: #A1A1A8">muốn kết bạn</span></span>
+        <button onClick="{{ decline }}" style="height: 36px; padding: 0 12px; border: 0; border-radius: 18px; background: #2C2C2E; color: #FFFFFF; font: 500 15px -apple-system, 'Segoe UI', sans-serif">Bỏ qua</button>
+        <button onClick="{{ accept }}" style="height: 36px; padding: 0 12px; border: 0; border-radius: 18px; background: #4BE3A7; color: #00140C; font: 600 15px -apple-system, 'Segoe UI', sans-serif">Đồng ý</button>
+      </section>
+    </sc-if>
+
+    <section style="background: #2A1D10; border-radius: 22px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#FF9F0A" aria-hidden="true"><path d="M12 2.5c1.2 3.2 4.8 5.2 4.8 9.8a4.8 4.8 0 0 1-9.6 0c0-2.3 1.1-3.6 2.3-4.6.1 2.1 1.2 3.3 2.4 3.4-.2-3.3-1.1-5.6.1-8.6z"></path></svg>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 600">Streak đôi với Minh · 9 ngày</span><span style="font-size: 13px; color: #F5C98A">Minh đã xong hôm nay, tới lượt bạn</span></span>
+    </section>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <sc-for list="{{ friends }}" as="f" hint-placeholder-count="4">
+        <a href="StoryView.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 16px; border-top: {{ f.border }}; color: #FFFFFF; text-decoration: none">
+          <span style="width: 40px; height: 40px; border-radius: 20px; padding: 2px; box-sizing: border-box; border: 2px solid {{ f.ring }}; display: flex"><span style="flex: 1; border-radius: 50%; background: {{ f.bg }}; display: flex; align-items: center; justify-content: center; font-weight: 600">{{ f.i }}</span></span>
+          <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 17px">{{ f.name }}</span><span style="font-size: 13px; color: #A1A1A8">{{ f.meta }}</span></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </sc-for>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { req: true };
+  }
+  renderVals() {
+    const friends = [
+      ['Minh', 'M', '#24413A', '#4BE3A7', 'Streak 21 · Aura Tím · 2 bữa hôm nay'],
+      ['Lan', 'L', '#3A2E5C', '#4BE3A7', 'Streak 6 · Aura Xanh dương · 3 bữa hôm nay'],
+      ['Tuấn', 'T', '#2C2C2E', '#38383A', 'Streak 2 · Aura Xanh lá'],
+      ['Vy', 'V', '#4A2A3F', '#38383A', 'Streak 14 · Aura Vàng']
+    ].map(([name, i, bg, ring, meta], idx) => ({ name, i, bg, ring, meta, border: idx === 0 ? '0' : '0.5px solid #38383A' }));
+    return {
+      friends,
+      hasRequest: this.state.req,
+      accept: () => this.setState({ req: false }),
+      decline: () => this.setState({ req: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

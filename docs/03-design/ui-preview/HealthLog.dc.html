@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Sức khoẻ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between">
+      <a href="Main.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+      <a href="AppleHealth.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; text-decoration: none; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">Apple Health</a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Sức khoẻ</h1>
+
+    <section style="background: #1C1C1E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 17px; font-weight: 600">Cân nặng sáng nay</span>
+        <span style="font-size: 13px; color: #A1A1A8">Nhắc: T2 · T4 · T6, 7:00</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button onClick="{{ wMinus }}" aria-label="Giảm 0,1 kg" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+        <span style="flex: 1; text-align: center; font: 700 40px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ w }} <span style="font-size: 17px; color: #A1A1A8">kg</span></span>
+        <button onClick="{{ wPlus }}" aria-label="Tăng 0,1 kg" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+      </div>
+      <span style="font-size: 13px; color: #A1A1A8; text-align: center">Xu hướng 71,4 kg · −0,4 kg/tuần · cân sau khi ngủ dậy, trước khi ăn</span>
+      <button style="height: 44px; border-radius: 22px; border: 0; background: #2C2C2E; color: #4BE3A7; font: 600 15px -apple-system, 'Segoe UI', sans-serif">Lưu cân nặng</button>
+    </section>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <div style="padding: 14px 16px 6px; font-size: 17px; font-weight: 600">Giấc ngủ đêm qua</div>
+      <div style="display: flex; align-items: center; min-height: 48px; padding: 0 16px"><span style="flex: 1; font-size: 17px">Đi ngủ</span><span style="padding: 6px 12px; border-radius: 8px; background: #2C2C2E; font-size: 17px">23:16</span></div>
+      <div style="display: flex; align-items: center; min-height: 48px; padding: 0 16px; border-top: 0.5px solid #38383A"><span style="flex: 1; font-size: 17px">Thức dậy</span><span style="padding: 6px 12px; border-radius: 8px; background: #2C2C2E; font-size: 17px">06:28</span></div>
+      <div style="display: flex; align-items: center; gap: 4px; min-height: 52px; padding: 0 10px 0 16px; border-top: 0.5px solid #38383A">
+        <span style="flex: 1; font-size: 17px">Chất lượng</span>
+        <sc-for list="{{ stars }}" as="s" hint-placeholder-count="5">
+          <button onClick="{{ s.pick }}" aria-label="{{ s.label }}" style="width: 36px; height: 44px; border: 0; background: none; display: flex; align-items: center; justify-content: center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="{{ s.fill }}" stroke="{{ s.stroke }}" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background: #12221D; border-radius: 26px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 13px; color: #8FE3C1">Cập nhật hằng tuần · Chủ nhật 8/11</span>
+      <span style="font-size: 17px; font-weight: 600">TDEE 2.700 → 2.640 kcal</span>
+      <span style="font-size: 15px; line-height: 1.45; color: #C7E9DC">Cân giảm chậm hơn dự tính 0,1 kg/tuần so với lượng bạn ăn thực tế. Mục tiêu mới: 2.090 kcal/ngày.</span>
+      <a href="#" style="font-size: 15px; font-weight: 600; text-decoration: none">Xem cách tính</a>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { w: 71.6, q: 4 };
+  }
+  renderVals() {
+    const w = this.state.w;
+    const stars = [1, 2, 3, 4, 5].map((n) => ({
+      label: n + ' sao',
+      fill: n <= this.state.q ? '#FFD60A' : 'none',
+      stroke: n <= this.state.q ? '#FFD60A' : '#5A5A60',
+      pick: () => this.setState({ q: n })
+    }));
+    return {
+      w: w.toFixed(1).replace('.', ','),
+      stars,
+      wMinus: () => this.setState({ w: Math.round((w - 0.1) * 10) / 10 }),
+      wPlus: () => this.setState({ w: Math.round((w + 0.1) * 10) / 10 })
+    };
+  }
+}
+</script>
+</body>
+</html>

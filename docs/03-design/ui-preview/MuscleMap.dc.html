@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Bản đồ cơ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 12px">
+
+    <div style="display: flex; justify-content: space-between">
+      <a href="Recovery.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+      <a href="VolumeZones.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; text-decoration: none; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">Ngưỡng set/tuần</a>
+    </div>
+
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Bản đồ cơ</h1>
+
+    <div role="group" aria-label="Chế độ" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+      <button onClick="{{ toVolume }}" aria-pressed="{{ volPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ volBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Khối lượng tuần</button>
+      <button onClick="{{ toRecovery }}" aria-pressed="{{ recPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ recBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Phục hồi</button>
+    </div>
+
+    <div style="position: relative; display: flex; justify-content: space-between; margin: 8px -6px 0">
+      <svg width="185" height="385" viewBox="0 0 240 500" role="img" aria-label="Mặt trước. Chạm vào khối cơ để xem chi tiết.">
+        <ellipse cx="120" cy="30" rx="20" ry="26" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></ellipse>
+        <g>
+          <path d="M120 55 L108 57 L107 74 C95 79 78 82 66 86 C58 89 53 98 53 106 C50 130 46 160 44 185 C40 210 33 230 28 247 C22 252 18 262 19 272 C21 280 28 283 34 279 C38 272 41 262 44 252 C52 232 62 208 68 188 C70 170 72 155 74 140 C77 170 79 200 80 225 C76 238 70 250 66 262 C64 290 67 330 76 368 C78 380 78 392 78 404 C76 425 82 448 90 465 C84 474 82 482 86 486 L112 486 C114 478 113 470 112 462 C114 440 114 420 112 398 C114 380 116 360 116 340 C118 300 119 280 120 258" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></path>
+          <path d="M107 70 C100 76 90 80 80 83 L104 84 C107 80 108 76 108 72 Z" fill="{{ f.traps_front }}" onClick="{{ p.traps_front }}"></path>
+          <path d="M74 86 C64 87 57 94 55 104 C53 114 55 124 58 132 C62 122 66 112 69 104 C72 96 76 90 74 86 Z" fill="{{ f.front_delts }}" onClick="{{ p.front_delts }}"></path>
+          <path d="M118 92 L118 106 C104 107 90 107 74 105 C75 100 77 97 80 95 C90 91 104 90 118 92 Z" fill="{{ f.chest_upper }}" onClick="{{ p.chest_upper }}"></path>
+          <path d="M118 109 L118 123 C104 125 88 125 72 121 C71 117 71 113 72 109 C88 110 104 110 118 109 Z" fill="{{ f.chest_middle }}" onClick="{{ p.chest_middle }}"></path>
+          <path d="M118 126 L118 140 C106 146 92 146 82 138 C78 135 75 131 74 126 C88 129 104 129 118 126 Z" fill="{{ f.chest_lower }}" onClick="{{ p.chest_lower }}"></path>
+          <path d="M58 138 C52 148 49 162 50 176 C51 182 53 185 56 186 C55 170 55 154 58 138 Z" fill="{{ f.biceps_long }}" onClick="{{ p.biceps_long }}"></path>
+          <path d="M61 138 C60 154 60 170 60 186 C64 180 67 168 67 156 C67 148 65 142 61 138 Z" fill="{{ f.biceps_short }}" onClick="{{ p.biceps_short }}"></path>
+          <path d="M50 192 C44 206 38 224 32 240 C34 242 36 242 37 240 C43 226 49 210 53 196 Z" fill="{{ f.forearm_flex }}" onClick="{{ p.forearm_flex }}"></path>
+          <path d="M56 194 C53 210 47 228 40 244 C42 246 44 246 45 244 C51 230 57 212 59 198 Z" fill="{{ f.forearm_flex }}" onClick="{{ p.forearm_flex }}"></path>
+          <path d="M80 140 L90 143 L89 147 L79 144 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M80 149 L91 152 L90 156 L80 153 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M81 158 L92 161 L91 165 L81 162 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M90 168 C84 178 82 194 84 210 C87 216 91 220 95 220 C94 204 94 186 95 172 Z" fill="{{ f.obliques }}" onClick="{{ p.obliques }}"></path>
+          <rect x="99" y="146" width="18" height="14" rx="4" fill="{{ f.abs_upper }}" onClick="{{ p.abs_upper }}"></rect>
+          <rect x="99" y="163" width="18" height="14" rx="4" fill="{{ f.abs_upper }}" onClick="{{ p.abs_upper }}"></rect>
+          <rect x="99" y="180" width="18" height="14" rx="4" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></rect>
+          <rect x="99" y="197" width="18" height="14" rx="4" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></rect>
+          <path d="M99 214 L117 214 L117 250 C110 250 103 242 100 232 Z" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></path>
+          <path d="M70 262 C64 290 66 330 74 360 C77 364 80 362 80 356 C76 330 74 296 78 266 Z" fill="{{ f.vastus_lat }}" onClick="{{ p.vastus_lat }}"></path>
+          <path d="M84 258 C80 284 80 318 84 350 C86 356 90 356 92 350 C94 318 94 284 90 260 Z" fill="{{ f.rectus }}" onClick="{{ p.rectus }}"></path>
+          <path d="M100 318 C96 330 96 346 100 360 C104 358 108 350 108 338 C108 330 105 322 100 318 Z" fill="{{ f.vastus_med }}" onClick="{{ p.vastus_med }}"></path>
+          <path d="M96 258 C98 270 102 286 108 302 C112 296 114 286 115 274 C112 266 106 260 96 258 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M112 262 C116 270 118 280 118 292 C119 282 119 272 118 262 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M80 392 C76 406 77 424 82 440 C85 442 88 440 89 436 C88 420 88 404 86 394 Z" fill="{{ f.gastro_lat }}" onClick="{{ p.gastro_lat }}"></path>
+          <path d="M92 390 C90 404 90 422 94 436 C97 436 100 432 101 426 C102 412 100 400 96 392 Z" fill="{{ f.gastro_med }}" onClick="{{ p.gastro_med }}"></path>
+          <path d="M84 444 C83 452 84 460 87 464 C88 458 89 452 88 446 Z" fill="{{ f.soleus }}" onClick="{{ p.soleus }}"></path>
+        </g>
+        <g transform="matrix(-1 0 0 1 240 0)">
+          <path d="M120 55 L108 57 L107 74 C95 79 78 82 66 86 C58 89 53 98 53 106 C50 130 46 160 44 185 C40 210 33 230 28 247 C22 252 18 262 19 272 C21 280 28 283 34 279 C38 272 41 262 44 252 C52 232 62 208 68 188 C70 170 72 155 74 140 C77 170 79 200 80 225 C76 238 70 250 66 262 C64 290 67 330 76 368 C78 380 78 392 78 404 C76 425 82 448 90 465 C84 474 82 482 86 486 L112 486 C114 478 113 470 112 462 C114 440 114 420 112 398 C114 380 116 360 116 340 C118 300 119 280 120 258" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></path>
+          <path d="M107 70 C100 76 90 80 80 83 L104 84 C107 80 108 76 108 72 Z" fill="{{ f.traps_front }}" onClick="{{ p.traps_front }}"></path>
+          <path d="M74 86 C64 87 57 94 55 104 C53 114 55 124 58 132 C62 122 66 112 69 104 C72 96 76 90 74 86 Z" fill="{{ f.front_delts }}" onClick="{{ p.front_delts }}"></path>
+          <path d="M118 92 L118 106 C104 107 90 107 74 105 C75 100 77 97 80 95 C90 91 104 90 118 92 Z" fill="{{ f.chest_upper }}" onClick="{{ p.chest_upper }}"></path>
+          <path d="M118 109 L118 123 C104 125 88 125 72 121 C71 117 71 113 72 109 C88 110 104 110 118 109 Z" fill="{{ f.chest_middle }}" onClick="{{ p.chest_middle }}"></path>
+          <path d="M118 126 L118 140 C106 146 92 146 82 138 C78 135 75 131 74 126 C88 129 104 129 118 126 Z" fill="{{ f.chest_lower }}" onClick="{{ p.chest_lower }}"></path>
+          <path d="M58 138 C52 148 49 162 50 176 C51 182 53 185 56 186 C55 170 55 154 58 138 Z" fill="{{ f.biceps_long }}" onClick="{{ p.biceps_long }}"></path>
+          <path d="M61 138 C60 154 60 170 60 186 C64 180 67 168 67 156 C67 148 65 142 61 138 Z" fill="{{ f.biceps_short }}" onClick="{{ p.biceps_short }}"></path>
+          <path d="M50 192 C44 206 38 224 32 240 C34 242 36 242 37 240 C43 226 49 210 53 196 Z" fill="{{ f.forearm_flex }}" onClick="{{ p.forearm_flex }}"></path>
+          <path d="M56 194 C53 210 47 228 40 244 C42 246 44 246 45 244 C51 230 57 212 59 198 Z" fill="{{ f.forearm_flex }}" onClick="{{ p.forearm_flex }}"></path>
+          <path d="M80 140 L90 143 L89 147 L79 144 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M80 149 L91 152 L90 156 L80 153 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M81 158 L92 161 L91 165 L81 162 Z" fill="{{ f.serratus }}" onClick="{{ p.serratus }}"></path>
+          <path d="M90 168 C84 178 82 194 84 210 C87 216 91 220 95 220 C94 204 94 186 95 172 Z" fill="{{ f.obliques }}" onClick="{{ p.obliques }}"></path>
+          <rect x="99" y="146" width="18" height="14" rx="4" fill="{{ f.abs_upper }}" onClick="{{ p.abs_upper }}"></rect>
+          <rect x="99" y="163" width="18" height="14" rx="4" fill="{{ f.abs_upper }}" onClick="{{ p.abs_upper }}"></rect>
+          <rect x="99" y="180" width="18" height="14" rx="4" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></rect>
+          <rect x="99" y="197" width="18" height="14" rx="4" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></rect>
+          <path d="M99 214 L117 214 L117 250 C110 250 103 242 100 232 Z" fill="{{ f.abs_lower }}" onClick="{{ p.abs_lower }}"></path>
+          <path d="M70 262 C64 290 66 330 74 360 C77 364 80 362 80 356 C76 330 74 296 78 266 Z" fill="{{ f.vastus_lat }}" onClick="{{ p.vastus_lat }}"></path>
+          <path d="M84 258 C80 284 80 318 84 350 C86 356 90 356 92 350 C94 318 94 284 90 260 Z" fill="{{ f.rectus }}" onClick="{{ p.rectus }}"></path>
+          <path d="M100 318 C96 330 96 346 100 360 C104 358 108 350 108 338 C108 330 105 322 100 318 Z" fill="{{ f.vastus_med }}" onClick="{{ p.vastus_med }}"></path>
+          <path d="M96 258 C98 270 102 286 108 302 C112 296 114 286 115 274 C112 266 106 260 96 258 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M112 262 C116 270 118 280 118 292 C119 282 119 272 118 262 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M80 392 C76 406 77 424 82 440 C85 442 88 440 89 436 C88 420 88 404 86 394 Z" fill="{{ f.gastro_lat }}" onClick="{{ p.gastro_lat }}"></path>
+          <path d="M92 390 C90 404 90 422 94 436 C97 436 100 432 101 426 C102 412 100 400 96 392 Z" fill="{{ f.gastro_med }}" onClick="{{ p.gastro_med }}"></path>
+          <path d="M84 444 C83 452 84 460 87 464 C88 458 89 452 88 446 Z" fill="{{ f.soleus }}" onClick="{{ p.soleus }}"></path>
+        </g>
+      </svg>
+
+      <svg width="185" height="385" viewBox="0 0 240 500" role="img" aria-label="Mặt sau. Chạm vào khối cơ để xem chi tiết.">
+        <ellipse cx="120" cy="30" rx="20" ry="26" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></ellipse>
+        <g>
+          <path d="M120 55 L108 57 L107 74 C95 79 78 82 66 86 C58 89 53 98 53 106 C50 130 46 160 44 185 C40 210 33 230 28 247 C22 252 18 262 19 272 C21 280 28 283 34 279 C38 272 41 262 44 252 C52 232 62 208 68 188 C70 170 72 155 74 140 C77 170 79 200 80 225 C76 238 70 250 66 262 C64 290 67 330 76 368 C78 380 78 392 78 404 C76 425 82 448 90 465 C84 474 82 482 86 486 L112 486 C114 478 113 470 112 462 C114 440 114 420 112 398 C114 380 116 360 116 340 C118 300 119 280 120 258" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></path>
+          <path d="M118 58 L118 88 C106 88 92 88 79 87 C92 83 108 75 118 58 Z" fill="{{ f.traps_upper }}" onClick="{{ p.traps_upper }}"></path>
+          <path d="M118 91 L118 140 C110 128 100 112 92 100 C88 96 84 93 81 91 C94 91 106 91 118 91 Z" fill="{{ f.traps_mid }}" onClick="{{ p.traps_mid }}"></path>
+          <path d="M118 146 L118 212 C115 196 111 180 105 166 C109 158 114 152 118 146 Z" fill="{{ f.traps_low }}" onClick="{{ p.traps_low }}"></path>
+          <path d="M78 88 C66 88 58 96 55 108 C53 118 55 128 58 134 C64 122 72 110 82 100 C84 94 82 90 78 88 Z" fill="{{ f.rear_delts }}" onClick="{{ p.rear_delts }}"></path>
+          <path d="M86 102 C80 110 78 122 80 134 C88 132 96 126 100 118 C96 110 92 104 86 102 Z" fill="{{ f.infraspinatus }}" onClick="{{ p.infraspinatus }}"></path>
+          <path d="M78 138 C80 144 88 146 96 142 C92 138 86 136 78 138 Z" fill="{{ f.teres }}" onClick="{{ p.teres }}"></path>
+          <path d="M78 150 C78 172 84 194 94 214 C97 198 99 180 100 164 C94 158 86 153 78 150 Z" fill="{{ f.lats }}" onClick="{{ p.lats }}"></path>
+          <path d="M118 216 L118 252 C112 252 108 246 107 238 C107 230 110 222 116 216 Z" fill="{{ f.erector }}" onClick="{{ p.erector }}"></path>
+          <path d="M66 140 C60 150 58 164 60 178 C62 182 66 182 68 178 C70 166 70 152 66 140 Z" fill="{{ f.triceps_long }}" onClick="{{ p.triceps_long }}"></path>
+          <path d="M57 140 C52 152 51 166 53 178 C55 168 56 154 57 140 Z" fill="{{ f.triceps_lat }}" onClick="{{ p.triceps_lat }}"></path>
+          <path d="M50 192 C44 206 38 224 32 240 C34 242 36 242 37 240 C43 226 49 210 53 196 Z" fill="{{ f.forearm_ext }}" onClick="{{ p.forearm_ext }}"></path>
+          <path d="M56 194 C53 210 47 228 40 244 C42 246 44 246 45 244 C51 230 57 212 59 198 Z" fill="{{ f.forearm_ext }}" onClick="{{ p.forearm_ext }}"></path>
+          <path d="M84 232 C78 240 77 250 80 256 C88 250 96 246 104 244 C100 238 92 233 84 232 Z" fill="{{ f.glute_med }}" onClick="{{ p.glute_med }}"></path>
+          <path d="M118 256 L118 292 C106 296 92 292 84 282 C79 274 79 264 84 258 C94 255 106 254 118 256 Z" fill="{{ f.glute_max }}" onClick="{{ p.glute_max }}"></path>
+          <path d="M80 300 C76 320 76 342 80 362 C82 364 85 362 86 358 C85 338 85 318 88 302 Z" fill="{{ f.ham_bf }}" onClick="{{ p.ham_bf }}"></path>
+          <path d="M92 302 C90 322 90 342 94 362 C96 362 98 358 98 354 C100 334 100 316 99 304 Z" fill="{{ f.ham_st }}" onClick="{{ p.ham_st }}"></path>
+          <path d="M104 300 C103 314 104 328 107 340 C110 330 111 316 110 302 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M80 384 C76 398 77 416 82 430 C86 428 88 418 88 402 C88 394 85 388 80 384 Z" fill="{{ f.gastro_lat }}" onClick="{{ p.gastro_lat }}"></path>
+          <path d="M92 382 C90 398 90 416 94 434 C99 430 102 420 102 406 C101 394 98 386 92 382 Z" fill="{{ f.gastro_med }}" onClick="{{ p.gastro_med }}"></path>
+          <path d="M83 436 C82 446 84 456 87 460 C89 452 90 444 89 438 Z" fill="{{ f.soleus }}" onClick="{{ p.soleus }}"></path>
+        </g>
+        <g transform="matrix(-1 0 0 1 240 0)">
+          <path d="M120 55 L108 57 L107 74 C95 79 78 82 66 86 C58 89 53 98 53 106 C50 130 46 160 44 185 C40 210 33 230 28 247 C22 252 18 262 19 272 C21 280 28 283 34 279 C38 272 41 262 44 252 C52 232 62 208 68 188 C70 170 72 155 74 140 C77 170 79 200 80 225 C76 238 70 250 66 262 C64 290 67 330 76 368 C78 380 78 392 78 404 C76 425 82 448 90 465 C84 474 82 482 86 486 L112 486 C114 478 113 470 112 462 C114 440 114 420 112 398 C114 380 116 360 116 340 C118 300 119 280 120 258" fill="#000000" stroke="rgba(255,255,255,0.4)" stroke-width="1"></path>
+          <path d="M118 58 L118 88 C106 88 92 88 79 87 C92 83 108 75 118 58 Z" fill="{{ f.traps_upper }}" onClick="{{ p.traps_upper }}"></path>
+          <path d="M118 91 L118 140 C110 128 100 112 92 100 C88 96 84 93 81 91 C94 91 106 91 118 91 Z" fill="{{ f.traps_mid }}" onClick="{{ p.traps_mid }}"></path>
+          <path d="M118 146 L118 212 C115 196 111 180 105 166 C109 158 114 152 118 146 Z" fill="{{ f.traps_low }}" onClick="{{ p.traps_low }}"></path>
+          <path d="M78 88 C66 88 58 96 55 108 C53 118 55 128 58 134 C64 122 72 110 82 100 C84 94 82 90 78 88 Z" fill="{{ f.rear_delts }}" onClick="{{ p.rear_delts }}"></path>
+          <path d="M86 102 C80 110 78 122 80 134 C88 132 96 126 100 118 C96 110 92 104 86 102 Z" fill="{{ f.infraspinatus }}" onClick="{{ p.infraspinatus }}"></path>
+          <path d="M78 138 C80 144 88 146 96 142 C92 138 86 136 78 138 Z" fill="{{ f.teres }}" onClick="{{ p.teres }}"></path>
+          <path d="M78 150 C78 172 84 194 94 214 C97 198 99 180 100 164 C94 158 86 153 78 150 Z" fill="{{ f.lats }}" onClick="{{ p.lats }}"></path>
+          <path d="M118 216 L118 252 C112 252 108 246 107 238 C107 230 110 222 116 216 Z" fill="{{ f.erector }}" onClick="{{ p.erector }}"></path>
+          <path d="M66 140 C60 150 58 164 60 178 C62 182 66 182 68 178 C70 166 70 152 66 140 Z" fill="{{ f.triceps_long }}" onClick="{{ p.triceps_long }}"></path>
+          <path d="M57 140 C52 152 51 166 53 178 C55 168 56 154 57 140 Z" fill="{{ f.triceps_lat }}" onClick="{{ p.triceps_lat }}"></path>
+          <path d="M50 192 C44 206 38 224 32 240 C34 242 36 242 37 240 C43 226 49 210 53 196 Z" fill="{{ f.forearm_ext }}" onClick="{{ p.forearm_ext }}"></path>
+          <path d="M56 194 C53 210 47 228 40 244 C42 246 44 246 45 244 C51 230 57 212 59 198 Z" fill="{{ f.forearm_ext }}" onClick="{{ p.forearm_ext }}"></path>
+          <path d="M84 232 C78 240 77 250 80 256 C88 250 96 246 104 244 C100 238 92 233 84 232 Z" fill="{{ f.glute_med }}" onClick="{{ p.glute_med }}"></path>
+          <path d="M118 256 L118 292 C106 296 92 292 84 282 C79 274 79 264 84 258 C94 255 106 254 118 256 Z" fill="{{ f.glute_max }}" onClick="{{ p.glute_max }}"></path>
+          <path d="M80 300 C76 320 76 342 80 362 C82 364 85 362 86 358 C85 338 85 318 88 302 Z" fill="{{ f.ham_bf }}" onClick="{{ p.ham_bf }}"></path>
+          <path d="M92 302 C90 322 90 342 94 362 C96 362 98 358 98 354 C100 334 100 316 99 304 Z" fill="{{ f.ham_st }}" onClick="{{ p.ham_st }}"></path>
+          <path d="M104 300 C103 314 104 328 107 340 C110 330 111 316 110 302 Z" fill="{{ f.adductors }}" onClick="{{ p.adductors }}"></path>
+          <path d="M80 384 C76 398 77 416 82 430 C86 428 88 418 88 402 C88 394 85 388 80 384 Z" fill="{{ f.gastro_lat }}" onClick="{{ p.gastro_lat }}"></path>
+          <path d="M92 382 C90 398 90 416 94 434 C99 430 102 420 102 406 C101 394 98 386 92 382 Z" fill="{{ f.gastro_med }}" onClick="{{ p.gastro_med }}"></path>
+          <path d="M83 436 C82 446 84 456 87 460 C89 452 90 444 89 438 Z" fill="{{ f.soleus }}" onClick="{{ p.soleus }}"></path>
+        </g>
+      </svg>
+
+      <div aria-live="polite" style="position: absolute; left: -2px; top: 96px; height: 34px; padding: 0 14px; border-radius: 17px; display: flex; align-items: center; gap: 8px; font-size: 14px; background: #1C1C1E; border: 0.5px solid #38383A">
+        <strong style="font-weight: 600">{{ chipName }}</strong>
+        <span style="color: {{ chipColor }}; font-weight: 600">{{ chipLevel }}</span>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #A1A1A8">
+      <sc-for list="{{ legend }}" as="l" hint-placeholder-count="4">
+        <span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: {{ l.color }}"></span>{{ l.label }}</span>
+      </sc-for>
+    </div>
+    <p style="margin: 0; text-align: center; font-size: 13px; color: #A1A1A8">{{ summary }}</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'volume', sel: 'chest_upper' };
+  }
+  renderVals() {
+    const P = {
+      traps_front: ['Cơ thang', 9, 84], traps_upper: ['Thang trên', 13, 84], traps_mid: ['Thang giữa', 14, 80], traps_low: ['Thang dưới', 12, 88],
+      front_delts: ['Vai trước', 10, 55], rear_delts: ['Vai sau', 10, 82],
+      chest_upper: ['Ngực trên', 22, 35], chest_middle: ['Ngực giữa', 20, 52], chest_lower: ['Ngực dưới', 18, 90],
+      biceps_long: ['Tay trước – đầu dài', 8, 86], biceps_short: ['Tay trước – đầu ngắn', 8, 86],
+      triceps_long: ['Tay sau – đầu dài', 9, 48], triceps_lat: ['Tay sau – đầu ngoài', 10, 45],
+      forearm_flex: ['Cẳng tay – nhóm gập', 4, 94], forearm_ext: ['Cẳng tay – nhóm duỗi', 4, 94],
+      serratus: ['Cơ răng cưa', 8, 92], obliques: ['Bụng chéo', 8, 92], abs_upper: ['Bụng trên', 10, 76], abs_lower: ['Bụng dưới', 9, 80],
+      rectus: ['Cơ thẳng đùi', 14, 100], vastus_lat: ['Đùi trước – rộng ngoài', 14, 100], vastus_med: ['Đùi trước – rộng trong', 13, 100],
+      adductors: ['Nhóm khép đùi', 4, 100], gastro_med: ['Bắp chân trong', 9, 100], gastro_lat: ['Bắp chân ngoài', 9, 100], soleus: ['Cơ dép', 7, 100],
+      infraspinatus: ['Cơ dưới gai', 14, 64], teres: ['Cơ tròn lớn', 12, 70], lats: ['Xô', 14, 62], erector: ['Cơ dựng sống', 12, 91],
+      glute_med: ['Mông nhỡ', 12, 100], glute_max: ['Mông lớn', 13, 100], ham_bf: ['Đùi sau – nhị đầu', 5, 96], ham_st: ['Đùi sau – bán gân', 5, 96]
+    };
+    const vol = (s) => s >= 18 ? ['#FF6A1A', 'Khối lượng cao'] : s >= 12 ? ['#E3E04A', 'Khá cao'] : s >= 6 ? ['#2ECC52', 'Vừa'] : ['#2F6BFF', 'Thấp'];
+    const rec = (r) => r >= 80 ? ['#48484A', 'Sẵn sàng'] : r >= 65 ? ['#8E4B48', 'Hơi mỏi'] : r >= 40 ? ['#C9504A', 'Mỏi vừa'] : ['#FF453A', 'Mỏi nặng'];
+    const isVol = this.state.mode === 'volume';
+    const f = {}, p = {};
+    Object.keys(P).forEach((k) => {
+      f[k] = (isVol ? vol(P[k][1]) : rec(P[k][2]))[0];
+      p[k] = () => this.setState({ sel: k });
+    });
+    const s = P[this.state.sel];
+    const lv = isVol ? vol(s[1]) : rec(s[2]);
+    return {
+      f, p,
+      chipName: s[0],
+      chipLevel: isVol ? lv[1] + ' · ' + s[1] + ' set' : lv[1] + ' · ' + s[2] + '%',
+      chipColor: lv[0],
+      legend: isVol
+        ? [{ color: '#2F6BFF', label: 'Thấp < 6' }, { color: '#2ECC52', label: 'Vừa 6–11' }, { color: '#E3E04A', label: 'Khá cao 12–17' }, { color: '#FF6A1A', label: 'Cao ≥ 18 set' }]
+        : [{ color: '#FF453A', label: 'Mỏi nặng' }, { color: '#C9504A', label: 'Mỏi vừa' }, { color: '#8E4B48', label: 'Hơi mỏi' }, { color: '#48484A', label: 'Sẵn sàng' }],
+      summary: isVol
+        ? 'Tuần này 186 set · cao nhất Ngực (22) · thấp nhất Cẳng tay, Đùi sau'
+        : 'Mỏi nhất: Ngực trên 35 % · Tay sau 45–48 %',
+      volBg: isVol ? '#636366' : 'transparent',
+      recBg: isVol ? 'transparent' : '#636366',
+      volPressed: isVol ? 'true' : 'false',
+      recPressed: isVol ? 'false' : 'true',
+      toVolume: () => this.setState({ mode: 'volume' }),
+      toRecovery: () => this.setState({ mode: 'recovery' })
+    };
+  }
+}
+</script>
+</body>
+</html>

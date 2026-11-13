@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Tải đặc biệt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex">
+      <a href="WorkoutSet.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 30px; font-weight: 700">Tải đặc biệt</h1>
+
+    <div role="group" aria-label="Loại tải" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ t.bg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isBelt }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 17px; font-weight: 600">Nhún xà kép · đeo đai tạ</span>
+        <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+          <div style="display: flex; align-items: center; min-height: 52px; padding: 0 16px"><span style="flex: 1; font-size: 17px">Cân nặng cơ thể</span><span style="font-size: 17px; color: #A1A1A8">71,4 kg</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; min-height: 60px; padding: 0 10px 0 16px; border-top: 0.5px solid #38383A">
+            <span style="flex: 1; font-size: 17px">Tạ đeo thêm</span>
+            <button onClick="{{ beltMinus }}" aria-label="Bớt 2,5 kg" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+            <span style="min-width: 76px; text-align: center; font: 700 22px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ belt }}</span>
+            <button onClick="{{ beltPlus }}" aria-label="Thêm 2,5 kg" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+          </div>
+          <div style="display: flex; align-items: center; min-height: 52px; padding: 0 16px; border-top: 0.5px solid #38383A"><span style="flex: 1; font-size: 17px; font-weight: 600">Tổng tải</span><span style="font: 700 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #4BE3A7">{{ total }}</span></div>
+        </section>
+        <span style="font-size: 13px; color: #A1A1A8; padding: 0 16px; line-height: 1.4">Kỷ lục và 1RM ước tính tính trên tổng tải (cơ thể + tạ đeo).</span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSide }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 17px; font-weight: 600">Squat tách chân kiểu Bulgaria · 2 × 12 kg</span>
+        <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+          <div style="display: flex; align-items: center; gap: 8px; min-height: 60px; padding: 0 10px 0 16px">
+            <span style="flex: 1; font-size: 17px">Chân trái</span>
+            <button onClick="{{ lMinus }}" aria-label="Bớt rep trái" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+            <span style="min-width: 48px; text-align: center; font: 700 22px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ left }}</span>
+            <button onClick="{{ lPlus }}" aria-label="Thêm rep trái" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; min-height: 60px; padding: 0 10px 0 16px; border-top: 0.5px solid #38383A">
+            <span style="flex: 1; font-size: 17px">Chân phải</span>
+            <button onClick="{{ rMinus }}" aria-label="Bớt rep phải" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+            <span style="min-width: 48px; text-align: center; font: 700 22px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ right }}</span>
+            <button onClick="{{ rPlus }}" aria-label="Thêm rep phải" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #2C2C2E; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+          </div>
+        </section>
+        <div style="padding: 12px 14px; border-radius: 18px; background: {{ sideBg }}; font-size: 15px; line-height: 1.45; color: {{ sideColor }}">{{ sideNote }}</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBand }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 17px; font-weight: 600">Kéo xà có hỗ trợ dây · chọn các dây đang dùng</span>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{ bands }}" as="b" hint-placeholder-count="4">
+            <button onClick="{{ b.toggle }}" aria-pressed="{{ b.pressed }}" style="height: 64px; border: 0; border-radius: 18px; background: #1C1C1E; box-shadow: {{ b.ring }}; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 14px; font: 600 15px -apple-system, 'Segoe UI', sans-serif; text-align: left">
+              <span style="width: 22px; height: 22px; border-radius: 11px; background: {{ b.color }}; flex-shrink: 0"></span>
+              <span style="display: flex; flex-direction: column">{{ b.name }}<span style="font-size: 12px; font-weight: 400; color: #A1A1A8">≈ {{ b.kg }} kg</span></span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; min-height: 52px; padding: 0 16px; border-radius: 22px; background: #1C1C1E"><span style="flex: 1; font-size: 17px">Tổng lực dây (trợ lực)</span><span style="font: 700 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #4BE3A7">≈ {{ bandTotal }} kg</span></div>
+        <span style="font-size: 13px; color: #A1A1A8; padding: 0 16px; line-height: 1.4">Lực dây là ước tính, thay đổi theo độ giãn. Màu và mức lực khai báo một lần trong hồ sơ dụng cụ.</span>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'belt', belt: 10, left: 10, right: 12, bands: [false, true, false, false] };
+  }
+  renderVals() {
+    const s = this.state;
+    const fmt = (n) => n.toFixed(n % 1 ? 1 : 0).replace('.', ',');
+    const tabs = [['belt', 'Tạ đeo'], ['side', 'Từng bên'], ['band', 'Dây kháng lực']].map(([k, label]) => ({
+      label, pressed: s.tab === k ? 'true' : 'false', bg: s.tab === k ? '#636366' : 'transparent',
+      pick: () => this.setState({ tab: k })
+    }));
+    const B = [['Vàng', '#FFD60A', 5], ['Đỏ', '#FF453A', 11], ['Xanh', '#0A84FF', 16], ['Đen', '#48484A', 23]];
+    let bandTotal = 0;
+    const bands = B.map(([name, color, kg], i) => {
+      const on = s.bands[i];
+      if (on) bandTotal += kg;
+      return {
+        name, color, kg, pressed: on ? 'true' : 'false',
+        ring: on ? 'inset 0 0 0 2px #4BE3A7' : 'none',
+        toggle: () => { const n = s.bands.slice(); n[i] = !n[i]; this.setState({ bands: n }); }
+      };
+    });
+    const diff = Math.abs(s.left - s.right);
+    const weak = s.left < s.right ? 'trái' : 'phải';
+    return {
+      tabs, bands, bandTotal,
+      isBelt: s.tab === 'belt', isSide: s.tab === 'side', isBand: s.tab === 'band',
+      belt: '+' + fmt(s.belt) + ' kg', total: fmt(71.4 + s.belt) + ' kg',
+      beltMinus: () => this.setState({ belt: Math.max(0, s.belt - 2.5) }),
+      beltPlus: () => this.setState({ belt: s.belt + 2.5 }),
+      left: s.left, right: s.right,
+      lMinus: () => this.setState({ left: Math.max(0, s.left - 1) }), lPlus: () => this.setState({ left: s.left + 1 }),
+      rMinus: () => this.setState({ right: Math.max(0, s.right - 1) }), rPlus: () => this.setState({ right: s.right + 1 }),
+      sideNote: diff > 1 ? 'Lệch ' + diff + ' rep. Buổi sau làm bên ' + weak + ' trước và dừng bên còn lại ở cùng số rep.' : 'Hai bên cân bằng.',
+      sideBg: diff > 1 ? '#2A1D10' : '#12221D',
+      sideColor: diff > 1 ? '#FFC58A' : '#8FE3C1'
+    };
+  }
+}
+</script>
+</body>
+</html>

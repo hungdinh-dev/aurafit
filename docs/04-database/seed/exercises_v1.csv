@@ -1,0 +1,91 @@
+slug,name_en,name_vi,group,primary_muscle,secondary_muscles,equipment,mechanic,level,measure,home_friendly
+barbell_bench_press,Barbell Bench Press,Đẩy ngực ngang tạ đòn,chest,chest,front_delts|triceps,barbell,compound,beginner,reps,no
+incline_barbell_bench_press,Incline Barbell Bench Press,Đẩy ngực dốc lên tạ đòn,chest,chest,front_delts|triceps,barbell,compound,intermediate,reps,no
+dumbbell_bench_press,Dumbbell Bench Press,Đẩy ngực ngang tạ đơn,chest,chest,front_delts|triceps,dumbbell,compound,beginner,reps,yes
+incline_dumbbell_press,Incline Dumbbell Press,Đẩy ngực dốc lên tạ đơn,chest,chest,front_delts|triceps,dumbbell,compound,beginner,reps,yes
+dumbbell_fly,Dumbbell Fly,Ép ngực tạ đơn,chest,chest,front_delts,dumbbell,isolation,beginner,reps,yes
+cable_crossover,Cable Crossover,Ép ngực cáp chéo,chest,chest,front_delts,cable,isolation,intermediate,reps,no
+machine_chest_press,Machine Chest Press,Đẩy ngực máy,chest,chest,front_delts|triceps,machine,compound,beginner,reps,no
+pec_deck_fly,Pec Deck Fly,Ép ngực máy,chest,chest,front_delts,machine,isolation,beginner,reps,no
+push_up,Push-up,Hít đất,chest,chest,front_delts|triceps|abs,bodyweight,compound,beginner,reps,yes
+chest_dip,Chest Dip,Nhún xà kép (ngực),chest,chest,triceps|front_delts,bodyweight,compound,intermediate,reps,no
+deadlift,Deadlift,Kéo tạ đất (deadlift),back,lower_back,glutes|hamstrings|traps|lats,barbell,compound,intermediate,reps,no
+barbell_row,Barbell Bent-over Row,Chèo tạ đòn cúi người,back,upper_back,lats|biceps|rear_delts,barbell,compound,intermediate,reps,no
+pull_up,Pull-up,Kéo xà đơn,back,lats,biceps|upper_back,pullup_bar,compound,intermediate,reps,yes
+chin_up,Chin-up,Kéo xà tay ngửa,back,lats,biceps|upper_back,pullup_bar,compound,intermediate,reps,yes
+lat_pulldown,Lat Pulldown,Kéo xô máy,back,lats,biceps|upper_back,cable,compound,beginner,reps,no
+seated_cable_row,Seated Cable Row,Kéo cáp ngồi,back,upper_back,lats|biceps|rear_delts,cable,compound,beginner,reps,no
+one_arm_dumbbell_row,One-arm Dumbbell Row,Chèo tạ đơn một tay,back,lats,upper_back|biceps|rear_delts,dumbbell,compound,beginner,reps,yes
+t_bar_row,T-bar Row,Chèo T-bar,back,upper_back,lats|biceps|rear_delts,barbell,compound,intermediate,reps,no
+inverted_row,Inverted Row,Kéo người ngang,back,upper_back,lats|biceps|rear_delts,bodyweight,compound,beginner,reps,yes
+band_pull_apart,Band Pull-apart,Kéo giãn dây kháng lực,back,upper_back,rear_delts|traps,band,isolation,beginner,reps,yes
+overhead_press,Barbell Overhead Press,Đẩy vai tạ đòn đứng,shoulders,front_delts,side_delts|triceps|traps,barbell,compound,intermediate,reps,no
+dumbbell_shoulder_press,Seated Dumbbell Shoulder Press,Đẩy vai tạ đơn ngồi,shoulders,front_delts,side_delts|triceps,dumbbell,compound,beginner,reps,yes
+arnold_press,Arnold Press,Đẩy vai Arnold,shoulders,front_delts,side_delts|triceps,dumbbell,compound,intermediate,reps,yes
+dumbbell_lateral_raise,Dumbbell Lateral Raise,Dang tạ đơn sang ngang,shoulders,side_delts,traps,dumbbell,isolation,beginner,reps,yes
+cable_lateral_raise,Cable Lateral Raise,Dang cáp sang ngang,shoulders,side_delts,,cable,isolation,intermediate,reps,no
+dumbbell_front_raise,Dumbbell Front Raise,Nâng tạ đơn trước mặt,shoulders,front_delts,,dumbbell,isolation,beginner,reps,yes
+reverse_pec_deck,Reverse Pec Deck,Bay vai sau máy,shoulders,rear_delts,upper_back,machine,isolation,beginner,reps,no
+face_pull,Face Pull,Kéo cáp về mặt,shoulders,rear_delts,upper_back|traps,cable,isolation,beginner,reps,no
+machine_shoulder_press,Machine Shoulder Press,Đẩy vai máy,shoulders,front_delts,side_delts|triceps,machine,compound,beginner,reps,no
+pike_push_up,Pike Push-up,Hít đất chổng mông (pike),shoulders,front_delts,side_delts|triceps,bodyweight,compound,intermediate,reps,yes
+barbell_curl,Barbell Curl,Cuốn tạ đòn,biceps,biceps,forearms,barbell,isolation,beginner,reps,no
+ez_bar_curl,EZ-bar Curl,Cuốn thanh EZ,biceps,biceps,forearms,barbell,isolation,beginner,reps,no
+dumbbell_curl,Dumbbell Curl,Cuốn tạ đơn,biceps,biceps,forearms,dumbbell,isolation,beginner,reps,yes
+hammer_curl,Hammer Curl,Cuốn búa tạ đơn,biceps,biceps,forearms,dumbbell,isolation,beginner,reps,yes
+incline_dumbbell_curl,Incline Dumbbell Curl,Cuốn tạ đơn ghế dốc,biceps,biceps,,dumbbell,isolation,intermediate,reps,yes
+preacher_curl,Preacher Curl,Cuốn tay ghế preacher,biceps,biceps,,barbell,isolation,beginner,reps,no
+concentration_curl,Concentration Curl,Cuốn tập trung,biceps,biceps,,dumbbell,isolation,beginner,reps,yes
+cable_curl,Cable Curl,Cuốn cáp,biceps,biceps,forearms,cable,isolation,beginner,reps,no
+band_curl,Resistance Band Curl,Cuốn dây kháng lực,biceps,biceps,forearms,band,isolation,beginner,reps,yes
+spider_curl,Spider Curl,Cuốn tạ đơn nằm sấp ghế dốc,biceps,biceps,,dumbbell,isolation,intermediate,reps,yes
+close_grip_bench_press,Close-grip Bench Press,Đẩy ngực tay hẹp,triceps,triceps,chest|front_delts,barbell,compound,intermediate,reps,no
+cable_pushdown,Cable Triceps Pushdown,Kéo cáp tay sau,triceps,triceps,,cable,isolation,beginner,reps,no
+rope_pushdown,Rope Pushdown,Kéo cáp dây thừng tay sau,triceps,triceps,,cable,isolation,beginner,reps,no
+overhead_dumbbell_extension,Overhead Dumbbell Extension,Duỗi tay sau tạ đơn qua đầu,triceps,triceps,,dumbbell,isolation,beginner,reps,yes
+skull_crusher,Skull Crusher,Nằm duỗi tay sau (skull crusher),triceps,triceps,,barbell,isolation,intermediate,reps,no
+dumbbell_kickback,Dumbbell Kickback,Đá tạ đơn ra sau,triceps,triceps,,dumbbell,isolation,beginner,reps,yes
+bench_dip,Bench Dip,Chống đẩy ghế,triceps,triceps,front_delts|chest,bodyweight,compound,beginner,reps,yes
+diamond_push_up,Diamond Push-up,Hít đất kim cương,triceps,triceps,chest|front_delts,bodyweight,compound,intermediate,reps,yes
+overhead_cable_extension,Overhead Cable Extension,Duỗi cáp tay sau qua đầu,triceps,triceps,,cable,isolation,intermediate,reps,no
+band_pushdown,Band Pushdown,Đẩy dây kháng lực tay sau,triceps,triceps,,band,isolation,beginner,reps,yes
+barbell_wrist_curl,Barbell Wrist Curl,Cuốn cổ tay tạ đòn,forearms,forearms,,barbell,isolation,beginner,reps,no
+dumbbell_wrist_curl,Dumbbell Wrist Curl,Cuốn cổ tay tạ đơn,forearms,forearms,,dumbbell,isolation,beginner,reps,yes
+reverse_wrist_curl,Reverse Wrist Curl,Cuốn cổ tay ngược,forearms,forearms,,dumbbell,isolation,beginner,reps,yes
+behind_back_wrist_curl,Behind-the-back Wrist Curl,Cuốn cổ tay sau lưng,forearms,forearms,,barbell,isolation,intermediate,reps,no
+reverse_barbell_curl,Reverse Barbell Curl,Cuốn tạ đòn tay úp,forearms,forearms,biceps,barbell,isolation,beginner,reps,no
+zottman_curl,Zottman Curl,Cuốn Zottman,forearms,forearms,biceps,dumbbell,isolation,intermediate,reps,yes
+cable_wrist_curl,Cable Wrist Curl,Cuốn cổ tay cáp,forearms,forearms,,cable,isolation,beginner,reps,no
+farmers_walk,Farmer's Walk,Xách tạ đi bộ,forearms,forearms,traps|abs,dumbbell,compound,beginner,distance,yes
+dead_hang,Dead Hang,Treo xà,forearms,forearms,lats,pullup_bar,isolation,beginner,time,yes
+towel_hang,Towel Hang,Treo xà bằng khăn,forearms,forearms,lats,pullup_bar,isolation,intermediate,time,yes
+crunch,Crunch,Gập bụng,abs,abs,,bodyweight,isolation,beginner,reps,yes
+plank,Plank,Plank,abs,abs,obliques|lower_back,bodyweight,isolation,beginner,time,yes
+side_plank,Side Plank,Plank nghiêng,abs,obliques,abs,bodyweight,isolation,beginner,time,yes
+lying_leg_raise,Lying Leg Raise,Nằm nâng chân,abs,abs,,bodyweight,isolation,beginner,reps,yes
+hanging_leg_raise,Hanging Leg Raise,Treo xà nâng chân,abs,abs,obliques,pullup_bar,isolation,intermediate,reps,yes
+cable_crunch,Cable Crunch,Gập bụng cáp,abs,abs,,cable,isolation,intermediate,reps,no
+russian_twist,Russian Twist,Xoay người kiểu Nga,abs,obliques,abs,bodyweight,isolation,beginner,reps,yes
+bicycle_crunch,Bicycle Crunch,Gập bụng đạp xe,abs,abs,obliques,bodyweight,isolation,beginner,reps,yes
+mountain_climber,Mountain Climber,Leo núi tại chỗ,abs,abs,front_delts|quads,bodyweight,compound,beginner,time,yes
+dead_bug,Dead Bug,Dead bug,abs,abs,,bodyweight,isolation,beginner,reps,yes
+barbell_hip_thrust,Barbell Hip Thrust,Đẩy hông tạ đòn,glutes,glutes,hamstrings,barbell,compound,intermediate,reps,no
+glute_bridge,Glute Bridge,Cầu mông,glutes,glutes,hamstrings,bodyweight,isolation,beginner,reps,yes
+single_leg_glute_bridge,Single-leg Glute Bridge,Cầu mông một chân,glutes,glutes,hamstrings,bodyweight,isolation,beginner,reps,yes
+cable_glute_kickback,Cable Glute Kickback,Đá chân sau với cáp,glutes,glutes,hamstrings,cable,isolation,beginner,reps,no
+bulgarian_split_squat,Bulgarian Split Squat,Squat tách chân kiểu Bulgaria,glutes,glutes,quads|hamstrings,dumbbell,compound,intermediate,reps,yes
+sumo_goblet_squat,Sumo Goblet Squat,Squat sumo ôm tạ,glutes,glutes,adductors|quads,dumbbell,compound,beginner,reps,yes
+hip_abduction_machine,Hip Abduction Machine,Dạng hông máy,glutes,glutes,,machine,isolation,beginner,reps,no
+banded_lateral_walk,Banded Lateral Walk,Bước ngang với dây kháng lực,glutes,glutes,,band,isolation,beginner,reps,yes
+kettlebell_swing,Kettlebell Swing,Vung tạ ấm,glutes,glutes,hamstrings|lower_back,kettlebell,compound,intermediate,reps,yes
+dumbbell_step_up,Dumbbell Step-up,Bước bục tạ đơn,glutes,glutes,quads,dumbbell,compound,beginner,reps,yes
+barbell_back_squat,Barbell Back Squat,Gánh đùi tạ đòn,legs,quads,glutes|adductors|lower_back,barbell,compound,intermediate,reps,no
+front_squat,Front Squat,Gánh đùi phía trước,legs,quads,glutes|abs,barbell,compound,advanced,reps,no
+goblet_squat,Goblet Squat,Squat ôm tạ,legs,quads,glutes|adductors,kettlebell,compound,beginner,reps,yes
+smith_machine_squat,Smith Machine Squat,Squat máy Smith,legs,quads,glutes,smith_machine,compound,beginner,reps,no
+leg_press,Leg Press,Đạp đùi máy,legs,quads,glutes|adductors,machine,compound,beginner,reps,no
+leg_extension,Leg Extension,Đá đùi máy,legs,quads,,machine,isolation,beginner,reps,no
+lying_leg_curl,Lying Leg Curl,Móc đùi nằm máy,legs,hamstrings,calves,machine,isolation,beginner,reps,no
+romanian_deadlift,Romanian Deadlift,Romanian deadlift (RDL),legs,hamstrings,glutes|lower_back,barbell,compound,intermediate,reps,no
+walking_lunge,Walking Lunge,Chùng chân bước,legs,quads,glutes|hamstrings,dumbbell,compound,beginner,reps,yes
+calf_raise,Standing Calf Raise,Nhón bắp chân,legs,calves,,bodyweight,isolation,beginner,reps,yes

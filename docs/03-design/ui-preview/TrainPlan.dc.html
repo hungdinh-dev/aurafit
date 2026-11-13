@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Tập</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: flex-end; gap: 8px">
+      <a href="Recovery.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; text-decoration: none; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">Phục hồi</a>
+      <a href="Library.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; text-decoration: none; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">Thư viện</a>
+      <a href="Templates.dc.html" style="height: 44px; padding: 0 14px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; text-decoration: none; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">Giáo án</a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Tập</h1>
+
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px 0 16px"><span style="font-size: 13px; color: #A1A1A8">Hôm nay bạn tập ở đâu?</span><a href="GymProfile.dc.html" style="font-size: 13px; text-decoration: none">Kho dụng cụ ›</a></div>
+      <div role="group" aria-label="Hồ sơ dụng cụ" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+        <sc-for list="{{ profiles }}" as="p" hint-placeholder-count="3">
+          <button onClick="{{ p.pick }}" aria-pressed="{{ p.pressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ p.bg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">{{ p.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <section style="background: #1C1C1E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 13px; color: #A1A1A8">Hôm nay · Thứ Sáu</span><span style="font-size: 13px; color: #4BE3A7">Readiness 82</span></div>
+      <span style="font-size: 22px; font-weight: 700">Thân trên · {{ place }}</span>
+      <span style="font-size: 15px; color: #A1A1A8; line-height: 1.45">{{ list }}</span>
+      <a href="Workout.dc.html" style="height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #00140C; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(75,227,167,0.9)">Bắt đầu buổi tập</a>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; padding: 0 16px; font-size: 13px; color: #A1A1A8"><span>Lộ trình 10 tuần · trên / dưới · tuần 3</span><span>giảm tải tuần 5</span></div>
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 16px; border-top: {{ d.border }}">
+            <span style="width: 26px; font-size: 15px; color: #A1A1A8">{{ d.day }}</span>
+            <span style="flex: 1; font-size: 17px; color: {{ d.color }}">{{ d.name }}</span>
+            <span style="font-size: 13px; color: {{ d.statusColor }}">{{ d.status }}</span>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; gap: 10px; align-items: center">
+    <nav aria-label="Điều hướng chính" style="flex: 1; height: 62px; border-radius: 31px; padding: 4px; display: flex; gap: 2px; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 30px rgba(0,0,0,0.5)">
+      <a href="Main.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11L12 3.5l8.5 7.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"></path></svg>Hôm nay</a>
+      <a href="Diary.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h10"></path></svg>Nhật ký</a>
+      <a href="TrainPlan.dc.html" style="flex: 1; border-radius: 27px; background: rgba(255,255,255,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #4BE3A7; font-size: 10px; font-weight: 600; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"></path></svg>Tập</a>
+      <a href="Profile.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1-4 4-6 8-6s7 2 8 6"></path></svg>Tôi</a>
+    </nav>
+    <a href="AddFood.dc.html" aria-label="Chụp món" style="width: 62px; height: 62px; border-radius: 31px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #00140C; background: rgba(75,227,167,0.88); border: 0.5px solid rgba(255,255,255,0.45)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4.5h6l1.6 2H20a1.5 1.5 0 0 1 1.5 1.5v10.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 4 6.5h3.4z"></path><circle cx="12" cy="13" r="3.6" fill="#4BE3A7"></circle></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { prof: 'gym' };
+  }
+  renderVals() {
+    const P = {
+      gym: ['Gym', 'Gym', 'Đẩy ngực ngang tạ đòn · Chèo tạ đơn · Đẩy vai tạ đơn · Kéo cáp về mặt · Kéo cáp tay sau · Cuốn búa'],
+      home: ['Nhà có tạ', 'Nhà', 'Đẩy ngực tạ đơn · Chèo tạ đơn một tay · Arnold press · Kéo giãn dây · Duỗi tay sau qua đầu · Cuốn búa'],
+      bw: ['Không dụng cụ', 'Không dụng cụ', 'Hít đất · Kéo người ngang · Hít đất pike · Hít đất kim cương · Chống đẩy ghế · Plank']
+    };
+    const profiles = Object.keys(P).map((k) => ({
+      label: P[k][0], pressed: this.state.prof === k ? 'true' : 'false',
+      bg: this.state.prof === k ? '#636366' : 'transparent',
+      pick: () => this.setState({ prof: k })
+    }));
+    const W = [
+      ['T2', 'Thân trên', 'đã tập', '#4BE3A7'], ['T3', 'Thân dưới', 'đã tập', '#4BE3A7'], ['T4', 'Nghỉ', '', '#A1A1A8'],
+      ['T5', 'Nghỉ', '', '#A1A1A8'], ['T6', 'Thân trên', 'hôm nay', '#FFD60A'], ['T7', 'Thân dưới', '', '#A1A1A8'], ['CN', 'Nghỉ', '', '#A1A1A8']
+    ];
+    const week = W.map(([day, name, status, sc], i) => ({
+      day, name, status, statusColor: sc,
+      color: name === 'Nghỉ' ? '#8E8E93' : '#FFFFFF',
+      border: i === 0 ? '0' : '0.5px solid #38383A'
+    }));
+    const cur = P[this.state.prof];
+    return { profiles, week, place: cur[1], list: cur[2] };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Tôi</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 1100px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 22px">
+
+    <div style="display: flex; justify-content: flex-end">
+      <a href="Settings.dc.html" aria-label="Cài đặt" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path></svg></a>
+    </div>
+
+    <h1 style="margin: -10px 0 0; font-size: 34px; font-weight: 700">Tôi</h1>
+
+    <div style="display: flex; gap: 14px; align-items: center">
+      <svg width="88" height="102" viewBox="0 0 120 140" role="img" aria-label="Kai, hào quang xanh dương">
+        <defs><radialGradient id="pK" cx="50%" cy="55%" r="50%"><stop offset="0%" stop-color="#5AB0FF" stop-opacity="0.7"></stop><stop offset="65%" stop-color="#5AB0FF" stop-opacity="0.16"></stop><stop offset="100%" stop-color="#5AB0FF" stop-opacity="0"></stop></radialGradient></defs>
+        <ellipse cx="60" cy="78" rx="58" ry="62" fill="url(#pK)"></ellipse>
+        <path d="M28 138 C28 104 42 94 60 94 C78 94 92 104 92 138 Z" fill="#2C2C2E"></path>
+        <circle cx="60" cy="62" r="27" fill="#F2CFAE"></circle>
+        <path d="M33 60 C31 38 47 29 61 30 C77 31 90 41 87 60 C82 50 74 45 62 46 C51 46 41 51 33 60 Z" fill="#1D1A2B"></path>
+        <path d="M42 45 L48 34 L53 44 Z" fill="#1D1A2B"></path>
+        <circle cx="50" cy="65" r="3.2" fill="#1A1A24"></circle><circle cx="70" cy="65" r="3.2" fill="#1A1A24"></circle>
+        <path d="M53 75 Q60 81 67 75" fill="none" stroke="#1A1A24" stroke-width="2.4" stroke-linecap="round"></path>
+      </svg>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 17px; font-weight: 600">Kai</span>
+        <span style="font: 700 34px/1 ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">Lv 14</span>
+        <div style="height: 4px; border-radius: 2px; background: #2C2C2E; overflow: hidden"><div style="width: 78%; height: 100%; background: #FFFFFF"></div></div>
+        <span style="font-size: 13px; color: #A1A1A8">2.340 / 3.000 XP · không bao giờ mất</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <section style="background: #1C1C1E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 17px; font-weight: 600">Aura 30 ngày</span>
+          <span style="font: 700 22px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #5AB0FF">64</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px">
+          <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="6">
+            <div style="display: flex; flex-direction: column; gap: 6px; align-items: center">
+              <span style="width: 100%; height: 6px; border-radius: 3px; background: {{ t.color }}; opacity: {{ t.opacity }}"></span>
+              <span style="font-size: 10px; color: {{ t.text }}; font-weight: {{ t.weight }}">{{ t.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+      <p style="margin: 0; padding: 0 16px; font-size: 13px; line-height: 1.45; color: #A1A1A8">Còn 6 điểm để lên Tím. Thêm 2 ngày trượt sẽ tụt về Xanh lá.</p>
+    </div>
+
+    <section style="background: #1C1C1E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 17px; font-weight: 600">Về đích</span>
+        <span style="font-size: 13px; color: #A1A1A8">Giảm mỡ · 0,5 kg/tuần</span>
+      </div>
+      <span style="font-size: 17px">65 kg vào khoảng <strong style="color: #4BE3A7">14/03</strong></span>
+      <svg width="326" height="60" viewBox="0 0 326 60" role="img" aria-label="Cân nặng xu hướng giảm từ 74,1 xuống 71,4 kg trong 6 tuần">
+        <polyline points="0,8 30,14 58,10 86,20 114,18 142,26 170,24 198,33 226,31 254,40 282,42 310,48" fill="none" stroke="#48484A" stroke-width="1.5"></polyline>
+        <polyline points="0,10 28,13 56,15 84,18 112,21 140,25 168,28 196,32 224,35 252,39 280,42 310,46" fill="none" stroke="#4BE3A7" stroke-width="3" stroke-linecap="round"></polyline>
+        <circle cx="310" cy="46" r="4.5" fill="#4BE3A7"></circle>
+      </svg>
+      <div style="display: flex; justify-content: space-between; font-size: 13px; color: #A1A1A8"><span>74,1 kg</span><span>xu hướng <strong style="color: #FFFFFF">71,4 kg</strong></span></div>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">Chỉ số 30 ngày</span>
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="8">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 16px; border-top: {{ s.border }}">
+            <span style="flex: 1; font-size: 17px">{{ s.name }}</span>
+            <span style="width: 64px; height: 4px; border-radius: 2px; background: #2C2C2E; overflow: hidden"><span style="display: block; width: {{ s.w }}; height: 100%; background: {{ s.color }}"></span></span>
+            <span style="width: 28px; text-align: right; font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ s.v }}</span>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 16px">
+        <span style="width: 30px; height: 30px; border-radius: 8px; background: #FF375F; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12 2.5c1.2 3.2 4.8 5.2 4.8 9.8a4.8 4.8 0 0 1-9.6 0c0-2.3 1.1-3.6 2.3-4.6.1 2.1 1.2 3.3 2.4 3.4-.2-3.3-1.1-5.6.1-8.6z"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px">Boss tuần · Quỷ Đường</span><span style="font-size: 13px; color: #A1A1A8">Giữ đường dưới 50 g thêm 2 ngày</span></span>
+        <span style="font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #FF6B8A">3/5</span>
+      </div>
+    </section>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <a href="Progress.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; color: #FFFFFF; text-decoration: none"><span style="flex: 1; font-size: 17px">Tiến độ & biểu đồ</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></a>
+      <a href="Friends.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-top: 0.5px solid #38383A; color: #FFFFFF; text-decoration: none"><span style="flex: 1; font-size: 17px">Bạn bè</span><span style="font-size: 15px; color: #A1A1A8">4 · 1 lời mời</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></a>
+      <a href="Tasks.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-top: 0.5px solid #38383A; color: #FFFFFF; text-decoration: none"><span style="flex: 1; font-size: 17px">Sống chất lượng</span><span style="font-size: 15px; color: #A1A1A8">4 nhiệm vụ</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></a>
+    </section>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; gap: 10px; align-items: center">
+    <nav aria-label="Điều hướng chính" style="flex: 1; height: 62px; border-radius: 31px; padding: 4px; display: flex; gap: 2px; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 30px rgba(0,0,0,0.5)">
+      <a href="Main.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11L12 3.5l8.5 7.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"></path></svg>Hôm nay</a>
+      <a href="Diary.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h10"></path></svg>Nhật ký</a>
+      <a href="TrainPlan.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"></path></svg>Tập</a>
+      <a href="Profile.dc.html" style="flex: 1; border-radius: 27px; background: rgba(255,255,255,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #4BE3A7; font-size: 10px; font-weight: 600; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"></circle><path d="M3.8 21c1-4.2 4.2-6.3 8.2-6.3s7.2 2.1 8.2 6.3z"></path></svg>Tôi</a>
+    </nav>
+    <a href="AddFood.dc.html" aria-label="Chụp món" style="width: 62px; height: 62px; border-radius: 31px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #00140C; background: rgba(75,227,167,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 0.5px solid rgba(255,255,255,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(75,227,167,0.28)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4.5h6l1.6 2H20a1.5 1.5 0 0 1 1.5 1.5v10.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 4 6.5h3.4z"></path><circle cx="12" cy="13" r="3.6" fill="#4BE3A7"></circle></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tierDefs = [
+      ['Xám', '#8E8E93'], ['Xanh lá', '#4BE3A7'], ['Xanh dương', '#5AB0FF'],
+      ['Tím', '#8F84FF'], ['Vàng', '#FFD27A'], ['Đỏ lửa', '#FF7A59']
+    ];
+    const tiers = tierDefs.map(([name, color], i) => ({
+      name, color,
+      opacity: i <= 2 ? '1' : '0.25',
+      text: i === 2 ? '#FFFFFF' : '#8E8E93',
+      weight: i === 2 ? '600' : '400'
+    }));
+    const statDefs = [
+      ['Kỷ luật ăn uống', 72, '#4BE3A7'], ['Protein', 58, '#8F84FF'],
+      ['Giấc ngủ', 81, '#A79FFF'], ['Nước', 66, '#5AB0FF'],
+      ['Chuyên cần tập', 90, '#4BE3A7'], ['Sức mạnh', 74, '#FFB36B'],
+      ['Tiến độ cơ thể', 69, '#4BE3A7'], ['Phát triển bản thân', 55, '#F58FB4']
+    ];
+    const stats = statDefs.map(([name, v, color], i) => ({
+      name, v, color, w: v + '%', border: i === 0 ? '0' : '0.5px solid #38383A'
+    }));
+    return { tiers, stats };
+  }
+}
+</script>
+</body>
+</html>
