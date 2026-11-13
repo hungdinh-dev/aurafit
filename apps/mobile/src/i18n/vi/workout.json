@@ -1,0 +1,606 @@
+{
+  "title": "Tập",
+  "start": "Bắt đầu buổi tập",
+  "library": {
+    "title": "Bài tập",
+    "search": "Tìm bài tập",
+    "byGroup": "Nhóm cơ",
+    "byEquipment": "Dụng cụ",
+    "count_other": "{{count}} bài",
+    "empty": "Không có bài tập phù hợp.",
+    "media": "Ảnh động"
+  },
+  "recovery": {
+    "title": "Phục hồi",
+    "readyToday": "Hôm nay hợp tập: {{groups}}",
+    "noneReady": "Các nhóm cơ đều đang hồi phục.",
+    "front": "Mặt trước",
+    "back": "Mặt sau",
+    "view": "Mặt cơ thể",
+    "band": {
+      "heavy": "Mỏi nặng",
+      "moderate": "Mỏi vừa",
+      "light": "Hơi mỏi",
+      "ready": "Sẵn sàng"
+    },
+    "bandRange": {
+      "heavy": "< 40 %",
+      "moderate": "40–64 %",
+      "light": "65–79 %",
+      "ready": "≥ 80 %"
+    },
+    "hint": "Chạm một vùng cơ để xem từng phần và lý do mỏi.",
+    "mostTired": "Mỏi nhất",
+    "remaining": "còn {{hours}} giờ",
+    "readyNow": "sẵn sàng",
+    "allReady": "Không có nhóm cơ nào đang mỏi.",
+    "pct": "{{value}} %",
+    "headA11y": "{{name}}: {{pct}} % hồi phục, {{band}}",
+    "detailEta": "hồi phục · đủ sau ~{{hours}} giờ",
+    "detailReady": "hồi phục · đã sẵn sàng",
+    "why": "Vì sao {{name}} mỏi?",
+    "whyEmpty": "7 ngày qua không có bài nào tác động phần này.",
+    "whyRow": "{{sets}} set · {{load}}",
+    "added": "+{{value}}",
+    "tips": {
+      "heavy": "Để phần này nghỉ thêm ~1 ngày. Nếu vẫn muốn tập nhóm cơ này, chọn bài nhắm phần khác của cơ.",
+      "moderate": "Mỏi vừa – tập nhẹ được, giảm 1–2 set so với bình thường.",
+      "light": "Hơi mỏi – tập bình thường, khởi động kỹ hơn.",
+      "ready": "Phần này đã sẵn sàng cho buổi tập nặng."
+    },
+    "map": "Bản đồ cơ",
+    "volumeZones": "Khối lượng tuần",
+    "disclaimer": "Đây là ước tính định hướng từ các set bạn đã ghi, không phải đo sinh lý."
+  },
+  "units": {
+    "kg": "{{value}} kg",
+    "reps": "{{value}} rep",
+    "repsRange": "{{min}}–{{max}} rep",
+    "sets_other": "{{count}} set",
+    "hours_other": "{{count}} giờ",
+    "minutes_other": "{{count}} phút"
+  },
+  "state": {
+    "loading": "Đang tải…",
+    "error": "Không tải được dữ liệu.",
+    "retry": "Thử lại",
+    "preview": "Chế độ xem thử: dữ liệu chỉ lưu tạm trên máy, không gửi lên máy chủ.",
+    "back": "Quay lại",
+    "close": "Đóng"
+  },
+  "weekdayShort": {
+    "1": "T2",
+    "2": "T3",
+    "3": "T4",
+    "4": "T5",
+    "5": "T6",
+    "6": "T7",
+    "7": "CN"
+  },
+  "split": {
+    "full_body": "toàn thân",
+    "upper_lower": "trên / dưới",
+    "ppl": "đẩy / kéo / chân"
+  },
+  "level": {
+    "beginner": "Người mới",
+    "intermediate": "Trung cấp",
+    "advanced": "Nâng cao"
+  },
+  "equipmentKind": {
+    "gym": "Gym",
+    "home": "Nhà có tạ",
+    "bodyweight": "Không dụng cụ"
+  },
+  "plan": {
+    "where": "Hôm nay bạn tập ở đâu?",
+    "gear": "Kho dụng cụ",
+    "today": "Hôm nay · {{weekday}}",
+    "readiness": "Readiness",
+    "readinessA11y": "Mức sẵn sàng {{score}} trên 100",
+    "readinessNone": "Readiness –",
+    "advice": {
+      "lighter_session": "Cơ thể hơi mệt – nên bớt 1 set mỗi bài.",
+      "as_planned": "Tập như kế hoạch.",
+      "try_pr": "Ngày đẹp để thử kỷ lục!"
+    },
+    "applyLighter": "Bớt 1 set mỗi bài",
+    "lighterOn": "Đã bớt 1 set mỗi bài",
+    "restDay": "Hôm nay là ngày nghỉ",
+    "restDayBody": "Cơ bắp lớn lên khi nghỉ. Muốn tập thêm thì bắt đầu buổi kế tiếp.",
+    "trainAnyway": "Vẫn tập buổi kế tiếp",
+    "noProgram": "Chưa có giáo án",
+    "noProgramBody": "Chọn một giáo án mẫu để app lên lịch và tự gợi ý tạ cho từng set.",
+    "pickTemplate": "Chọn giáo án",
+    "quickStart": "Tập nhanh buổi mẫu",
+    "programMeta": "Lộ trình {{weeks}} tuần · {{split}} · tuần {{week}}",
+    "deloadAt": "giảm tải tuần {{week}}",
+    "deloadNow": "Tuần giảm tải",
+    "week": "Tuần này",
+    "status": {
+      "done": "đã tập",
+      "today": "hôm nay",
+      "rest": "Nghỉ"
+    },
+    "replaced_other": "{{count}} bài được đổi cho hợp dụng cụ",
+    "startError": "Không bắt đầu được buổi tập. Thử lại nhé.",
+    "inProgress": "Đang có buổi tập dở",
+    "resume": "Tiếp tục buổi tập",
+    "links": {
+      "recovery": "Phục hồi",
+      "library": "Thư viện",
+      "templates": "Giáo án"
+    }
+  },
+  "session": {
+    "exerciseOf": "Bài {{index}}/{{total}}",
+    "scheme": "{{sets}} × {{min}}–{{max}} rep · nghỉ {{rest}}",
+    "schemeShort": "{{sets}} × {{min}}–{{max}}",
+    "logDetail": "Ghi set chi tiết",
+    "bodyweight": "Cơ thể",
+    "addSet": "Thêm set",
+    "removeSet": "Xoá set cuối",
+    "toggleSet": "Set {{n}}: {{kg}} × {{reps}}",
+    "suggestion": {
+      "increase": "Set {{n}} vượt mục tiêu → các set sau dùng {{kg}}.",
+      "decrease": "Set {{n}} nặng quá → các set sau giảm còn {{kg}}.",
+      "nextSessionUp": "Hoàn thành tốt – buổi sau thử {{kg}}.",
+      "nextSessionDown": "Buổi sau giảm còn {{kg}} để đủ rep."
+    },
+    "pr": "PR {{kg}} × {{reps}} · 1RM ước tính {{oneRm}}",
+    "newPr": "Kỷ lục mới!",
+    "next": "Tiếp theo",
+    "restLabel": "Nghỉ · tiếp set {{n}} {{kg}} × {{reps}}",
+    "restLabelDone": "Nghỉ · sang bài tiếp theo",
+    "restMinus": "Bớt 15 giây nghỉ",
+    "restPlus": "Thêm 15 giây nghỉ",
+    "skip": "Bỏ qua",
+    "finish": "Kết thúc buổi tập",
+    "finishTitle": "Kết thúc buổi tập?",
+    "finishBody": "Đã xong {{done}}/{{total}} set. Các set chưa xong sẽ không được tính.",
+    "finishConfirm": "Kết thúc",
+    "cancelSession": "Huỷ buổi tập",
+    "cancelTitle": "Huỷ buổi tập này?",
+    "cancelBody": "Các set đã ghi vẫn được giữ lại.",
+    "swap": "Đổi bài",
+    "swapTitle": "Đổi sang bài tương đương",
+    "addExercise": "Thêm bài",
+    "removeExercise": "Bỏ bài này",
+    "prevExercise": "Bài trước",
+    "nextExercise": "Bài sau",
+    "empty": "Buổi tập chưa có bài nào. Thêm bài từ thư viện.",
+    "notFound": "Không tìm thấy buổi tập đang mở.",
+    "saved": "Đã lưu buổi tập",
+    "saveError": "Chưa lưu được lên máy chủ. Set vẫn giữ trên máy.",
+    "notification": {
+      "title": "Hết giờ nghỉ",
+      "body": "Vào set tiếp theo thôi!"
+    },
+    "quickTitle": "Buổi tập nhanh"
+  },
+  "set": {
+    "title": "Ghi set",
+    "position": "Bài {{exercise}}/{{exercises}} · Set {{set}}/{{sets}}",
+    "target": "{{equipment}} · mục tiêu {{min}}–{{max}} rep · RIR {{rir}}",
+    "busy": "Máy đang bận",
+    "busyBack": "Về bài chính",
+    "backupNote": "Bài dự phòng · giữ nguyên {{sets}} set × {{min}}–{{max}}, RIR {{rir}}",
+    "noBackup": "Chưa có bài dự phòng hợp với dụng cụ hiện có.",
+    "load": "Tạ",
+    "stepNote": "bước {{step}}",
+    "noLoad": "Trọng lượng cơ thể",
+    "reps": "Rep",
+    "special": "Tạ đeo · từng bên · dây kháng lực",
+    "rirQuestion": "Còn làm thêm được mấy rep? (RIR – không bắt buộc)",
+    "rirDesc": {
+      "0": "Không làm thêm được rep nào (sát thất bại)",
+      "1": "Còn 1 rep",
+      "2": "Còn 2 rep",
+      "3": "Còn 3 rep",
+      "4": "Còn từ 4 rep trở lên – khá nhẹ"
+    },
+    "rirA11y": "RIR {{value}}",
+    "feedback": {
+      "increase": "Nhẹ so với mục tiêu – set sau tăng lên {{kg}}.",
+      "decrease": "Nặng so với mục tiêu – set sau giảm còn {{kg}}.",
+      "hold": "Đúng mục tiêu – giữ mức tạ này.",
+      "increaseSession": "Nhẹ so với mục tiêu – buổi sau tăng lên {{kg}}.",
+      "decreaseSession": "Nặng so với mục tiêu – buổi sau giảm còn {{kg}}.",
+      "increaseNoLoad": "Nhẹ so với mục tiêu – thử thêm tạ đeo hoặc biến thể khó hơn.",
+      "decreaseNoLoad": "Nặng so với mục tiêu – thử dây trợ lực hoặc biến thể dễ hơn."
+    },
+    "rest": "Nghỉ sau set",
+    "restDefault": "Mặc định {{kind}}: {{time}}",
+    "kind": {
+      "compound": "bài đa khớp",
+      "isolation": "bài đơn khớp"
+    },
+    "done": "Xong set · bắt đầu nghỉ",
+    "decLoad": "Giảm tạ",
+    "incLoad": "Tăng tạ",
+    "decReps": "Bớt 1 rep",
+    "incReps": "Thêm 1 rep"
+  },
+  "special": {
+    "title": "Tải đặc biệt",
+    "tabs": {
+      "belt": "Tạ đeo",
+      "side": "Từng bên",
+      "band": "Dây kháng lực"
+    },
+    "bodyweight": "Cân nặng cơ thể",
+    "belt": "Tạ đeo thêm",
+    "total": "Tổng tải",
+    "beltNote": "Kỷ lục và 1RM ước tính tính trên tổng tải (cơ thể + tạ đeo).",
+    "left": "Bên trái",
+    "right": "Bên phải",
+    "balanced": "Hai bên cân bằng.",
+    "imbalance": "Lệch {{pct}} %. Buổi sau làm bên {{side}} trước và dừng bên còn lại ở cùng số rep.",
+    "sideName": {
+      "left": "trái",
+      "right": "phải"
+    },
+    "credited": "Tiến độ tính theo bên yếu: {{reps}} rep",
+    "bandsPick": "Chọn các dây đang dùng",
+    "bandMode": {
+      "assist": "Trợ lực",
+      "resist": "Kháng lực"
+    },
+    "bandTotal": "Tổng lực dây ≈ {{kg}}",
+    "bandNote": "Lực dây là ước tính, thay đổi theo độ giãn. Màu và mức lực khai báo một lần trong kho dụng cụ.",
+    "bandColor": {
+      "yellow": "Vàng",
+      "red": "Đỏ",
+      "blue": "Xanh",
+      "black": "Đen"
+    },
+    "apply": "Dùng cho set này"
+  },
+  "templates": {
+    "title": "Chọn giáo án",
+    "meta": "{{level}} · {{days}} buổi · {{equipment}}",
+    "mode": {
+      "weekday": "Theo thứ",
+      "rotation": "Xoay vòng A → B"
+    },
+    "rotationBody": "Xoay vòng: buổi kế tiếp luôn là buổi chưa tập, không phụ thuộc thứ. Lỡ một ngày thì buổi đó chỉ lùi lại, không mất.",
+    "weekdayBody": "Theo thứ: {{days}}. Lỡ buổi thì đánh dấu bỏ qua.",
+    "daysPerWeek": "Số buổi mỗi tuần",
+    "sessions": "Các buổi trong giáo án",
+    "deload": "Giảm tải mỗi {{count}} tuần",
+    "progression": {
+      "double": "Tăng kép: đủ rep rồi mới tăng tạ",
+      "linear": "Tăng tạ tuyến tính, tự giảm tải khi chững",
+      "calisthenics_level": "Lên bậc khó hơn khi đạt 3 × 12"
+    },
+    "use": "Dùng giáo án này",
+    "created": "Đã tạo giáo án",
+    "createError": "Không tạo được giáo án. Thử lại nhé.",
+    "signInNeeded": "Đăng nhập để lưu giáo án. Ở chế độ xem thử bạn vẫn tập nhanh được buổi đầu tiên."
+  },
+  "gym": {
+    "title": "Kho dụng cụ",
+    "defaultName": "Phòng tập của tôi",
+    "kind": "Loại nơi tập",
+    "equipment": "Dụng cụ có sẵn",
+    "plates": "Bánh tạ có ở phòng này (chạm để bật / tắt)",
+    "plateA11y": "Bánh {{kg}}",
+    "machines": "Bước tạ thật của máy",
+    "machineStep": "bước {{kg}}",
+    "calculator": "Máy tính bánh tạ",
+    "bar": "Thanh đòn {{kg}}",
+    "target": "Mức tạ mục tiêu",
+    "perSide": "Mỗi bên: {{plates}}",
+    "barOnly": "Chỉ thanh đòn",
+    "exact": "Lắp được đúng mức tạ.",
+    "nearest": "Không đủ bánh để lắp đúng – gần nhất {{kg}}. App sẽ gợi ý mức này.",
+    "save": "Lưu kho dụng cụ",
+    "saved": "Đã lưu kho dụng cụ",
+    "saveError": "Không lưu được. Thử lại nhé.",
+    "localOnly": "Chưa đăng nhập – thay đổi chỉ dùng tạm trên máy."
+  },
+  "exercise": {
+    "mediaPlaceholder": "Ảnh động hướng dẫn · sắp có (nguồn có giấy phép)",
+    "speed": "Tốc độ phát",
+    "guide": "Hướng dẫn",
+    "history": "Lịch sử của bạn",
+    "primary": "Cơ chính",
+    "secondary": "Cơ phụ",
+    "mechanic": {
+      "compound": "Đa khớp",
+      "isolation": "Đơn khớp"
+    },
+    "defaults": "Mặc định {{min}}–{{max}} rep · nghỉ {{rest}}",
+    "defaultsTime": "Mặc định {{min}}–{{max}} giây · nghỉ {{rest}}",
+    "defaultsDistance": "Mặc định {{min}}–{{max}} m · nghỉ {{rest}}",
+    "pr": "Kỷ lục (PR)",
+    "oneRm": "1RM ước tính",
+    "noHistory": "Chưa có lịch sử cho bài này.",
+    "add": "Thêm vào buổi tập",
+    "added": "Đã thêm vào buổi tập",
+    "steps": {
+      "setup": "Chuẩn bị tư thế và dụng cụ, kiểm tra mức tạ trước khi bắt đầu.",
+      "brace": "Siết bụng, giữ lưng trung tính và thở đều.",
+      "move": "Thực hiện động tác có kiểm soát trong biên độ thoải mái, không giật.",
+      "finish": "Dừng khi còn 1–3 rep dự trữ (RIR) và ghi lại set."
+    }
+  },
+  "map": {
+    "title": "Bản đồ cơ",
+    "mode": {
+      "volume": "Khối lượng tuần",
+      "recovery": "Phục hồi"
+    },
+    "volumeBand": {
+      "low": "Thấp",
+      "moderate": "Vừa",
+      "high": "Khá cao",
+      "very_high": "Cao"
+    },
+    "volumeRange": {
+      "low": "< 6",
+      "moderate": "6–11",
+      "high": "12–17",
+      "very_high": "≥ 18"
+    },
+    "chipVolume": "{{level}} · {{sets}} set",
+    "chipRecovery": "{{level}} · {{pct}} %",
+    "summary": "Tuần này {{total}} set hiệu quả · cao nhất {{high}} ({{highSets}}) · thấp nhất {{low}} ({{lowSets}}).",
+    "placeholder": "Sơ đồ tạm – hình cơ thể chi tiết sẽ được cập nhật sau."
+  },
+  "volume": {
+    "title": "Khối lượng tuần",
+    "subtitle": "{{range}} · số set hiệu quả mỗi nhóm cơ",
+    "zone": {
+      "below_stimulus": "Dưới mức kích thích",
+      "effective": "Hiệu quả",
+      "overload_risk": "Nguy cơ quá tải"
+    },
+    "tip": {
+      "add_sets": "{{name}}: {{sets}} set – dưới mức kích thích. Tuần sau thêm 2–4 set (ví dụ 1 bài phụ) để vào vùng hiệu quả.",
+      "maintain": "{{name}}: {{sets}} set – trong vùng hiệu quả. Giữ nguyên, tăng tải bằng tạ hoặc rep.",
+      "monitor_recovery": "{{name}}: {{sets}} set – trên {{max}} set, theo dõi hồi phục. Nếu phần cơ này còn đỏ trên bản đồ phục hồi, tuần sau giảm 2–4 set.",
+      "reduce_sets": "{{name}}: {{sets}} set – vượt ngưỡng quá tải, hồi phục sẽ chậm. Tuần sau giảm 2–4 set."
+    },
+    "source": "Ngưỡng khởi điểm 10–20 set/tuần theo các phân tích gộp về liều – đáp ứng (Schoenfeld 2017; Pelland 2026). App chỉnh dần theo tiến bộ và độ hồi phục của bạn.",
+    "rowA11y": "{{name}} {{sets}} set, {{zone}}"
+  },
+  "catalog": {
+    "group": {
+      "chest": "Ngực",
+      "back": "Lưng",
+      "shoulders": "Vai",
+      "biceps": "Tay trước",
+      "triceps": "Tay sau",
+      "forearms": "Cẳng tay",
+      "abs": "Bụng",
+      "glutes": "Mông",
+      "legs": "Chân"
+    },
+    "muscle": {
+      "chest": "Ngực",
+      "front_delts": "Vai trước",
+      "side_delts": "Vai giữa",
+      "rear_delts": "Vai sau",
+      "biceps": "Tay trước",
+      "triceps": "Tay sau",
+      "forearms": "Cẳng tay",
+      "abs": "Bụng",
+      "obliques": "Bụng chéo",
+      "traps": "Cơ thang",
+      "lats": "Xô",
+      "upper_back": "Lưng giữa",
+      "lower_back": "Lưng dưới",
+      "glutes": "Mông",
+      "quads": "Đùi trước",
+      "hamstrings": "Đùi sau",
+      "adductors": "Đùi trong",
+      "calves": "Bắp chân"
+    },
+    "head": {
+      "chest_upper": "Ngực trên",
+      "chest_middle": "Ngực giữa",
+      "chest_lower": "Ngực dưới",
+      "front_delts": "Vai trước",
+      "side_delts": "Vai giữa",
+      "rear_delts": "Vai sau",
+      "biceps_long": "Đầu dài",
+      "biceps_short": "Đầu ngắn",
+      "brachialis": "Cơ cánh tay",
+      "triceps_long": "Đầu dài",
+      "triceps_lateral": "Đầu ngoài",
+      "triceps_medial": "Đầu trong",
+      "forearm_flexors": "Nhóm gập",
+      "forearm_extensors": "Nhóm duỗi",
+      "brachioradialis": "Cơ cánh tay quay",
+      "abs_upper": "Bụng trên",
+      "abs_lower": "Bụng dưới",
+      "obliques_external": "Chéo ngoài",
+      "serratus": "Răng cưa",
+      "traps_upper": "Thang trên",
+      "traps_middle": "Thang giữa",
+      "traps_lower": "Thang dưới",
+      "lats": "Xô",
+      "rhomboids": "Cơ trám",
+      "teres_infraspinatus": "Cơ tròn / dưới gai",
+      "erector_spinae": "Cơ dựng sống",
+      "glute_max": "Mông lớn",
+      "glute_med": "Mông nhỡ",
+      "rectus_femoris": "Cơ thẳng đùi",
+      "vastus_lateralis": "Rộng ngoài",
+      "vastus_medialis": "Rộng trong",
+      "biceps_femoris": "Nhị đầu đùi",
+      "semitendinosus": "Bán gân / bán màng",
+      "adductors": "Nhóm khép",
+      "gastrocnemius": "Bắp chân (gastrocnemius)",
+      "soleus": "Dép (soleus)",
+      "tibialis_anterior": "Chày trước"
+    },
+    "equipment": {
+      "barbell": "Tạ đòn",
+      "dumbbell": "Tạ đơn",
+      "cable": "Cáp",
+      "machine": "Máy",
+      "smith_machine": "Máy Smith",
+      "bodyweight": "Trọng lượng cơ thể",
+      "pullup_bar": "Xà đơn",
+      "band": "Dây kháng lực",
+      "kettlebell": "Tạ ấm"
+    },
+    "exercise": {
+      "barbell_bench_press": "Đẩy ngực ngang tạ đòn",
+      "incline_barbell_bench_press": "Đẩy ngực dốc lên tạ đòn",
+      "dumbbell_bench_press": "Đẩy ngực ngang tạ đơn",
+      "incline_dumbbell_press": "Đẩy ngực dốc lên tạ đơn",
+      "dumbbell_fly": "Ép ngực tạ đơn",
+      "cable_crossover": "Ép ngực cáp chéo",
+      "machine_chest_press": "Đẩy ngực máy",
+      "pec_deck_fly": "Ép ngực máy",
+      "push_up": "Hít đất",
+      "chest_dip": "Nhún xà kép (ngực)",
+      "deadlift": "Kéo tạ đất (deadlift)",
+      "barbell_row": "Chèo tạ đòn cúi người",
+      "pull_up": "Kéo xà đơn",
+      "chin_up": "Kéo xà tay ngửa",
+      "lat_pulldown": "Kéo xô máy",
+      "seated_cable_row": "Kéo cáp ngồi",
+      "one_arm_dumbbell_row": "Chèo tạ đơn một tay",
+      "t_bar_row": "Chèo T-bar",
+      "inverted_row": "Kéo người ngang",
+      "band_pull_apart": "Kéo giãn dây kháng lực",
+      "overhead_press": "Đẩy vai tạ đòn đứng",
+      "dumbbell_shoulder_press": "Đẩy vai tạ đơn ngồi",
+      "arnold_press": "Đẩy vai Arnold",
+      "dumbbell_lateral_raise": "Dang tạ đơn sang ngang",
+      "cable_lateral_raise": "Dang cáp sang ngang",
+      "dumbbell_front_raise": "Nâng tạ đơn trước mặt",
+      "reverse_pec_deck": "Bay vai sau máy",
+      "face_pull": "Kéo cáp về mặt",
+      "machine_shoulder_press": "Đẩy vai máy",
+      "pike_push_up": "Hít đất chổng mông (pike)",
+      "barbell_curl": "Cuốn tạ đòn",
+      "ez_bar_curl": "Cuốn thanh EZ",
+      "dumbbell_curl": "Cuốn tạ đơn",
+      "hammer_curl": "Cuốn búa tạ đơn",
+      "incline_dumbbell_curl": "Cuốn tạ đơn ghế dốc",
+      "preacher_curl": "Cuốn tay ghế preacher",
+      "concentration_curl": "Cuốn tập trung",
+      "cable_curl": "Cuốn cáp",
+      "band_curl": "Cuốn dây kháng lực",
+      "spider_curl": "Cuốn tạ đơn nằm sấp ghế dốc",
+      "close_grip_bench_press": "Đẩy ngực tay hẹp",
+      "cable_pushdown": "Kéo cáp tay sau",
+      "rope_pushdown": "Kéo cáp dây thừng tay sau",
+      "overhead_dumbbell_extension": "Duỗi tay sau tạ đơn qua đầu",
+      "skull_crusher": "Nằm duỗi tay sau (skull crusher)",
+      "dumbbell_kickback": "Đá tạ đơn ra sau",
+      "bench_dip": "Chống đẩy ghế",
+      "diamond_push_up": "Hít đất kim cương",
+      "overhead_cable_extension": "Duỗi cáp tay sau qua đầu",
+      "band_pushdown": "Đẩy dây kháng lực tay sau",
+      "barbell_wrist_curl": "Cuốn cổ tay tạ đòn",
+      "dumbbell_wrist_curl": "Cuốn cổ tay tạ đơn",
+      "reverse_wrist_curl": "Cuốn cổ tay ngược",
+      "behind_back_wrist_curl": "Cuốn cổ tay sau lưng",
+      "reverse_barbell_curl": "Cuốn tạ đòn tay úp",
+      "zottman_curl": "Cuốn Zottman",
+      "cable_wrist_curl": "Cuốn cổ tay cáp",
+      "farmers_walk": "Xách tạ đi bộ",
+      "dead_hang": "Treo xà",
+      "towel_hang": "Treo xà bằng khăn",
+      "crunch": "Gập bụng",
+      "plank": "Plank",
+      "side_plank": "Plank nghiêng",
+      "lying_leg_raise": "Nằm nâng chân",
+      "hanging_leg_raise": "Treo xà nâng chân",
+      "cable_crunch": "Gập bụng cáp",
+      "russian_twist": "Xoay người kiểu Nga",
+      "bicycle_crunch": "Gập bụng đạp xe",
+      "mountain_climber": "Leo núi tại chỗ",
+      "dead_bug": "Dead bug",
+      "barbell_hip_thrust": "Đẩy hông tạ đòn",
+      "glute_bridge": "Cầu mông",
+      "single_leg_glute_bridge": "Cầu mông một chân",
+      "cable_glute_kickback": "Đá chân sau với cáp",
+      "bulgarian_split_squat": "Squat tách chân kiểu Bulgaria",
+      "sumo_goblet_squat": "Squat sumo ôm tạ",
+      "hip_abduction_machine": "Dạng hông máy",
+      "banded_lateral_walk": "Bước ngang với dây kháng lực",
+      "kettlebell_swing": "Vung tạ ấm",
+      "dumbbell_step_up": "Bước bục tạ đơn",
+      "barbell_back_squat": "Gánh đùi tạ đòn",
+      "front_squat": "Gánh đùi phía trước",
+      "goblet_squat": "Squat ôm tạ",
+      "smith_machine_squat": "Squat máy Smith",
+      "leg_press": "Đạp đùi máy",
+      "leg_extension": "Đá đùi máy",
+      "lying_leg_curl": "Móc đùi nằm máy",
+      "romanian_deadlift": "Romanian deadlift (RDL)",
+      "walking_lunge": "Chùng chân bước",
+      "calf_raise": "Nhón bắp chân"
+    },
+    "template": {
+      "full_body_ab": {
+        "name": "Toàn thân A/B",
+        "description": "Hai buổi A/B xoay vòng, 3 buổi/tuần. Mỗi nhóm cơ được tập 3 lần/tuần với 2–3 set mỗi bài. Hợp với người mới và người bận.",
+        "sessions": {
+          "0": "Toàn thân A",
+          "1": "Toàn thân B"
+        }
+      },
+      "upper_lower": {
+        "name": "Trên / Dưới",
+        "description": "4 buổi/tuần xen kẽ thân trên và thân dưới. Mỗi nhóm cơ 2 lần/tuần, 10–16 set/tuần. Hợp với người đã tập 3–6 tháng.",
+        "sessions": {
+          "0": "Thân trên A",
+          "1": "Thân dưới A",
+          "2": "Thân trên B",
+          "3": "Thân dưới B"
+        }
+      },
+      "push_pull_legs": {
+        "name": "Đẩy / Kéo / Chân",
+        "description": "Ba buổi Đẩy – Kéo – Chân xoay vòng. 6 buổi/tuần = mỗi nhóm cơ 2 lần/tuần; có thể tập 3 buổi/tuần theo lịch xoay vòng.",
+        "sessions": {
+          "0": "Đẩy",
+          "1": "Kéo",
+          "2": "Chân"
+        }
+      },
+      "strength_5x5": {
+        "name": "Sức mạnh 5×5",
+        "description": "3 bài đa khớp mỗi buổi, 5 set × 5 rep, tăng tạ tuyến tính mỗi buổi; giảm tải khi chững.",
+        "sessions": {
+          "0": "Buổi A",
+          "1": "Buổi B"
+        }
+      },
+      "home_dumbbell_band": {
+        "name": "Tại nhà: tạ đơn + dây",
+        "description": "Toàn thân A/B tại nhà chỉ cần tạ đơn và dây kháng lực.",
+        "sessions": {
+          "0": "Tại nhà A",
+          "1": "Tại nhà B"
+        }
+      },
+      "calisthenics_levels": {
+        "name": "Calisthenics theo bậc",
+        "description": "Đẩy / kéo / chân / core bằng trọng lượng cơ thể. Lên bậc khó hơn khi đạt 3 × 12.",
+        "sessions": {
+          "0": "Calisthenics A",
+          "1": "Calisthenics B"
+        }
+      },
+      "women_lower_focus": {
+        "name": "Nữ – ưu tiên mông/chân",
+        "description": "Trên/dưới 4 buổi/tuần, thêm khối lượng cho mông và đùi sau. Cùng nguyên tắc khoa học như các giáo án khác.",
+        "sessions": {
+          "0": "Thân dưới A (mông)",
+          "1": "Thân trên A",
+          "2": "Thân dưới B (đùi sau)",
+          "3": "Thân trên B"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "appName": "AuraFit",
+  "tabs": {
+    "today": "Hôm nay",
+    "diary": "Nhật ký",
+    "train": "Tập",
+    "me": "Tôi"
+  },
+  "actions": {
+    "continue": "Tiếp tục",
+    "cancel": "Huỷ",
+    "save": "Lưu",
+    "done": "Xong",
+    "close": "Đóng",
+    "retry": "Thử lại",
+    "back": "Quay lại",
+    "edit": "Sửa",
+    "delete": "Xoá",
+    "decrease": "Giảm",
+    "increase": "Tăng"
+  },
+  "capture": {
+    "label": "Chụp món",
+    "hint": "Mở màn thêm món"
+  },
+  "language": {
+    "label": "Ngôn ngữ",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "viShort": "VI",
+    "enShort": "EN"
+  },
+  "placeholder": {
+    "title": "Sắp có",
+    "body": "Màn này sẽ được xây ở các mốc tiếp theo."
+  },
+  "errors": {
+    "generic": "Có lỗi xảy ra. Thử lại nhé.",
+    "network": "Không có kết nối mạng.",
+    "notConfigured": "Máy chủ chưa được cấu hình."
+  },
+  "dev": {
+    "supabaseMissingTitle": "Chưa cấu hình Supabase",
+    "supabaseMissingBody": "Sao chép apps/mobile/.env.example thành .env rồi điền EXPO_PUBLIC_SUPABASE_URL và EXPO_PUBLIC_SUPABASE_ANON_KEY. Đăng nhập đang tắt.",
+    "previewWithoutAccount": "Xem thử không cần tài khoản (dev)"
+  }
+}

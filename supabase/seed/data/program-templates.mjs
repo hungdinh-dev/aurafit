@@ -1,0 +1,311 @@
+// 7 program templates written by AuraFit (WRK-20, feature-backlog.md §6).
+// Principles: each muscle ≥ 2×/week, ~10–20 sets/week, compound 6–12 reps,
+// isolation 10–20 reps, RIR 1–3 (beginners 2–3), rest ≥ 2 min on compounds.
+//
+// Exercise row: [slug, sets, rep_min, rep_max, target_rir, rest_sec | null, backup_slug | null]
+// rest_sec null → exercise default (compound 150 s, isolation 75 s).
+// For exercises with measure = time, rep_min / rep_max are seconds.
+
+export const programTemplates = [
+  {
+    slug: 'full_body_ab',
+    name_vi: 'Toàn thân A/B',
+    name_en: 'Full Body A/B',
+    level: 'beginner',
+    days_per_week: 3,
+    split: 'full_body',
+    equipment_kind: 'gym',
+    description_vi: 'Hai buổi A/B xoay vòng, 3 buổi/tuần. Mỗi nhóm cơ được tập 3 lần/tuần với 2–3 set mỗi bài. Hợp với người mới và người bận.',
+    description_en: 'Two rotating sessions (A/B), 3 days a week. Every muscle is trained 3×/week with 2–3 sets per exercise. Great for beginners and busy people.',
+    sessions: [
+      {
+        name_vi: 'Toàn thân A', name_en: 'Full Body A',
+        exercises: [
+          ['barbell_back_squat', 3, 6, 10, 2, null, 'leg_press'],
+          ['barbell_bench_press', 3, 6, 10, 2, null, 'dumbbell_bench_press'],
+          ['seated_cable_row', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['dumbbell_shoulder_press', 2, 8, 12, 2, null, 'machine_shoulder_press'],
+          ['lying_leg_curl', 2, 10, 15, 2, null, null],
+          ['cable_crunch', 2, 10, 15, 2, null, 'crunch'],
+        ],
+      },
+      {
+        name_vi: 'Toàn thân B', name_en: 'Full Body B',
+        exercises: [
+          ['romanian_deadlift', 3, 8, 10, 2, null, null],
+          ['lat_pulldown', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['incline_dumbbell_press', 3, 8, 12, 2, null, 'incline_barbell_bench_press'],
+          ['leg_press', 3, 10, 15, 2, null, 'goblet_squat'],
+          ['dumbbell_lateral_raise', 2, 12, 20, 2, null, 'cable_lateral_raise'],
+          ['dumbbell_curl', 2, 10, 15, 2, null, 'cable_curl'],
+          ['cable_pushdown', 2, 10, 15, 2, null, 'rope_pushdown'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'upper_lower',
+    name_vi: 'Trên / Dưới',
+    name_en: 'Upper / Lower',
+    level: 'intermediate',
+    days_per_week: 4,
+    split: 'upper_lower',
+    equipment_kind: 'gym',
+    description_vi: '4 buổi/tuần xen kẽ thân trên và thân dưới. Mỗi nhóm cơ 2 lần/tuần, 10–16 set/tuần. Hợp với người đã tập 3–6 tháng.',
+    description_en: '4 days a week alternating upper and lower body. Each muscle 2×/week, 10–16 sets/week. For lifters with 3–6 months of training.',
+    sessions: [
+      {
+        name_vi: 'Thân trên A', name_en: 'Upper A',
+        exercises: [
+          ['barbell_bench_press', 4, 6, 10, 2, null, 'dumbbell_bench_press'],
+          ['barbell_row', 4, 6, 10, 2, null, 'seated_cable_row'],
+          ['overhead_press', 3, 6, 10, 2, null, 'dumbbell_shoulder_press'],
+          ['lat_pulldown', 3, 8, 12, 1, null, 'pull_up'],
+          ['dumbbell_lateral_raise', 3, 12, 20, 1, null, 'cable_lateral_raise'],
+          ['ez_bar_curl', 2, 10, 15, 1, null, 'dumbbell_curl'],
+          ['rope_pushdown', 2, 10, 15, 1, null, 'cable_pushdown'],
+        ],
+      },
+      {
+        name_vi: 'Thân dưới A', name_en: 'Lower A',
+        exercises: [
+          ['barbell_back_squat', 4, 6, 10, 2, null, 'leg_press'],
+          ['romanian_deadlift', 3, 8, 10, 2, null, null],
+          ['leg_extension', 3, 10, 15, 1, null, null],
+          ['lying_leg_curl', 3, 10, 15, 1, null, null],
+          ['calf_raise', 3, 10, 20, 1, null, null],
+          ['hanging_leg_raise', 3, 10, 15, 2, null, 'lying_leg_raise'],
+        ],
+      },
+      {
+        name_vi: 'Thân trên B', name_en: 'Upper B',
+        exercises: [
+          ['incline_dumbbell_press', 3, 8, 12, 2, null, 'incline_barbell_bench_press'],
+          ['pull_up', 3, 6, 10, 2, null, 'lat_pulldown'],
+          ['seated_cable_row', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['dumbbell_shoulder_press', 3, 8, 12, 2, null, 'machine_shoulder_press'],
+          ['face_pull', 3, 12, 20, 1, null, 'reverse_pec_deck'],
+          ['hammer_curl', 2, 10, 15, 1, null, 'dumbbell_curl'],
+          ['overhead_cable_extension', 2, 10, 15, 1, null, 'overhead_dumbbell_extension'],
+        ],
+      },
+      {
+        name_vi: 'Thân dưới B', name_en: 'Lower B',
+        exercises: [
+          ['deadlift', 3, 5, 8, 2, 180, 'romanian_deadlift'],
+          ['leg_press', 3, 10, 15, 2, null, 'smith_machine_squat'],
+          ['bulgarian_split_squat', 3, 8, 12, 2, null, 'walking_lunge'],
+          ['lying_leg_curl', 3, 10, 15, 1, null, null],
+          ['barbell_hip_thrust', 3, 8, 12, 2, null, 'glute_bridge'],
+          ['cable_crunch', 3, 10, 15, 2, null, 'crunch'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'push_pull_legs',
+    name_vi: 'Đẩy / Kéo / Chân',
+    name_en: 'Push / Pull / Legs',
+    level: 'intermediate',
+    days_per_week: 6,
+    split: 'ppl',
+    equipment_kind: 'gym',
+    description_vi: 'Ba buổi Đẩy – Kéo – Chân xoay vòng. 6 buổi/tuần = mỗi nhóm cơ 2 lần/tuần; có thể tập 3 buổi/tuần theo lịch xoay vòng.',
+    description_en: 'Push, Pull and Legs in rotation. 6 days a week = each muscle 2×/week; can also be run 3 days a week in rotation mode.',
+    sessions: [
+      {
+        name_vi: 'Đẩy', name_en: 'Push',
+        exercises: [
+          ['barbell_bench_press', 4, 6, 10, 2, null, 'dumbbell_bench_press'],
+          ['incline_dumbbell_press', 3, 8, 12, 2, null, 'incline_barbell_bench_press'],
+          ['overhead_press', 3, 6, 10, 2, null, 'dumbbell_shoulder_press'],
+          ['cable_lateral_raise', 3, 12, 20, 1, null, 'dumbbell_lateral_raise'],
+          ['cable_crossover', 2, 12, 15, 1, null, 'pec_deck_fly'],
+          ['rope_pushdown', 3, 10, 15, 1, null, 'cable_pushdown'],
+          ['overhead_dumbbell_extension', 2, 10, 15, 1, null, 'overhead_cable_extension'],
+        ],
+      },
+      {
+        name_vi: 'Kéo', name_en: 'Pull',
+        exercises: [
+          ['pull_up', 4, 6, 10, 2, null, 'lat_pulldown'],
+          ['barbell_row', 3, 6, 10, 2, null, 't_bar_row'],
+          ['seated_cable_row', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['face_pull', 3, 12, 20, 1, null, 'reverse_pec_deck'],
+          ['barbell_curl', 3, 8, 12, 1, null, 'ez_bar_curl'],
+          ['hammer_curl', 2, 10, 15, 1, null, 'dumbbell_curl'],
+        ],
+      },
+      {
+        name_vi: 'Chân', name_en: 'Legs',
+        exercises: [
+          ['barbell_back_squat', 4, 6, 10, 2, null, 'smith_machine_squat'],
+          ['romanian_deadlift', 3, 8, 10, 2, null, null],
+          ['leg_press', 3, 10, 15, 2, null, 'goblet_squat'],
+          ['leg_extension', 2, 12, 15, 1, null, null],
+          ['lying_leg_curl', 3, 10, 15, 1, null, null],
+          ['calf_raise', 4, 10, 20, 1, null, null],
+          ['hanging_leg_raise', 3, 10, 15, 2, null, 'lying_leg_raise'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'strength_5x5',
+    name_vi: 'Sức mạnh 5×5',
+    name_en: 'Strength 5×5',
+    level: 'beginner',
+    days_per_week: 3,
+    split: 'full_body',
+    equipment_kind: 'gym',
+    description_vi: '3 bài đa khớp mỗi buổi, 5 set × 5 rep, tăng tạ tuyến tính mỗi buổi; giảm tải khi chững.',
+    description_en: 'Three compound lifts per session, 5 sets × 5 reps, linear load increase each session; deload on stalls.',
+    sessions: [
+      {
+        name_vi: 'Buổi A', name_en: 'Workout A',
+        exercises: [
+          ['barbell_back_squat', 5, 5, 5, 2, 180, 'smith_machine_squat'],
+          ['barbell_bench_press', 5, 5, 5, 2, 180, 'dumbbell_bench_press'],
+          ['barbell_row', 5, 5, 5, 2, 180, 'seated_cable_row'],
+        ],
+      },
+      {
+        name_vi: 'Buổi B', name_en: 'Workout B',
+        exercises: [
+          ['barbell_back_squat', 5, 5, 5, 2, 180, 'smith_machine_squat'],
+          ['overhead_press', 5, 5, 5, 2, 180, 'dumbbell_shoulder_press'],
+          ['deadlift', 1, 5, 5, 2, 180, 'romanian_deadlift'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'home_dumbbell_band',
+    name_vi: 'Tại nhà: tạ đơn + dây',
+    name_en: 'Home: dumbbells + bands',
+    level: 'beginner',
+    days_per_week: 3,
+    split: 'full_body',
+    equipment_kind: 'home',
+    description_vi: 'Toàn thân A/B tại nhà chỉ cần tạ đơn và dây kháng lực.',
+    description_en: 'Full-body A/B at home with just dumbbells and resistance bands.',
+    sessions: [
+      {
+        name_vi: 'Tại nhà A', name_en: 'Home A',
+        exercises: [
+          ['sumo_goblet_squat', 3, 8, 12, 2, null, 'goblet_squat'],
+          ['dumbbell_bench_press', 3, 8, 12, 2, null, 'push_up'],
+          ['one_arm_dumbbell_row', 3, 8, 12, 2, null, 'inverted_row'],
+          ['dumbbell_shoulder_press', 3, 8, 12, 2, null, 'pike_push_up'],
+          ['band_curl', 2, 12, 20, 2, null, 'dumbbell_curl'],
+          ['band_pushdown', 2, 12, 20, 2, null, 'overhead_dumbbell_extension'],
+          ['dead_bug', 2, 10, 15, 2, null, null],
+        ],
+      },
+      {
+        name_vi: 'Tại nhà B', name_en: 'Home B',
+        exercises: [
+          ['bulgarian_split_squat', 3, 8, 12, 2, null, 'walking_lunge'],
+          ['single_leg_glute_bridge', 3, 10, 15, 2, null, 'glute_bridge'],
+          ['push_up', 3, 8, 15, 2, null, null],
+          ['band_pull_apart', 3, 12, 20, 2, null, null],
+          ['dumbbell_lateral_raise', 3, 12, 20, 2, null, null],
+          ['hammer_curl', 2, 10, 15, 2, null, 'band_curl'],
+          ['plank', 3, 30, 60, 2, 60, null],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'calisthenics_levels',
+    name_vi: 'Calisthenics theo bậc',
+    name_en: 'Calisthenics progressions',
+    level: 'beginner',
+    days_per_week: 3,
+    split: 'full_body',
+    equipment_kind: 'bodyweight',
+    description_vi: 'Đẩy / kéo / chân / core bằng trọng lượng cơ thể. Lên bậc khó hơn khi đạt 3 × 12.',
+    description_en: 'Push / pull / legs / core with bodyweight only. Move to the next level once you hit 3 × 12.',
+    sessions: [
+      {
+        name_vi: 'Calisthenics A', name_en: 'Calisthenics A',
+        exercises: [
+          ['push_up', 3, 6, 12, 2, null, null],
+          ['inverted_row', 3, 6, 12, 2, null, null],
+          ['pike_push_up', 3, 6, 10, 2, null, null],
+          ['glute_bridge', 3, 12, 20, 2, null, null],
+          ['lying_leg_raise', 3, 10, 15, 2, null, null],
+          ['plank', 3, 30, 60, 2, 60, null],
+        ],
+      },
+      {
+        name_vi: 'Calisthenics B', name_en: 'Calisthenics B',
+        exercises: [
+          ['chin_up', 3, 5, 10, 2, null, 'inverted_row'],
+          ['bench_dip', 3, 8, 12, 2, null, 'diamond_push_up'],
+          ['single_leg_glute_bridge', 3, 10, 15, 2, null, 'glute_bridge'],
+          ['calf_raise', 3, 12, 20, 2, null, null],
+          ['dead_bug', 3, 10, 15, 2, null, null],
+          ['side_plank', 2, 20, 45, 2, 60, null],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'women_lower_focus',
+    name_vi: 'Nữ – ưu tiên mông/chân',
+    name_en: 'Lower-body focus (glutes & legs)',
+    level: 'intermediate',
+    days_per_week: 4,
+    split: 'upper_lower',
+    equipment_kind: 'gym',
+    description_vi: 'Trên/dưới 4 buổi/tuần, thêm khối lượng cho mông và đùi sau. Cùng nguyên tắc khoa học như các giáo án khác.',
+    description_en: 'Upper/lower 4 days a week with extra volume for glutes and hamstrings. Same science-based principles as the other programs.',
+    sessions: [
+      {
+        name_vi: 'Thân dưới A (mông)', name_en: 'Lower A (glutes)',
+        exercises: [
+          ['barbell_hip_thrust', 4, 8, 12, 2, null, 'glute_bridge'],
+          ['barbell_back_squat', 3, 6, 10, 2, null, 'goblet_squat'],
+          ['romanian_deadlift', 3, 8, 10, 2, null, null],
+          ['bulgarian_split_squat', 3, 8, 12, 2, null, 'walking_lunge'],
+          ['hip_abduction_machine', 3, 12, 20, 1, null, 'banded_lateral_walk'],
+          ['cable_glute_kickback', 2, 12, 15, 1, null, null],
+        ],
+      },
+      {
+        name_vi: 'Thân trên A', name_en: 'Upper A',
+        exercises: [
+          ['lat_pulldown', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['dumbbell_shoulder_press', 3, 8, 12, 2, null, 'machine_shoulder_press'],
+          ['seated_cable_row', 3, 8, 12, 2, null, 'one_arm_dumbbell_row'],
+          ['incline_dumbbell_press', 3, 8, 12, 2, null, 'machine_chest_press'],
+          ['dumbbell_lateral_raise', 2, 12, 20, 1, null, 'cable_lateral_raise'],
+          ['cable_pushdown', 2, 10, 15, 1, null, 'rope_pushdown'],
+        ],
+      },
+      {
+        name_vi: 'Thân dưới B (đùi sau)', name_en: 'Lower B (hamstrings)',
+        exercises: [
+          ['barbell_hip_thrust', 3, 10, 15, 2, null, 'glute_bridge'],
+          ['leg_press', 3, 10, 15, 2, null, 'smith_machine_squat'],
+          ['dumbbell_step_up', 3, 8, 12, 2, null, 'walking_lunge'],
+          ['lying_leg_curl', 3, 10, 15, 1, null, null],
+          ['sumo_goblet_squat', 2, 10, 15, 2, null, 'goblet_squat'],
+          ['hip_abduction_machine', 2, 15, 20, 1, null, 'banded_lateral_walk'],
+        ],
+      },
+      {
+        name_vi: 'Thân trên B', name_en: 'Upper B',
+        exercises: [
+          ['one_arm_dumbbell_row', 3, 8, 12, 2, null, 'seated_cable_row'],
+          ['machine_chest_press', 3, 8, 12, 2, null, 'dumbbell_bench_press'],
+          ['face_pull', 3, 12, 20, 1, null, 'reverse_pec_deck'],
+          ['cable_lateral_raise', 2, 12, 20, 1, null, 'dumbbell_lateral_raise'],
+          ['dumbbell_curl', 2, 10, 15, 1, null, 'cable_curl'],
+          ['rope_pushdown', 2, 10, 15, 1, null, 'cable_pushdown'],
+        ],
+      },
+    ],
+  },
+];

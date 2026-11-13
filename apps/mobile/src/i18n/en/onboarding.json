@@ -1,0 +1,90 @@
+{
+  "basics": {
+    "title": "About you",
+    "body": "Height, weight, age and activity level let AuraFit compute your targets.",
+    "finish": "Start using AuraFit"
+  },
+  "progress": "Step {{step}}/{{total}}",
+  "sex": "Sex",
+  "male": "Male",
+  "female": "Female",
+  "birthYear": "Birth year",
+  "height": "Height",
+  "weight": "Weight",
+  "unitCm": "cm",
+  "unitKg": "kg",
+  "activity": "Daily activity",
+  "activities": {
+    "sedentary": { "label": "Low", "desc": "Mostly sitting, hardly any training" },
+    "light": { "label": "Light", "desc": "1–2 workouts a week" },
+    "moderate": { "label": "Moderate", "desc": "3–5 workouts a week" },
+    "active": { "label": "High", "desc": "6–7 workouts a week or physical work" }
+  },
+  "goal": "Goal",
+  "goals": {
+    "lose_fat": { "label": "Lose fat", "sub": "kcal deficit" },
+    "maintain": { "label": "Maintain", "sub": "balanced" },
+    "gain_muscle": { "label": "Build muscle", "sub": "small surplus" }
+  },
+  "pace": "Pace",
+  "paces": {
+    "slow": "Slow",
+    "medium": "Medium",
+    "fast": "Fast",
+    "auto": "App decides"
+  },
+  "paceLose": "−{{kg}} kg/week",
+  "paceGain": "+{{kg}} kg/week",
+  "paceMaintain": "Maintaining doesn't need a pace.",
+  "paceAuto": "The app picks it from your body fat, experience and adherence.",
+  "seeTargets": "See my targets",
+  "issues": {
+    "age_out_of_range": "Birth year must give an age between 13 and 100.",
+    "height_out_of_range": "Height must be between 100 and 250 cm.",
+    "weight_out_of_range": "Weight must be between 25 and 350 kg."
+  },
+  "result": {
+    "title": "Daily targets",
+    "kcal": "{{kcal}} kcal",
+    "bmr": "BMR (resting energy)",
+    "tdee": "× {{factor}} activity = TDEE {{tdee}}",
+    "lose": "Lose {{kg}} kg/week",
+    "gain": "Gain {{kg}} kg/week",
+    "maintain": "Maintain",
+    "floor": "Raised to the safe minimum of {{kcal}} kcal (never below BMR and 1,200/1,500 kcal).",
+    "autoPace": "The app chose a {{pace}} pace: {{reason}}.",
+    "reasons": {
+      "body_fat_high": "higher body fat makes a faster pace safe",
+      "body_fat_mid": "average body fat",
+      "body_fat_low": "low body fat, so slower to keep muscle",
+      "bmi_high": "higher BMI makes a faster pace safe",
+      "bmi_mid": "average BMI",
+      "bmi_low": "low BMI, so slower to keep muscle",
+      "experience_beginner": "beginners gain muscle faster",
+      "experience_intermediate": "some training experience, so a slower gain",
+      "experience_advanced": "years of training, so a slower gain",
+      "experience_unknown": "default for beginners",
+      "low_adherence": "one step slower after an uneven week",
+      "user_choice": "your choice",
+      "maintain": "maintain"
+    },
+    "protein": "Protein",
+    "carb": "Carbs",
+    "fat": "Fat",
+    "grams": "{{g}} g",
+    "sugarMax": "Sugar ≤ {{g}} g",
+    "strictnessTitle": "How strict should your coach be?",
+    "freeDays": "Free days per week",
+    "freeDaysSub": "Compensated within the week by default",
+    "error": "Some details are missing. Go back one step."
+  },
+  "character": {
+    "title": "Pick your companion",
+    "body": "Their aura glows brighter as you live healthily. You can change this any time.",
+    "name": "Name",
+    "namePlaceholder": "Companion name",
+    "voice": "Voice",
+    "start": "Start with {{name}}",
+    "saveError": "Couldn't save your details. Check your connection and try again."
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "quests": "Nhiệm vụ",
+  "streak_other": "Streak {{count}} ngày",
+  "shields_other": "{{count}} khiên",
+  "shieldsFragments": "{{shields}} khiên, {{fragments}} mảnh khiên",
+  "avatar": {
+    "label": "{{name}}, hào quang {{aura}}, đang {{mood}}"
+  },
+  "aura": {
+    "gray": "Xám",
+    "green": "Xanh lá",
+    "blue": "Xanh dương",
+    "purple": "Tím",
+    "gold": "Vàng",
+    "red": "Đỏ"
+  },
+  "moods": {
+    "radiant": "rạng rỡ",
+    "sleepy": "buồn ngủ",
+    "thirsty": "khát nước",
+    "hungry": "đói bụng",
+    "fired_up": "hăng hái",
+    "sad": "buồn",
+    "neutral": "bình thường"
+  },
+  "voices": {
+    "bestie": "Bestie",
+    "coach": "Coach",
+    "drama": "Drama"
+  },
+  "strictness": {
+    "gentle": "Nhẹ nhàng",
+    "standard": "Tiêu chuẩn",
+    "hardcore": "Khắc nghiệt"
+  },
+  "strictnessRule": "kcal ±{{pct}} % · giữ streak từ {{pass}} điểm · {{shield}}",
+  "shieldAuto": "khiên tự bảo vệ",
+  "shieldManual": "tự dùng khiên",
+  "strictnessNote": "Đổi được tối đa 1 lần/tuần.",
+  "strictnessLocked": "Mức khắt khe chỉ đổi được 1 lần mỗi 7 ngày.",
+  "lineWithName": "{{name}} · {{line}}",
+  "lines": {
+    "bestie": {
+      "radiant": "Hôm nay đỉnh thật sự, giữ phong độ này nha!",
+      "sleepy": "Đêm qua ngủ ít quá… tối nay lên giường sớm nha.",
+      "thirsty": "Nước chưa uống mà đòi glow up hả? Làm ly 250 ml nha.",
+      "hungry": "Chưa ghi bữa nào luôn á? Ăn gì thì chụp lại cho mình xem nha.",
+      "fired_up": "Streak đang cháy! Đừng để tắt lửa nha.",
+      "sad": "Mất streak hơi buồn, nhưng hôm nay mình làm lại từ đầu nha.",
+      "neutral": "Mỗi bữa ghi lại là một bước gần mục tiêu đó.",
+      "protein_low": "Protein hơi flop nha, còn thiếu {{grams}} g. Ức gà trong Món của tôi đang chờ đó."
+    },
+    "coach": {
+      "radiant": "Điểm cao. Giữ đúng nhịp này tới cuối ngày.",
+      "sleepy": "Ngủ dưới 6 giờ. Hôm nay tập nhẹ, tối ngủ trước 23:30.",
+      "thirsty": "Nước đang dưới 40 % mục tiêu. Uống 250 ml ngay.",
+      "hungry": "Chưa có bữa nào được ghi. Ghi bữa sáng/trưa ngay.",
+      "fired_up": "Streak từ 7 ngày. Tiếp tục đạt điểm qua mỗi ngày.",
+      "sad": "Streak đã reset. Đặt mục tiêu: qua điểm hôm nay.",
+      "neutral": "Ghi đủ bữa, đủ nước, ngủ đủ – điểm sẽ tự lên.",
+      "protein_low": "Còn thiếu {{grams}} g protein. Ưu tiên món giàu đạm cho bữa tới."
+    },
+    "drama": {
+      "radiant": "Trời ơi hôm nay bạn toả sáng tới mức mình phải đeo kính râm!",
+      "sleepy": "Mình đang ngáp sái quai hàm đây… đêm nay ngủ sớm cứu mình với!",
+      "thirsty": "Mình đang khô héo như cây xương rồng… cứu bằng một ly nước đi!",
+      "hungry": "Bụng mình réo như trống trận… cho mình biết bạn ăn gì đi!",
+      "fired_up": "Lửa streak cháy rực trời! Không ai dập được mình đâu!",
+      "sad": "Streak tan biến như giấc mơ… nhưng huyền thoại sẽ trở lại!",
+      "neutral": "Một ngày bình yên… quá bình yên. Làm gì đó hoành tráng đi!",
+      "protein_low": "Còn thiếu {{grams}} g protein – cơ bắp mình đang khóc thét đây này!"
+    }
+  },
+  "quest": {
+    "title": "Nhiệm vụ & Boss",
+    "todayXp": "Hôm nay +{{xp}} / {{total}} XP",
+    "why": "{{stat}} – chỉ số cần cải thiện",
+    "footer": "Giao theo chỉ số yếu nhất của bạn. Trượt không bị trừ điểm.",
+    "empty": "Nhiệm vụ hôm nay xuất hiện sau khi ngày hôm qua được chốt (03:00).",
+    "done": "Đã xong",
+    "notDone": "Chưa xong",
+    "codes": {
+      "sleep_before_2330": "Ngủ trước 23:30",
+      "wake_on_time": "Dậy đúng giờ",
+      "protein_breakfast_30g": "Bữa sáng từ 30 g protein",
+      "hit_protein_target": "Đạt mục tiêu protein",
+      "water_before_10": "500 ml nước trước 10:00",
+      "hit_water_target": "Uống đủ nước",
+      "log_all_meals": "Ghi đủ các bữa",
+      "kcal_in_range": "Giữ kcal trong khoảng mục tiêu",
+      "complete_workout": "Hoàn thành buổi tập",
+      "walk_8000_steps": "Đi 8.000 bước",
+      "beat_last_session": "Vượt buổi tập trước",
+      "weigh_in": "Cân buổi sáng",
+      "complete_all_tasks": "Xong mọi nhiệm vụ sống chất lượng",
+      "complete_one_task": "Xong 1 nhiệm vụ sống chất lượng"
+    }
+  },
+  "stats": {
+    "diet_discipline": "Kỷ luật ăn",
+    "protein": "Protein",
+    "sleep": "Giấc ngủ",
+    "water": "Nước",
+    "training": "Tập luyện",
+    "strength": "Sức mạnh",
+    "body_progress": "Tiến độ cơ thể",
+    "self_growth": "Phát triển bản thân"
+  },
+  "boss": {
+    "title": "Boss tuần",
+    "week": "Boss tuần {{range}}",
+    "hits": "{{hits}}/{{required}}",
+    "hitsA11y": "Đã đánh {{hits}} trên {{required}} đòn",
+    "rewards": "Phần thưởng",
+    "rewardBadge": "Huy hiệu {{name}}",
+    "rewardFragment_other": "+{{count}} mảnh khiên",
+    "rewardAccessory": "Phụ kiện mới cho {{name}}",
+    "won": "Đã hạ boss tuần này!",
+    "empty": "Boss mới xuất hiện mỗi thứ Hai.",
+    "codes": {
+      "sugar_demon": {
+        "name": "Quỷ Đường",
+        "rule": "Giữ đường dưới giới hạn ít nhất 5/7 ngày. Mỗi ngày đạt là một đòn."
+      },
+      "sloth": {
+        "name": "Quỷ Lười",
+        "rule": "Hoàn thành các buổi tập đã lên lịch. Mỗi buổi là một đòn."
+      },
+      "night_owl": {
+        "name": "Cú Đêm",
+        "rule": "Ngủ trước 23:30 ít nhất 5 đêm. Mỗi đêm đạt là một đòn."
+      },
+      "drought": {
+        "name": "Hạn Hán",
+        "rule": "Uống đủ nước ít nhất 5/7 ngày. Mỗi ngày đạt là một đòn."
+      },
+      "protein_thief": {
+        "name": "Kẻ Trộm Protein",
+        "rule": "Đạt mục tiêu protein ít nhất 5/7 ngày. Mỗi ngày đạt là một đòn."
+      },
+      "scatterbrain": {
+        "name": "Đãng Trí",
+        "rule": "Hoàn thành nhiệm vụ sống chất lượng ít nhất 5/7 ngày."
+      }
+    }
+  },
+  "celebrate": {
+    "title": "Ngày xuất sắc",
+    "points": "điểm hôm qua",
+    "fragments": "mảnh khiên {{have}}/3",
+    "streakDays": "ngày streak",
+    "level": "level hiện tại",
+    "share": "Chia sẻ",
+    "shareMessage": "Hôm qua mình đạt {{score}} điểm trên AuraFit, streak {{streak}} ngày!",
+    "empty": "Chưa có ngày nào được chốt.",
+    "line": {
+      "bestie": "{{score}} điểm?? Đỉnh nóc kịch trần. Một mảnh khiên về túi rồi nha.",
+      "coach": "{{score}} điểm. Ngày xuất sắc – giữ đúng nhịp này.",
+      "drama": "{{score}} điểm!!! Mình khóc vì tự hào đây này…"
+    }
+  }
+}

@@ -1,0 +1,611 @@
+{
+  "title": "Train",
+  "start": "Start workout",
+  "library": {
+    "title": "Exercises",
+    "search": "Search exercises",
+    "byGroup": "Muscle group",
+    "byEquipment": "Equipment",
+    "count_one": "{{count}} exercise",
+    "count_other": "{{count}} exercises",
+    "empty": "No matching exercises.",
+    "media": "Animation"
+  },
+  "recovery": {
+    "title": "Recovery",
+    "readyToday": "Good to train today: {{groups}}",
+    "noneReady": "All muscle groups are still recovering.",
+    "front": "Front",
+    "back": "Back",
+    "view": "Body side",
+    "band": {
+      "heavy": "Very fatigued",
+      "moderate": "Fatigued",
+      "light": "Slightly fatigued",
+      "ready": "Ready"
+    },
+    "bandRange": {
+      "heavy": "< 40 %",
+      "moderate": "40–64 %",
+      "light": "65–79 %",
+      "ready": "≥ 80 %"
+    },
+    "hint": "Tap a muscle to see each part and why it is fatigued.",
+    "mostTired": "Most fatigued",
+    "remaining": "{{hours}} h left",
+    "readyNow": "ready",
+    "allReady": "No muscle group is fatigued.",
+    "pct": "{{value}} %",
+    "headA11y": "{{name}}: {{pct}} % recovered, {{band}}",
+    "detailEta": "recovered · ready in ~{{hours}} h",
+    "detailReady": "recovered · ready now",
+    "why": "Why is the {{name}} fatigued?",
+    "whyEmpty": "No exercise hit this part in the last 7 days.",
+    "whyRow": "{{sets}} sets · {{load}}",
+    "added": "+{{value}}",
+    "tips": {
+      "heavy": "Give this part about one more day. If you still train this muscle, pick exercises that target another part.",
+      "moderate": "Moderately fatigued – train light, 1–2 sets fewer than usual.",
+      "light": "Slightly fatigued – train normally with a longer warm-up.",
+      "ready": "This part is ready for a hard session."
+    },
+    "map": "Muscle map",
+    "volumeZones": "Weekly volume",
+    "disclaimer": "This is an estimate from the sets you logged, not a physiological measurement."
+  },
+  "units": {
+    "kg": "{{value}} kg",
+    "reps": "{{value}} reps",
+    "repsRange": "{{min}}–{{max}} reps",
+    "sets_one": "{{count}} set",
+    "sets_other": "{{count}} sets",
+    "hours_one": "{{count}} hour",
+    "hours_other": "{{count}} hours",
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min"
+  },
+  "state": {
+    "loading": "Loading…",
+    "error": "Couldn't load data.",
+    "retry": "Retry",
+    "preview": "Preview mode: data stays on this device and is not sent to the server.",
+    "back": "Back",
+    "close": "Close"
+  },
+  "weekdayShort": {
+    "1": "Mon",
+    "2": "Tue",
+    "3": "Wed",
+    "4": "Thu",
+    "5": "Fri",
+    "6": "Sat",
+    "7": "Sun"
+  },
+  "split": {
+    "full_body": "full body",
+    "upper_lower": "upper / lower",
+    "ppl": "push / pull / legs"
+  },
+  "level": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "equipmentKind": {
+    "gym": "Gym",
+    "home": "Home weights",
+    "bodyweight": "No equipment"
+  },
+  "plan": {
+    "where": "Where are you training today?",
+    "gear": "Equipment",
+    "today": "Today · {{weekday}}",
+    "readiness": "Readiness",
+    "readinessA11y": "Readiness {{score}} out of 100",
+    "readinessNone": "Readiness –",
+    "advice": {
+      "lighter_session": "You seem a bit tired – drop 1 set per exercise.",
+      "as_planned": "Train as planned.",
+      "try_pr": "Great day to try a PR!"
+    },
+    "applyLighter": "Drop 1 set per exercise",
+    "lighterOn": "1 set per exercise dropped",
+    "restDay": "Today is a rest day",
+    "restDayBody": "Muscles grow while you rest. Want more? Start the next session.",
+    "trainAnyway": "Train the next session anyway",
+    "noProgram": "No program yet",
+    "noProgramBody": "Pick a template so the app can schedule sessions and suggest loads for every set.",
+    "pickTemplate": "Choose a program",
+    "quickStart": "Quick sample session",
+    "programMeta": "{{weeks}}-week plan · {{split}} · week {{week}}",
+    "deloadAt": "deload in week {{week}}",
+    "deloadNow": "Deload week",
+    "week": "This week",
+    "status": {
+      "done": "done",
+      "today": "today",
+      "rest": "Rest"
+    },
+    "replaced_one": "{{count}} exercise swapped to match your equipment",
+    "replaced_other": "{{count}} exercises swapped to match your equipment",
+    "startError": "Couldn't start the workout. Please try again.",
+    "inProgress": "Workout in progress",
+    "resume": "Resume workout",
+    "links": {
+      "recovery": "Recovery",
+      "library": "Library",
+      "templates": "Programs"
+    }
+  },
+  "session": {
+    "exerciseOf": "Exercise {{index}}/{{total}}",
+    "scheme": "{{sets}} × {{min}}–{{max}} reps · rest {{rest}}",
+    "schemeShort": "{{sets}} × {{min}}–{{max}}",
+    "logDetail": "Log set in detail",
+    "bodyweight": "Bodyweight",
+    "addSet": "Add set",
+    "removeSet": "Remove last set",
+    "toggleSet": "Set {{n}}: {{kg}} × {{reps}}",
+    "suggestion": {
+      "increase": "Set {{n}} beat the target → next sets use {{kg}}.",
+      "decrease": "Set {{n}} was too heavy → next sets drop to {{kg}}.",
+      "nextSessionUp": "Well done – try {{kg}} next session.",
+      "nextSessionDown": "Next session drop to {{kg}} to hit your reps."
+    },
+    "pr": "PR {{kg}} × {{reps}} · est. 1RM {{oneRm}}",
+    "newPr": "New record!",
+    "next": "Up next",
+    "restLabel": "Rest · next set {{n}} {{kg}} × {{reps}}",
+    "restLabelDone": "Rest · next exercise",
+    "restMinus": "15 seconds less rest",
+    "restPlus": "15 seconds more rest",
+    "skip": "Skip",
+    "finish": "Finish workout",
+    "finishTitle": "Finish workout?",
+    "finishBody": "{{done}}/{{total}} sets done. Unfinished sets won't count.",
+    "finishConfirm": "Finish",
+    "cancelSession": "Cancel workout",
+    "cancelTitle": "Cancel this workout?",
+    "cancelBody": "Sets you already logged are kept.",
+    "swap": "Swap exercise",
+    "swapTitle": "Swap for an equivalent exercise",
+    "addExercise": "Add exercise",
+    "removeExercise": "Remove this exercise",
+    "prevExercise": "Previous exercise",
+    "nextExercise": "Next exercise",
+    "empty": "No exercises yet. Add one from the library.",
+    "notFound": "No open workout found.",
+    "saved": "Workout saved",
+    "saveError": "Couldn't sync to the server. Sets are kept on this device.",
+    "notification": {
+      "title": "Rest is over",
+      "body": "Time for your next set!"
+    },
+    "quickTitle": "Quick workout"
+  },
+  "set": {
+    "title": "Log set",
+    "position": "Exercise {{exercise}}/{{exercises}} · Set {{set}}/{{sets}}",
+    "target": "{{equipment}} · target {{min}}–{{max}} reps · RIR {{rir}}",
+    "busy": "Machine busy",
+    "busyBack": "Back to main exercise",
+    "backupNote": "Backup exercise · same {{sets}} sets × {{min}}–{{max}}, RIR {{rir}}",
+    "noBackup": "No backup exercise fits your equipment.",
+    "load": "Load",
+    "stepNote": "step {{step}}",
+    "noLoad": "Bodyweight",
+    "reps": "Reps",
+    "special": "Belt · per side · bands",
+    "rirQuestion": "How many more reps could you do? (RIR – optional)",
+    "rirDesc": {
+      "0": "No more reps (near failure)",
+      "1": "1 rep left",
+      "2": "2 reps left",
+      "3": "3 reps left",
+      "4": "4 or more reps left – quite light"
+    },
+    "rirA11y": "RIR {{value}}",
+    "feedback": {
+      "increase": "Light for the target – next set goes up to {{kg}}.",
+      "decrease": "Heavy for the target – next set drops to {{kg}}.",
+      "hold": "On target – keep this load.",
+      "increaseSession": "Light for the target – next session goes up to {{kg}}.",
+      "decreaseSession": "Heavy for the target – next session drops to {{kg}}.",
+      "increaseNoLoad": "Light for the target – add a belt or a harder variation.",
+      "decreaseNoLoad": "Heavy for the target – use an assist band or an easier variation."
+    },
+    "rest": "Rest after set",
+    "restDefault": "Default for {{kind}}: {{time}}",
+    "kind": {
+      "compound": "compound lifts",
+      "isolation": "isolation lifts"
+    },
+    "done": "Set done · start rest",
+    "decLoad": "Decrease load",
+    "incLoad": "Increase load",
+    "decReps": "One rep less",
+    "incReps": "One rep more"
+  },
+  "special": {
+    "title": "Special load",
+    "tabs": {
+      "belt": "Belt",
+      "side": "Per side",
+      "band": "Bands"
+    },
+    "bodyweight": "Bodyweight",
+    "belt": "Added load",
+    "total": "Total load",
+    "beltNote": "PRs and estimated 1RM use the total load (body + belt).",
+    "left": "Left",
+    "right": "Right",
+    "balanced": "Both sides are balanced.",
+    "imbalance": "{{pct}} % difference. Next time start with your {{side}} side and stop the other side at the same reps.",
+    "sideName": {
+      "left": "left",
+      "right": "right"
+    },
+    "credited": "Progress counts the weaker side: {{reps}} reps",
+    "bandsPick": "Select the bands you use",
+    "bandMode": {
+      "assist": "Assist",
+      "resist": "Resist"
+    },
+    "bandTotal": "Total band force ≈ {{kg}}",
+    "bandNote": "Band force is an estimate and changes with stretch. Colors and force are set once in your equipment.",
+    "bandColor": {
+      "yellow": "Yellow",
+      "red": "Red",
+      "blue": "Blue",
+      "black": "Black"
+    },
+    "apply": "Use for this set"
+  },
+  "templates": {
+    "title": "Choose a program",
+    "meta": "{{level}} · {{days}} days · {{equipment}}",
+    "mode": {
+      "weekday": "By weekday",
+      "rotation": "Rotation A → B"
+    },
+    "rotationBody": "Rotation: the next session is always the one you haven't done, whatever the weekday. Miss a day and it just moves back – nothing is lost.",
+    "weekdayBody": "By weekday: {{days}}. Missed sessions are marked as skipped.",
+    "daysPerWeek": "Sessions per week",
+    "sessions": "Sessions in this program",
+    "deload": "Deload every {{count}} weeks",
+    "progression": {
+      "double": "Double progression: reps first, then load",
+      "linear": "Linear load increase, auto-deload on stalls",
+      "calisthenics_level": "Level up once you hit 3 × 12"
+    },
+    "use": "Use this program",
+    "created": "Program created",
+    "createError": "Couldn't create the program. Please try again.",
+    "signInNeeded": "Sign in to save a program. In preview you can still do a quick first session."
+  },
+  "gym": {
+    "title": "Equipment",
+    "defaultName": "My gym",
+    "kind": "Place type",
+    "equipment": "Available equipment",
+    "plates": "Plates in this gym (tap to toggle)",
+    "plateA11y": "{{kg}} plate",
+    "machines": "Real machine steps",
+    "machineStep": "step {{kg}}",
+    "calculator": "Plate calculator",
+    "bar": "Bar {{kg}}",
+    "target": "Target load",
+    "perSide": "Per side: {{plates}}",
+    "barOnly": "Bar only",
+    "exact": "This load can be loaded exactly.",
+    "nearest": "Not enough plates for this exact load – nearest {{kg}}. The app will suggest that.",
+    "save": "Save equipment",
+    "saved": "Equipment saved",
+    "saveError": "Couldn't save. Please try again.",
+    "localOnly": "Not signed in – changes are only kept on this device."
+  },
+  "exercise": {
+    "mediaPlaceholder": "Guide animation · coming soon (licensed source)",
+    "speed": "Playback speed",
+    "guide": "Guide",
+    "history": "Your history",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "mechanic": {
+      "compound": "Compound",
+      "isolation": "Isolation"
+    },
+    "defaults": "Default {{min}}–{{max}} reps · rest {{rest}}",
+    "defaultsTime": "Default {{min}}–{{max}} s · rest {{rest}}",
+    "defaultsDistance": "Default {{min}}–{{max}} m · rest {{rest}}",
+    "pr": "Personal record",
+    "oneRm": "Estimated 1RM",
+    "noHistory": "No history for this exercise yet.",
+    "add": "Add to workout",
+    "added": "Added to workout",
+    "steps": {
+      "setup": "Set up your position and equipment and check the load before you start.",
+      "brace": "Brace your core, keep a neutral spine and breathe steadily.",
+      "move": "Move under control through a comfortable range – no jerking.",
+      "finish": "Stop with 1–3 reps in reserve (RIR) and log the set."
+    }
+  },
+  "map": {
+    "title": "Muscle map",
+    "mode": {
+      "volume": "Weekly volume",
+      "recovery": "Recovery"
+    },
+    "volumeBand": {
+      "low": "Low",
+      "moderate": "Moderate",
+      "high": "High",
+      "very_high": "Very high"
+    },
+    "volumeRange": {
+      "low": "< 6",
+      "moderate": "6–11",
+      "high": "12–17",
+      "very_high": "≥ 18"
+    },
+    "chipVolume": "{{level}} · {{sets}} sets",
+    "chipRecovery": "{{level}} · {{pct}} %",
+    "summary": "This week {{total}} effective sets · highest {{high}} ({{highSets}}) · lowest {{low}} ({{lowSets}}).",
+    "placeholder": "Temporary diagram – the detailed body art will come later."
+  },
+  "volume": {
+    "title": "Weekly volume",
+    "subtitle": "{{range}} · effective sets per muscle",
+    "zone": {
+      "below_stimulus": "Below stimulus",
+      "effective": "Effective",
+      "overload_risk": "Overload risk"
+    },
+    "tip": {
+      "add_sets": "{{name}}: {{sets}} sets – below the stimulus zone. Add 2–4 sets next week (e.g. one accessory) to reach the effective zone.",
+      "maintain": "{{name}}: {{sets}} sets – in the effective zone. Keep it and progress with load or reps.",
+      "monitor_recovery": "{{name}}: {{sets}} sets – above {{max}} sets, watch recovery. If this muscle is still red on the recovery map, cut 2–4 sets next week.",
+      "reduce_sets": "{{name}}: {{sets}} sets – past the overload threshold, recovery will be slow. Cut 2–4 sets next week."
+    },
+    "source": "Starting range 10–20 sets/week from dose–response meta-analyses (Schoenfeld 2017; Pelland 2026). The app adjusts it to your progress and recovery.",
+    "rowA11y": "{{name}} {{sets}} sets, {{zone}}"
+  },
+  "catalog": {
+    "group": {
+      "chest": "Chest",
+      "back": "Back",
+      "shoulders": "Shoulders",
+      "biceps": "Biceps",
+      "triceps": "Triceps",
+      "forearms": "Forearms",
+      "abs": "Abs",
+      "glutes": "Glutes",
+      "legs": "Legs"
+    },
+    "muscle": {
+      "chest": "Chest",
+      "front_delts": "Front delts",
+      "side_delts": "Side delts",
+      "rear_delts": "Rear delts",
+      "biceps": "Biceps",
+      "triceps": "Triceps",
+      "forearms": "Forearms",
+      "abs": "Abs",
+      "obliques": "Obliques",
+      "traps": "Traps",
+      "lats": "Lats",
+      "upper_back": "Mid back",
+      "lower_back": "Lower back",
+      "glutes": "Glutes",
+      "quads": "Quads",
+      "hamstrings": "Hamstrings",
+      "adductors": "Adductors",
+      "calves": "Calves"
+    },
+    "head": {
+      "chest_upper": "Upper chest",
+      "chest_middle": "Mid chest",
+      "chest_lower": "Lower chest",
+      "front_delts": "Front delts",
+      "side_delts": "Side delts",
+      "rear_delts": "Rear delts",
+      "biceps_long": "Long head",
+      "biceps_short": "Short head",
+      "brachialis": "Brachialis",
+      "triceps_long": "Long head",
+      "triceps_lateral": "Lateral head",
+      "triceps_medial": "Medial head",
+      "forearm_flexors": "Flexors",
+      "forearm_extensors": "Extensors",
+      "brachioradialis": "Brachioradialis",
+      "abs_upper": "Upper abs",
+      "abs_lower": "Lower abs",
+      "obliques_external": "External obliques",
+      "serratus": "Serratus anterior",
+      "traps_upper": "Upper traps",
+      "traps_middle": "Middle traps",
+      "traps_lower": "Lower traps",
+      "lats": "Lats",
+      "rhomboids": "Rhomboids",
+      "teres_infraspinatus": "Teres & infraspinatus",
+      "erector_spinae": "Erector spinae",
+      "glute_max": "Gluteus maximus",
+      "glute_med": "Gluteus medius",
+      "rectus_femoris": "Rectus femoris",
+      "vastus_lateralis": "Vastus lateralis",
+      "vastus_medialis": "Vastus medialis",
+      "biceps_femoris": "Biceps femoris",
+      "semitendinosus": "Semitendinosus & semimembranosus",
+      "adductors": "Adductors",
+      "gastrocnemius": "Gastrocnemius",
+      "soleus": "Soleus",
+      "tibialis_anterior": "Tibialis anterior"
+    },
+    "equipment": {
+      "barbell": "Barbell",
+      "dumbbell": "Dumbbell",
+      "cable": "Cable",
+      "machine": "Machine",
+      "smith_machine": "Smith machine",
+      "bodyweight": "Bodyweight",
+      "pullup_bar": "Pull-up bar",
+      "band": "Resistance band",
+      "kettlebell": "Kettlebell"
+    },
+    "exercise": {
+      "barbell_bench_press": "Barbell Bench Press",
+      "incline_barbell_bench_press": "Incline Barbell Bench Press",
+      "dumbbell_bench_press": "Dumbbell Bench Press",
+      "incline_dumbbell_press": "Incline Dumbbell Press",
+      "dumbbell_fly": "Dumbbell Fly",
+      "cable_crossover": "Cable Crossover",
+      "machine_chest_press": "Machine Chest Press",
+      "pec_deck_fly": "Pec Deck Fly",
+      "push_up": "Push-up",
+      "chest_dip": "Chest Dip",
+      "deadlift": "Deadlift",
+      "barbell_row": "Barbell Bent-over Row",
+      "pull_up": "Pull-up",
+      "chin_up": "Chin-up",
+      "lat_pulldown": "Lat Pulldown",
+      "seated_cable_row": "Seated Cable Row",
+      "one_arm_dumbbell_row": "One-arm Dumbbell Row",
+      "t_bar_row": "T-bar Row",
+      "inverted_row": "Inverted Row",
+      "band_pull_apart": "Band Pull-apart",
+      "overhead_press": "Barbell Overhead Press",
+      "dumbbell_shoulder_press": "Seated Dumbbell Shoulder Press",
+      "arnold_press": "Arnold Press",
+      "dumbbell_lateral_raise": "Dumbbell Lateral Raise",
+      "cable_lateral_raise": "Cable Lateral Raise",
+      "dumbbell_front_raise": "Dumbbell Front Raise",
+      "reverse_pec_deck": "Reverse Pec Deck",
+      "face_pull": "Face Pull",
+      "machine_shoulder_press": "Machine Shoulder Press",
+      "pike_push_up": "Pike Push-up",
+      "barbell_curl": "Barbell Curl",
+      "ez_bar_curl": "EZ-bar Curl",
+      "dumbbell_curl": "Dumbbell Curl",
+      "hammer_curl": "Hammer Curl",
+      "incline_dumbbell_curl": "Incline Dumbbell Curl",
+      "preacher_curl": "Preacher Curl",
+      "concentration_curl": "Concentration Curl",
+      "cable_curl": "Cable Curl",
+      "band_curl": "Resistance Band Curl",
+      "spider_curl": "Spider Curl",
+      "close_grip_bench_press": "Close-grip Bench Press",
+      "cable_pushdown": "Cable Triceps Pushdown",
+      "rope_pushdown": "Rope Pushdown",
+      "overhead_dumbbell_extension": "Overhead Dumbbell Extension",
+      "skull_crusher": "Skull Crusher",
+      "dumbbell_kickback": "Dumbbell Kickback",
+      "bench_dip": "Bench Dip",
+      "diamond_push_up": "Diamond Push-up",
+      "overhead_cable_extension": "Overhead Cable Extension",
+      "band_pushdown": "Band Pushdown",
+      "barbell_wrist_curl": "Barbell Wrist Curl",
+      "dumbbell_wrist_curl": "Dumbbell Wrist Curl",
+      "reverse_wrist_curl": "Reverse Wrist Curl",
+      "behind_back_wrist_curl": "Behind-the-back Wrist Curl",
+      "reverse_barbell_curl": "Reverse Barbell Curl",
+      "zottman_curl": "Zottman Curl",
+      "cable_wrist_curl": "Cable Wrist Curl",
+      "farmers_walk": "Farmer's Walk",
+      "dead_hang": "Dead Hang",
+      "towel_hang": "Towel Hang",
+      "crunch": "Crunch",
+      "plank": "Plank",
+      "side_plank": "Side Plank",
+      "lying_leg_raise": "Lying Leg Raise",
+      "hanging_leg_raise": "Hanging Leg Raise",
+      "cable_crunch": "Cable Crunch",
+      "russian_twist": "Russian Twist",
+      "bicycle_crunch": "Bicycle Crunch",
+      "mountain_climber": "Mountain Climber",
+      "dead_bug": "Dead Bug",
+      "barbell_hip_thrust": "Barbell Hip Thrust",
+      "glute_bridge": "Glute Bridge",
+      "single_leg_glute_bridge": "Single-leg Glute Bridge",
+      "cable_glute_kickback": "Cable Glute Kickback",
+      "bulgarian_split_squat": "Bulgarian Split Squat",
+      "sumo_goblet_squat": "Sumo Goblet Squat",
+      "hip_abduction_machine": "Hip Abduction Machine",
+      "banded_lateral_walk": "Banded Lateral Walk",
+      "kettlebell_swing": "Kettlebell Swing",
+      "dumbbell_step_up": "Dumbbell Step-up",
+      "barbell_back_squat": "Barbell Back Squat",
+      "front_squat": "Front Squat",
+      "goblet_squat": "Goblet Squat",
+      "smith_machine_squat": "Smith Machine Squat",
+      "leg_press": "Leg Press",
+      "leg_extension": "Leg Extension",
+      "lying_leg_curl": "Lying Leg Curl",
+      "romanian_deadlift": "Romanian Deadlift",
+      "walking_lunge": "Walking Lunge",
+      "calf_raise": "Standing Calf Raise"
+    },
+    "template": {
+      "full_body_ab": {
+        "name": "Full Body A/B",
+        "description": "Two rotating sessions (A/B), 3 days a week. Every muscle is trained 3×/week with 2–3 sets per exercise. Great for beginners and busy people.",
+        "sessions": {
+          "0": "Full Body A",
+          "1": "Full Body B"
+        }
+      },
+      "upper_lower": {
+        "name": "Upper / Lower",
+        "description": "4 days a week alternating upper and lower body. Each muscle 2×/week, 10–16 sets/week. For lifters with 3–6 months of training.",
+        "sessions": {
+          "0": "Upper A",
+          "1": "Lower A",
+          "2": "Upper B",
+          "3": "Lower B"
+        }
+      },
+      "push_pull_legs": {
+        "name": "Push / Pull / Legs",
+        "description": "Push, Pull and Legs in rotation. 6 days a week = each muscle 2×/week; can also be run 3 days a week in rotation mode.",
+        "sessions": {
+          "0": "Push",
+          "1": "Pull",
+          "2": "Legs"
+        }
+      },
+      "strength_5x5": {
+        "name": "Strength 5×5",
+        "description": "Three compound lifts per session, 5 sets × 5 reps, linear load increase each session; deload on stalls.",
+        "sessions": {
+          "0": "Workout A",
+          "1": "Workout B"
+        }
+      },
+      "home_dumbbell_band": {
+        "name": "Home: dumbbells + bands",
+        "description": "Full-body A/B at home with just dumbbells and resistance bands.",
+        "sessions": {
+          "0": "Home A",
+          "1": "Home B"
+        }
+      },
+      "calisthenics_levels": {
+        "name": "Calisthenics progressions",
+        "description": "Push / pull / legs / core with bodyweight only. Move to the next level once you hit 3 × 12.",
+        "sessions": {
+          "0": "Calisthenics A",
+          "1": "Calisthenics B"
+        }
+      },
+      "women_lower_focus": {
+        "name": "Lower-body focus (glutes & legs)",
+        "description": "Upper/lower 4 days a week with extra volume for glutes and hamstrings. Same science-based principles as the other programs.",
+        "sessions": {
+          "0": "Lower A (glutes)",
+          "1": "Upper A",
+          "2": "Lower B (hamstrings)",
+          "3": "Upper B"
+        }
+      }
+    }
+  }
+}

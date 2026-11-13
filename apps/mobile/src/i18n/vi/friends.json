@@ -1,0 +1,73 @@
+{
+  "title": "Bạn bè",
+  "qr": "Mã mời",
+  "invite": {
+    "title": "Mời bạn tập cùng",
+    "meta": "Link dùng được 7 ngày · tối đa 5 người",
+    "share": "Chia sẻ link mời",
+    "message": "Tập cùng mình trên AuraFit nhé! Mở link {{link}} hoặc nhập mã {{code}}.",
+    "code": "Mã mời của bạn",
+    "codeA11y": "Mã mời {{code}}",
+    "qrNote": "Bạn bè nhập mã này trong mục Bạn bè để kết bạn ngay.",
+    "error": "Không tạo được link mời."
+  },
+  "add": {
+    "label": "Username",
+    "placeholder": "Tìm theo username",
+    "action": "Kết bạn",
+    "notFound": "Không tìm thấy @{{username}}.",
+    "sent": "Đã gửi lời mời tới @{{username}}.",
+    "error": "Không gửi được lời mời."
+  },
+  "redeem": {
+    "label": "Mã mời",
+    "placeholder": "Nhập mã mời của bạn bè",
+    "action": "Dùng mã",
+    "done": "Đã kết bạn!",
+    "error": "Mã không hợp lệ hoặc đã hết hạn."
+  },
+  "request": {
+    "wants": "@{{username}} muốn kết bạn",
+    "decline": "Bỏ qua",
+    "accept": "Đồng ý"
+  },
+  "duo": {
+    "title": "Streak đôi với {{name}} · {{count}} ngày",
+    "body": "Cả hai cùng đạt ngày để giữ streak đôi.",
+    "start": "Bắt đầu streak đôi",
+    "started": "Đã bắt đầu streak đôi"
+  },
+  "list": "Bạn bè",
+  "meta": "Streak {{streak}} · Aura {{tier}}",
+  "pendingOut": "Đang chờ đồng ý",
+  "empty": "Chưa có bạn nào. Gửi link mời để tập cùng nhau!",
+  "signInNeeded": "Đăng nhập để kết bạn và xem story bữa ăn.",
+  "error": "Không tải được danh sách bạn bè.",
+  "retry": "Thử lại",
+  "openStory": "Xem story của {{name}}",
+  "story": {
+    "title": "Story bữa ăn",
+    "empty": "{{name}} chưa chia sẻ bữa nào hôm nay.",
+    "slot": {
+      "breakfast": "Bữa sáng",
+      "lunch": "Bữa trưa",
+      "dinner": "Bữa tối",
+      "snack": "Bữa phụ"
+    },
+    "nutrition": "{{kcal}} kcal · Protein {{protein}} g",
+    "itemsHidden": "Chi tiết món chỉ chủ bữa ăn xem được.",
+    "reaction": {
+      "fire": "Bốc lửa",
+      "clap": "Vỗ tay",
+      "heart": "Thích",
+      "drool": "Thèm quá",
+      "strong": "Mạnh mẽ"
+    },
+    "react": "Thả {{reaction}}",
+    "reacted": "Đã thả {{reaction}}",
+    "reactError": "Không gửi được cảm xúc.",
+    "prev": "Bữa trước",
+    "next": "Bữa sau",
+    "position": "{{index}}/{{total}}"
+  }
+}
