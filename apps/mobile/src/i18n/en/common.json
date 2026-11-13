@@ -1,0 +1,47 @@
+{
+  "appName": "AuraFit",
+  "tabs": {
+    "today": "Today",
+    "diary": "Diary",
+    "train": "Train",
+    "me": "Me"
+  },
+  "actions": {
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "done": "Done",
+    "close": "Close",
+    "retry": "Try again",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "decrease": "Decrease",
+    "increase": "Increase"
+  },
+  "capture": {
+    "label": "Snap a meal",
+    "hint": "Opens Add food"
+  },
+  "language": {
+    "label": "Language",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "viShort": "VI",
+    "enShort": "EN"
+  },
+  "placeholder": {
+    "title": "Coming soon",
+    "body": "This screen will be built in an upcoming milestone."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "No internet connection.",
+    "notConfigured": "The server is not configured."
+  },
+  "dev": {
+    "supabaseMissingTitle": "Supabase is not configured",
+    "supabaseMissingBody": "Copy apps/mobile/.env.example to .env and fill in EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY. Sign-in is disabled.",
+    "previewWithoutAccount": "Preview without an account (dev)"
+  }
+}

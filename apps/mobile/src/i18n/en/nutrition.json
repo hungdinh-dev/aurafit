@@ -1,0 +1,19 @@
+{
+  "diary": {
+    "title": "Diary"
+  },
+  "add": {
+    "title": "Add food",
+    "photo": "Take a photo",
+    "describe": "Describe it",
+    "barcode": "Scan barcode",
+    "myFoods": "My foods",
+    "recent": "Recent"
+  },
+  "meals": {
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "snack": "Snack"
+  }
+}

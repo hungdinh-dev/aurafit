@@ -1,0 +1,13 @@
+{
+  "title": "Hôm nay",
+  "score": "Điểm hôm nay",
+  "scoreOutOf": "/100",
+  "kcalLeft": "kcal còn lại",
+  "whatToEat": "Ăn gì bây giờ?",
+  "macros": {
+    "protein": "Protein",
+    "carb": "Carb",
+    "fat": "Fat",
+    "sugar": "Đường"
+  }
+}

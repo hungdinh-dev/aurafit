@@ -1,0 +1,13 @@
+{
+  "title": "Today",
+  "score": "Today's score",
+  "scoreOutOf": "/100",
+  "kcalLeft": "kcal left",
+  "whatToEat": "What should I eat now?",
+  "macros": {
+    "protein": "Protein",
+    "carb": "Carbs",
+    "fat": "Fat",
+    "sugar": "Sugar"
+  }
+}

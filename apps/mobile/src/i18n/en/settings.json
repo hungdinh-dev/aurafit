@@ -1,0 +1,13 @@
+{
+  "title": "Settings",
+  "me": {
+    "title": "Me"
+  },
+  "account": "Account",
+  "signedInAs": "Signed in as {{email}}",
+  "devPreview": "Preview mode (dev)",
+  "language": "Language",
+  "general": "General",
+  "signOut": "Sign out",
+  "version": "Version"
+}

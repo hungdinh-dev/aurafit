@@ -1,0 +1,19 @@
+{
+  "diary": {
+    "title": "Nhật ký"
+  },
+  "add": {
+    "title": "Thêm món",
+    "photo": "Chụp ảnh",
+    "describe": "Mô tả bằng lời",
+    "barcode": "Quét mã vạch",
+    "myFoods": "Món của tôi",
+    "recent": "Gần đây"
+  },
+  "meals": {
+    "breakfast": "Bữa sáng",
+    "lunch": "Bữa trưa",
+    "dinner": "Bữa tối",
+    "snack": "Bữa phụ"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Cài đặt",
+  "me": {
+    "title": "Tôi"
+  },
+  "account": "Tài khoản",
+  "signedInAs": "Đăng nhập: {{email}}",
+  "devPreview": "Chế độ xem thử (dev)",
+  "language": "Ngôn ngữ",
+  "general": "Chung",
+  "signOut": "Đăng xuất",
+  "version": "Phiên bản"
+}

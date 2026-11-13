@@ -1,0 +1,7 @@
+{
+  "quests": "Quests",
+  "streak_one": "{{count}}-day streak",
+  "streak_other": "{{count}}-day streak",
+  "shields_one": "{{count}} shield",
+  "shields_other": "{{count}} shields"
+}
