@@ -1,0 +1,419 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-13T10:00:00Z"
+  },
+  "title": "AuraFit UI Preview",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 300,
+      "w": 390,
+      "h": 844,
+      "title": "1 · Hôm nay — PRG-01 · NUT-01 · NUT-10 · HLT-01 · HLT-04 · COA-01→04 · COA-06 · COA-07 · WRK-06",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Diary.dc.html": {
+      "x": 470,
+      "y": 300,
+      "w": 390,
+      "h": 844,
+      "title": "2 · Nhật ký — NUT-08 · NUT-09 · FRD-02",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "AddFood.dc.html": {
+      "x": 940,
+      "y": 300,
+      "w": 390,
+      "h": 844,
+      "title": "3 · Thêm món — NUT-02 · NUT-04 · NUT-05 · NUT-06 · NUT-07 · NUT-10",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "ConfirmMeal.dc.html": {
+      "x": 1410,
+      "y": 300,
+      "w": 390,
+      "h": 844,
+      "title": "4 · Xác nhận món — NUT-02 · NUT-03 · NUT-05",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Character.dc.html": {
+      "x": 0,
+      "y": 1484,
+      "w": 390,
+      "h": 844,
+      "title": "5 · Chọn nhân vật & giọng — ONB-04 · ONB-05 · COA-07",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Workout.dc.html": {
+      "x": 470,
+      "y": 1484,
+      "w": 390,
+      "h": 844,
+      "title": "6 · Buổi tập — WRK-04 · WRK-05 · WRK-06 · WRK-07",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Profile.dc.html": {
+      "x": 940,
+      "y": 1484,
+      "w": 390,
+      "h": 1100,
+      "title": "7 · Tôi — COA-03 · COA-05 · PRG-04",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Celebrate.dc.html": {
+      "x": 1410,
+      "y": 1484,
+      "w": 390,
+      "h": 844,
+      "title": "8 · Tuyên dương — COA-08 · COA-02",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Recovery.dc.html": {
+      "x": 0,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "9 · Phục hồi — WRK-10",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Library.dc.html": {
+      "x": 470,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "10 · Thư viện bài tập — WRK-01 · WRK-09",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "ExerciseDetail.dc.html": {
+      "x": 940,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "11 · Chi tiết bài tập — WRK-09 · WRK-07",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "RecoveryDetail.dc.html": {
+      "x": 1410,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "12 · Chi tiết phần cơ + Vì sao? — WRK-11",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "MuscleMap.dc.html": {
+      "x": 1880,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "13 · Bản đồ cơ – bản mới — WRK-12",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "MuscleMapOld.dc.html": {
+      "x": 2350,
+      "y": 2924,
+      "w": 390,
+      "h": 844,
+      "title": "14 · Bản đồ cơ – bản cũ 2.5D — WRK-12",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Welcome.dc.html": {
+      "x": 0,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "15 · Chào mừng & đăng nhập — ONB-01 · ONB-02",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "OnbBody.dc.html": {
+      "x": 470,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "16 · Onboarding: về bạn — ONB-03",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "OnbResult.dc.html": {
+      "x": 940,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "17 · Onboarding: mục tiêu & khắt khe — NUT-01 · ONB-04 · NUT-09",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "TextLog.dc.html": {
+      "x": 1410,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "18 · Mô tả bữa ăn — NUT-04",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Barcode.dc.html": {
+      "x": 1880,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "19 · Quét mã vạch — NUT-07",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "FreeDay.dc.html": {
+      "x": 2350,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "20 · Ngày tự do & ngân sách tuần — NUT-09 · NUT-11",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "HealthLog.dc.html": {
+      "x": 2820,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "21 · Sức khoẻ: cân nặng, giấc ngủ, TDEE — HLT-02 · HLT-03 · HLT-04",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "AppleHealth.dc.html": {
+      "x": 3290,
+      "y": 4108,
+      "w": 390,
+      "h": 844,
+      "title": "22 · Apple Health — HLT-05",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Tasks.dc.html": {
+      "x": 0,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "23 · Sống chất lượng (Daily Tasks) — TSK-01 · TSK-03",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Focus.dc.html": {
+      "x": 470,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "24 · Làm việc tập trung — TSK-02",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Quests.dc.html": {
+      "x": 940,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "25 · Nhiệm vụ & Boss tuần — COA-04 · COA-05",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "TrainPlan.dc.html": {
+      "x": 1410,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "26 · Tập: hồ sơ dụng cụ & lịch tuần — WRK-02 · WRK-03 · ONB-06",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Progress.dc.html": {
+      "x": 1880,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "27 · Tiến độ: biểu đồ, heatmap, tổng kết tuần — PRG-02 · PRG-03 · PRG-04",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Friends.dc.html": {
+      "x": 2350,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "28 · Bạn bè & streak đôi — FRD-01 · FRD-03",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "StoryView.dc.html": {
+      "x": 2820,
+      "y": 5292,
+      "w": 390,
+      "h": 844,
+      "title": "29 · Xem story bữa ăn — FRD-02",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Settings.dc.html": {
+      "x": 3290,
+      "y": 5292,
+      "w": 390,
+      "h": 1180,
+      "title": "30 · Cài đặt — ONB-02 · ONB-04 · NUT-12 · HLT-01 · COA-07",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "WorkoutSet.dc.html": {
+      "x": 0,
+      "y": 6812,
+      "w": 390,
+      "h": 844,
+      "title": "31 · Ghi set: RIR, nghỉ, bài dự phòng — WRK-14 · WRK-16 · WRK-17",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "SpecialLoad.dc.html": {
+      "x": 470,
+      "y": 6812,
+      "w": 390,
+      "h": 844,
+      "title": "32 · Tải đặc biệt — WRK-19",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "GymProfile.dc.html": {
+      "x": 940,
+      "y": 6812,
+      "w": 390,
+      "h": 844,
+      "title": "33 · Phòng gym & máy tính bánh tạ — WRK-18",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "Templates.dc.html": {
+      "x": 1410,
+      "y": 6812,
+      "w": 390,
+      "h": 844,
+      "title": "34 · Chọn giáo án mẫu + lịch xoay vòng — WRK-20 · WRK-15",
+      "is_interactive": true,
+      "radius": 36
+    },
+    "VolumeZones.dc.html": {
+      "x": 1880,
+      "y": 6812,
+      "w": 390,
+      "h": 844,
+      "title": "35 · Khối lượng tuần theo ngưỡng — WRK-13",
+      "is_interactive": true,
+      "radius": 36
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Diary.dc.html",
+    "AddFood.dc.html",
+    "ConfirmMeal.dc.html",
+    "Character.dc.html",
+    "Workout.dc.html",
+    "Profile.dc.html",
+    "Celebrate.dc.html",
+    "Recovery.dc.html",
+    "Library.dc.html",
+    "ExerciseDetail.dc.html",
+    "RecoveryDetail.dc.html",
+    "MuscleMap.dc.html",
+    "MuscleMapOld.dc.html",
+    "Welcome.dc.html",
+    "OnbBody.dc.html",
+    "OnbResult.dc.html",
+    "TextLog.dc.html",
+    "Barcode.dc.html",
+    "FreeDay.dc.html",
+    "HealthLog.dc.html",
+    "AppleHealth.dc.html",
+    "Tasks.dc.html",
+    "Focus.dc.html",
+    "Quests.dc.html",
+    "TrainPlan.dc.html",
+    "Progress.dc.html",
+    "Friends.dc.html",
+    "StoryView.dc.html",
+    "Settings.dc.html",
+    "WorkoutSet.dc.html",
+    "SpecialLoad.dc.html",
+    "GymProfile.dc.html",
+    "Templates.dc.html",
+    "VolumeZones.dc.html"
+  ],
+  "notes": {
+    "row1": {
+      "x": 0,
+      "y": 0,
+      "text": "Ăn uống – tính năng lõi",
+      "kind": "title1",
+      "maxW": 1800
+    },
+    "row2": {
+      "x": 0,
+      "y": 1224,
+      "text": "Huấn luyện viên & tập luyện",
+      "kind": "title1",
+      "maxW": 1800
+    },
+    "row3": {
+      "x": 0,
+      "y": 2664,
+      "text": "Phục hồi cơ & thư viện bài tập",
+      "kind": "title1",
+      "maxW": 2740
+    },
+    "row4": {
+      "x": 0,
+      "y": 3848,
+      "text": "Bổ sung: đăng nhập, onboarding, dinh dưỡng, sức khoẻ",
+      "kind": "title1",
+      "maxW": 3680
+    },
+    "row5": {
+      "x": 0,
+      "y": 5032,
+      "text": "Bổ sung: sống chất lượng, huấn luyện viên, tập, tiến độ, bạn bè, cài đặt",
+      "kind": "title1",
+      "maxW": 3680
+    },
+    "codes": {
+      "x": 1880,
+      "y": 300,
+      "text": "Mã chức năng (NUT-02, WRK-10…) trên tên mỗi màn lấy từ docs/FEATURES.md. Bảng đối chiếu đầy đủ: docs/03-design/screen-map.md – 35 màn: 57 chức năng có màn đầy đủ, 3 có một phần (ONB-06, COA-06, WRK-06), 0 chưa có màn.",
+      "w": 360,
+      "fill": "blue",
+      "size": "m"
+    },
+    "row6": {
+      "x": 0,
+      "y": 6552,
+      "text": "Bổ sung beta: tập luyện khoa học (D-048)",
+      "kind": "title1",
+      "maxW": 2270
+    }
+  },
+  "designSystems": []
+}

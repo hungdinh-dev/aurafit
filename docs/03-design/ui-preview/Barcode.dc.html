@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Quét mã vạch</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0D0D0F; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div role="img" aria-label="Khung camera đang quét mã vạch" style="position: absolute; inset: 0 0 330px 0; display: flex; align-items: center; justify-content: center">
+    <div style="position: relative; width: 260px; height: 150px">
+      <span style="position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-left: 4px solid #FFFFFF; border-top: 4px solid #FFFFFF; border-radius: 12px 0 0 0"></span>
+      <span style="position: absolute; right: 0; top: 0; width: 34px; height: 34px; border-right: 4px solid #FFFFFF; border-top: 4px solid #FFFFFF; border-radius: 0 12px 0 0"></span>
+      <span style="position: absolute; left: 0; bottom: 0; width: 34px; height: 34px; border-left: 4px solid #FFFFFF; border-bottom: 4px solid #FFFFFF; border-radius: 0 0 0 12px"></span>
+      <span style="position: absolute; right: 0; bottom: 0; width: 34px; height: 34px; border-right: 4px solid #FFFFFF; border-bottom: 4px solid #FFFFFF; border-radius: 0 0 12px 0"></span>
+      <span style="position: absolute; left: 20px; right: 20px; top: 74px; height: 2px; background: #4BE3A7"></span>
+    </div>
+  </div>
+  <a href="AddFood.dc.html" aria-label="Đóng" style="position: absolute; left: 16px; top: 16px; width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.5); border: 0.5px solid rgba(255,255,255,0.22)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+  <span style="position: absolute; left: 0; right: 0; top: 440px; text-align: center; font-size: 15px; color: #EBEBF5">Đưa mã vạch vào khung</span>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 330px; background: #1C1C1E; border-radius: 38px 38px 0 0; padding: 20px 16px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; gap: 12px; align-items: center">
+      <div role="img" aria-label="Ảnh sản phẩm" style="width: 56px; height: 56px; border-radius: 14px; background: #2C3A48"></div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 17px; font-weight: 600">Sữa chua Hy Lạp không đường</span>
+        <span style="font-size: 13px; color: #A1A1A8">Hộp 100 g · tìm thấy theo mã vạch</span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; text-align: center">
+      <sc-for list="{{ nut }}" as="n" hint-placeholder-count="5">
+        <div style="background: #2C2C2E; border-radius: 12px; padding: 8px 2px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #A1A1A8">{{ n.k }}</span><span style="font: 700 15px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ n.v }}</span></div>
+      </sc-for>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 8px 0 16px; border-radius: 22px; background: #2C2C2E">
+      <span style="flex: 1; font-size: 17px">Số hộp</span>
+      <button onClick="{{ minus }}" aria-label="Bớt" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #3A3A3C; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">−</button>
+      <span style="width: 36px; text-align: center; font: 700 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ qty }}</span>
+      <button onClick="{{ plus }}" aria-label="Thêm" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #3A3A3C; color: #FFFFFF; font: 600 22px -apple-system, sans-serif">+</button>
+    </div>
+    <a href="Diary.dc.html" style="height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; color: #00140C; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(75,227,167,0.9); border: 0.5px solid rgba(255,255,255,0.45)">Thêm vào bữa phụ</a>
+    <span style="font-size: 12px; color: #8E8E93; text-align: center">Dữ liệu từ cơ sở dữ liệu thực phẩm mở · không dùng AI</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { qty: 1 };
+  }
+  renderVals() {
+    const q = this.state.qty;
+    const base = [['kcal', 97], ['Protein', 10], ['Carb', 4], ['Fat', 4], ['Đường', 4]];
+    return {
+      qty: q,
+      nut: base.map(([k, v]) => ({ k, v: (Math.round(v * q * 10) / 10).toString().replace('.', ',') + (k === 'kcal' ? '' : 'g') })),
+      minus: () => this.setState({ qty: Math.max(0.5, q - 0.5) }),
+      plus: () => this.setState({ qty: Math.min(5, q + 0.5) })
+    };
+  }
+}
+</script>
+</body>
+</html>

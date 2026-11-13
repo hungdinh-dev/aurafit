@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Chọn giáo án mẫu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex">
+      <a href="TrainPlan.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); border: 0.5px solid rgba(255,255,255,0.22)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <h1 style="margin: -6px 0 0; font-size: 30px; font-weight: 700">Chọn giáo án</h1>
+
+    <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+      <sc-for list="{{ items }}" as="t" hint-placeholder-count="7">
+        <button onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="width: 100%; display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 16px; border: 0; border-top: {{ t.border }}; background: {{ t.bg }}; color: #FFFFFF; text-align: left; font-family: inherit">
+          <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 600">{{ t.name }}</span><span style="font-size: 12px; color: #A1A1A8">{{ t.meta }}</span></span>
+          <span style="width: 20px; height: 20px; border-radius: 10px; box-shadow: inset 0 0 0 2px {{ t.dot }}; background: {{ t.fill }}"></span>
+        </button>
+      </sc-for>
+    </section>
+
+    <section style="background: #1C1C1E; border-radius: 26px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 15px; line-height: 1.45; color: #EBEBF5">{{ detail }}</span>
+      <div role="group" aria-label="Kiểu lịch" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+        <button onClick="{{ toWeek }}" aria-pressed="{{ wPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ wBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Theo thứ</button>
+        <button onClick="{{ toRot }}" aria-pressed="{{ rPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ rBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Xoay vòng A → B</button>
+      </div>
+      <span style="font-size: 13px; color: #A1A1A8; line-height: 1.45">{{ schedule }}</span>
+    </section>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px">
+    <a href="TrainPlan.dc.html" style="height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; color: #00140C; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(75,227,167,0.9); border: 0.5px solid rgba(255,255,255,0.45)">Dùng giáo án này</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 0, mode: 'rot' };
+  }
+  renderVals() {
+    const T = [
+      ['Toàn thân A/B', 'Người mới · 3 buổi · Gym', 'Mỗi nhóm cơ 3 lần/tuần, 2–3 set/bài, 8–12 rep, RIR 2–3. Buổi A: squat, đẩy ngực, kéo xô… Buổi B: RDL, đẩy vai, chèo…', ['T2 A', 'T4 B', 'T6 A']],
+      ['Trên / Dưới', 'Đã tập 3–6 tháng · 4 buổi', 'Mỗi nhóm cơ 2 lần/tuần, 10–16 set/tuần, RIR 1–3.', ['T2 Trên', 'T3 Dưới', 'T5 Trên', 'T6 Dưới']],
+      ['Đẩy / Kéo / Chân', 'Trung cấp · 3 hoặc 6 buổi', '6 buổi thì mỗi nhóm cơ 2 lần/tuần; 3 buổi nên dùng xoay vòng.', ['T2 Đẩy', 'T3 Kéo', 'T4 Chân']],
+      ['Sức mạnh 5×5', 'Người mới · 3 buổi · Thanh đòn', '3 bài đa khớp mỗi buổi, 5 set × 5 rep, tăng tạ tuyến tính, tự giảm tải khi chững 2 buổi.', ['T2 A', 'T4 B', 'T6 A']],
+      ['Tại nhà tạ đơn + dây', 'Mọi trình độ · 3–4 buổi', 'Toàn thân hoặc trên/dưới, dùng tạ đơn và dây kháng lực.', ['T2', 'T4', 'T6']],
+      ['Calisthenics theo bậc', 'Không dụng cụ · 3 buổi', 'Đẩy / kéo / chân / core; lên bậc khó hơn khi đạt 3 × 12.', ['T2', 'T4', 'T6']],
+      ['Ưu tiên mông & chân', 'Nữ · 4 buổi', 'Trên/dưới, thêm khối lượng cho mông và đùi sau; cùng nguyên tắc khoa học.', ['T2 Dưới', 'T3 Trên', 'T5 Dưới', 'T6 Trên']]
+    ];
+    const s = this.state;
+    const items = T.map(([name, meta], i) => ({
+      name, meta, pressed: s.sel === i ? 'true' : 'false',
+      bg: s.sel === i ? '#2C2C2E' : 'transparent',
+      dot: s.sel === i ? '#4BE3A7' : '#48484A', fill: s.sel === i ? '#4BE3A7' : 'transparent',
+      border: i === 0 ? '0' : '0.5px solid #38383A',
+      pick: () => this.setState({ sel: i })
+    }));
+    const cur = T[s.sel];
+    const rot = s.mode === 'rot';
+    return {
+      items, detail: cur[2],
+      schedule: rot
+        ? 'Xoay vòng: buổi kế tiếp luôn là buổi chưa tập, không phụ thuộc thứ. Lỡ một ngày thì buổi đó chỉ lùi lại, không mất.'
+        : 'Theo thứ: ' + cur[3].join(' · ') + '. Lỡ buổi thì đánh dấu bỏ qua.',
+      wBg: rot ? 'transparent' : '#636366', rBg: rot ? '#636366' : 'transparent',
+      wPressed: rot ? 'false' : 'true', rPressed: rot ? 'true' : 'false',
+      toWeek: () => this.setState({ mode: 'week' }), toRot: () => this.setState({ mode: 'rot' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Thư viện bài tập</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+
+    <div style="display: flex; justify-content: space-between">
+      <a href="Recovery.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+
+    <h1 style="margin: -6px 0 0; font-size: 34px; font-weight: 700">Bài tập</h1>
+
+    <div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 10px; border-radius: 12px; background: rgba(118,118,128,0.24); color: #A1A1A8">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+      <label for="q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Tìm bài tập</label>
+      <input id="q" placeholder="Tìm trong 90 bài tập" style="flex: 1; border: 0; background: none; color: #FFFFFF; font: 400 17px -apple-system, 'Segoe UI', sans-serif; outline: none">
+    </div>
+
+    <div role="group" aria-label="Cách xem" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+      <button onClick="{{ byGroup }}" aria-pressed="{{ groupPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ groupBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Nhóm cơ</button>
+      <button onClick="{{ byEquip }}" aria-pressed="{{ equipPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ equipBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Dụng cụ</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="9">
+        <button onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="height: 64px; border: 0; border-radius: 18px; background: {{ t.bg }}; color: {{ t.color }}; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding: 0 12px; font: 600 15px -apple-system, 'Segoe UI', sans-serif; text-align: left">{{ t.label }}<span style="font-size: 12px; font-weight: 400; opacity: 0.75">{{ t.count }}</span></button>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; padding: 0 16px; font-size: 13px; color: #A1A1A8"><span>{{ listTitle }}</span><span>{{ listCount }} bài</span></div>
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+          <a href="ExerciseDetail.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 0 16px 0 10px; border-top: {{ r.border }}; color: #FFFFFF; text-decoration: none">
+            <span role="img" aria-label="Ảnh động minh hoạ" style="width: 52px; height: 52px; border-radius: 12px; background: #2C2C2E; display: flex; align-items: center; justify-content: center; font: 700 10px -apple-system, 'Segoe UI', sans-serif; color: #8E8E93; flex-shrink: 0">GIF</span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-size: 17px">{{ r.name }}</span>
+              <span style="font-size: 13px; color: #A1A1A8">{{ r.meta }}</span>
+            </span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        </sc-for>
+      </section>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; gap: 10px; align-items: center">
+    <nav aria-label="Điều hướng chính" style="flex: 1; height: 62px; border-radius: 31px; padding: 4px; display: flex; gap: 2px; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 30px rgba(0,0,0,0.5)">
+      <a href="Main.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11L12 3.5l8.5 7.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"></path></svg>Hôm nay</a>
+      <a href="Diary.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h10"></path></svg>Nhật ký</a>
+      <a href="TrainPlan.dc.html" style="flex: 1; border-radius: 27px; background: rgba(255,255,255,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #4BE3A7; font-size: 10px; font-weight: 600; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"></path></svg>Tập</a>
+      <a href="Profile.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1-4 4-6 8-6s7 2 8 6"></path></svg>Tôi</a>
+    </nav>
+    <a href="AddFood.dc.html" aria-label="Chụp món" style="width: 62px; height: 62px; border-radius: 31px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #00140C; background: rgba(75,227,167,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 0.5px solid rgba(255,255,255,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(75,227,167,0.28)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4.5h6l1.6 2H20a1.5 1.5 0 0 1 1.5 1.5v10.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 4 6.5h3.4z"></path><circle cx="12" cy="13" r="3.6" fill="#4BE3A7"></circle></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'group', group: 'chest', equip: 'dumbbell' };
+  }
+  renderVals() {
+    const G = { chest: 'Ngực', back: 'Lưng', shoulders: 'Vai', biceps: 'Tay trước', triceps: 'Tay sau', forearms: 'Cẳng tay', abs: 'Bụng', glutes: 'Mông', legs: 'Chân' };
+    const E = { barbell: 'Tạ đòn', dumbbell: 'Tạ đơn', cable: 'Cáp', machine: 'Máy', smith_machine: 'Máy Smith', bodyweight: 'Cơ thể', pullup_bar: 'Xà đơn', band: 'Dây kháng lực', kettlebell: 'Tạ ấm' };
+    const X = [
+      ['Đẩy ngực ngang tạ đòn','chest','barbell'],['Đẩy ngực dốc lên tạ đòn','chest','barbell'],['Đẩy ngực ngang tạ đơn','chest','dumbbell'],['Đẩy ngực dốc lên tạ đơn','chest','dumbbell'],['Ép ngực tạ đơn','chest','dumbbell'],['Ép ngực cáp chéo','chest','cable'],['Đẩy ngực máy','chest','machine'],['Ép ngực máy','chest','machine'],['Hít đất','chest','bodyweight'],['Nhún xà kép (ngực)','chest','bodyweight'],
+      ['Kéo tạ đất (deadlift)','back','barbell'],['Chèo tạ đòn cúi người','back','barbell'],['Kéo xà đơn','back','pullup_bar'],['Kéo xà tay ngửa','back','pullup_bar'],['Kéo xô máy','back','cable'],['Kéo cáp ngồi','back','cable'],['Chèo tạ đơn một tay','back','dumbbell'],['Chèo T-bar','back','barbell'],['Kéo người ngang','back','bodyweight'],['Kéo giãn dây kháng lực','back','band'],
+      ['Đẩy vai tạ đòn đứng','shoulders','barbell'],['Đẩy vai tạ đơn ngồi','shoulders','dumbbell'],['Đẩy vai Arnold','shoulders','dumbbell'],['Dang tạ đơn sang ngang','shoulders','dumbbell'],['Dang cáp sang ngang','shoulders','cable'],['Nâng tạ đơn trước mặt','shoulders','dumbbell'],['Bay vai sau máy','shoulders','machine'],['Kéo cáp về mặt','shoulders','cable'],['Đẩy vai máy','shoulders','machine'],['Hít đất chổng mông (pike)','shoulders','bodyweight'],
+      ['Cuốn tạ đòn','biceps','barbell'],['Cuốn thanh EZ','biceps','barbell'],['Cuốn tạ đơn','biceps','dumbbell'],['Cuốn búa tạ đơn','biceps','dumbbell'],['Cuốn tạ đơn ghế dốc','biceps','dumbbell'],['Cuốn tay ghế preacher','biceps','barbell'],['Cuốn tập trung','biceps','dumbbell'],['Cuốn cáp','biceps','cable'],['Cuốn dây kháng lực','biceps','band'],['Cuốn tạ đơn nằm sấp ghế dốc','biceps','dumbbell'],
+      ['Đẩy ngực tay hẹp','triceps','barbell'],['Kéo cáp tay sau','triceps','cable'],['Kéo cáp dây thừng tay sau','triceps','cable'],['Duỗi tay sau tạ đơn qua đầu','triceps','dumbbell'],['Nằm duỗi tay sau (skull crusher)','triceps','barbell'],['Đá tạ đơn ra sau','triceps','dumbbell'],['Chống đẩy ghế','triceps','bodyweight'],['Hít đất kim cương','triceps','bodyweight'],['Duỗi cáp tay sau qua đầu','triceps','cable'],['Đẩy dây kháng lực tay sau','triceps','band'],
+      ['Cuốn cổ tay tạ đòn','forearms','barbell'],['Cuốn cổ tay tạ đơn','forearms','dumbbell'],['Cuốn cổ tay ngược','forearms','dumbbell'],['Cuốn cổ tay sau lưng','forearms','barbell'],['Cuốn tạ đòn tay úp','forearms','barbell'],['Cuốn Zottman','forearms','dumbbell'],['Cuốn cổ tay cáp','forearms','cable'],['Xách tạ đi bộ','forearms','dumbbell'],['Treo xà','forearms','pullup_bar'],['Treo xà bằng khăn','forearms','pullup_bar'],
+      ['Gập bụng','abs','bodyweight'],['Plank','abs','bodyweight'],['Plank nghiêng','abs','bodyweight'],['Nằm nâng chân','abs','bodyweight'],['Treo xà nâng chân','abs','pullup_bar'],['Gập bụng cáp','abs','cable'],['Xoay người kiểu Nga','abs','bodyweight'],['Gập bụng đạp xe','abs','bodyweight'],['Leo núi tại chỗ','abs','bodyweight'],['Dead bug','abs','bodyweight'],
+      ['Đẩy hông tạ đòn','glutes','barbell'],['Cầu mông','glutes','bodyweight'],['Cầu mông một chân','glutes','bodyweight'],['Đá chân sau với cáp','glutes','cable'],['Squat tách chân kiểu Bulgaria','glutes','dumbbell'],['Squat sumo ôm tạ','glutes','dumbbell'],['Dạng hông máy','glutes','machine'],['Bước ngang với dây kháng lực','glutes','band'],['Vung tạ ấm','glutes','kettlebell'],['Bước bục tạ đơn','glutes','dumbbell'],
+      ['Gánh đùi tạ đòn','legs','barbell'],['Gánh đùi phía trước','legs','barbell'],['Squat ôm tạ','legs','kettlebell'],['Squat máy Smith','legs','smith_machine'],['Đạp đùi máy','legs','machine'],['Đá đùi máy','legs','machine'],['Móc đùi nằm máy','legs','machine'],['Romanian deadlift (RDL)','legs','barbell'],['Chùng chân bước','legs','dumbbell'],['Nhón bắp chân','legs','bodyweight']
+    ];
+    const isGroup = this.state.mode === 'group';
+    const keys = isGroup ? Object.keys(G) : Object.keys(E);
+    const tiles = keys.map((k) => {
+      const on = isGroup ? this.state.group === k : this.state.equip === k;
+      const n = X.filter((x) => (isGroup ? x[1] : x[2]) === k).length;
+      return {
+        label: isGroup ? G[k] : E[k],
+        count: n + ' bài',
+        pressed: on ? 'true' : 'false',
+        bg: on ? '#4BE3A7' : '#1C1C1E',
+        color: on ? '#00140C' : '#FFFFFF',
+        pick: () => this.setState(isGroup ? { group: k } : { equip: k })
+      };
+    });
+    const sel = isGroup ? this.state.group : this.state.equip;
+    const filtered = X.filter((x) => (isGroup ? x[1] : x[2]) === sel);
+    const rows = filtered.slice(0, 4).map((x, i) => ({
+      name: x[0],
+      meta: isGroup ? E[x[2]] : G[x[1]],
+      border: i === 0 ? '0' : '0.5px solid #38383A'
+    }));
+    return {
+      tiles, rows,
+      listTitle: isGroup ? G[sel] : E[sel],
+      listCount: filtered.length,
+      groupBg: isGroup ? '#636366' : 'transparent',
+      equipBg: isGroup ? 'transparent' : '#636366',
+      groupPressed: isGroup ? 'true' : 'false',
+      equipPressed: isGroup ? 'false' : 'true',
+      byGroup: () => this.setState({ mode: 'group' }),
+      byEquip: () => this.setState({ mode: 'equip' })
+    };
+  }
+}
+</script>
+</body>
+</html>

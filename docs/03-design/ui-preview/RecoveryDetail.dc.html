@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Chi tiết phục hồi ngực</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="position: absolute; left: 0; right: 0; top: 10px; bottom: 0; background: #1C1C1E; border-radius: 38px 38px 0 0; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box">
+    <span aria-hidden="true" style="align-self: center; width: 36px; height: 5px; border-radius: 3px; background: #48484A"></span>
+
+    <header style="display: flex; align-items: center; gap: 8px">
+      <a href="Recovery.dc.html" aria-label="Đóng" style="width: 44px; height: 44px; border-radius: 22px; background: #2C2C2E; color: #EBEBF5; display: flex; align-items: center; justify-content: center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+      <h1 style="margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 600">Ngực</h1>
+      <span style="width: 44px"></span>
+    </header>
+
+    <div style="display: flex; align-items: baseline; justify-content: center; gap: 8px">
+      <span style="font: 700 40px/1 ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">35%</span>
+      <span style="font-size: 15px; color: #A1A1A8">hồi phục · đủ sau ~22 giờ</span>
+    </div>
+
+    <svg width="358" height="150" viewBox="0 0 200 118" role="img" aria-label="{{ figureLabel }}">
+      <g>
+        <path d="M52 22 C40 24 30 36 29 52 C34 46 42 40 50 37 C53 32 54 26 52 22 Z" fill="#3A3A3C"></path>
+        <path onClick="{{ pickUpper }}" d="M97 14 L97 40 C84 40 70 38 56 34 C58 26 64 20 72 16 C80 13 89 13 97 14 Z" fill="{{ fill.upper }}" stroke="{{ stroke.upper }}" stroke-width="1.5"></path>
+        <path onClick="{{ pickMiddle }}" d="M97 44 L97 76 C84 78 68 74 56 64 C52 57 52 48 55 40 C69 44 83 45 97 44 Z" fill="{{ fill.middle }}" stroke="{{ stroke.middle }}" stroke-width="1.5"></path>
+        <path onClick="{{ pickLower }}" d="M97 80 L97 104 C87 108 75 106 66 98 C62 94 60 88 60 82 C72 86 85 86 97 80 Z" fill="{{ fill.lower }}" stroke="{{ stroke.lower }}" stroke-width="1.5"></path>
+      </g>
+      <g transform="matrix(-1 0 0 1 200 0)">
+        <path d="M52 22 C40 24 30 36 29 52 C34 46 42 40 50 37 C53 32 54 26 52 22 Z" fill="#3A3A3C"></path>
+        <path onClick="{{ pickUpper }}" d="M97 14 L97 40 C84 40 70 38 56 34 C58 26 64 20 72 16 C80 13 89 13 97 14 Z" fill="{{ fill.upper }}" stroke="{{ stroke.upper }}" stroke-width="1.5"></path>
+        <path onClick="{{ pickMiddle }}" d="M97 44 L97 76 C84 78 68 74 56 64 C52 57 52 48 55 40 C69 44 83 45 97 44 Z" fill="{{ fill.middle }}" stroke="{{ stroke.middle }}" stroke-width="1.5"></path>
+        <path onClick="{{ pickLower }}" d="M97 80 L97 104 C87 108 75 106 66 98 C62 94 60 88 60 82 C72 86 85 86 97 80 Z" fill="{{ fill.lower }}" stroke="{{ stroke.lower }}" stroke-width="1.5"></path>
+      </g>
+    </svg>
+
+    <section aria-label="Các phần cơ ngực" style="background: #2C2C2E; border-radius: 22px; overflow: hidden">
+      <sc-for list="{{ heads }}" as="h" hint-placeholder-count="3">
+        <button onClick="{{ h.pick }}" aria-pressed="{{ h.pressed }}" style="width: 100%; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border: 0; border-top: {{ h.border }}; background: {{ h.bg }}; color: #FFFFFF; font: 400 17px -apple-system, 'Segoe UI', sans-serif; text-align: left">
+          <span style="width: 12px; height: 12px; border-radius: 4px; background: {{ h.color }}"></span>
+          <span style="flex: 1">{{ h.name }}</span>
+          <span style="font-size: 13px; color: #A1A1A8">{{ h.eta }}</span>
+          <span style="width: 44px; text-align: right; font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ h.pct }}%</span>
+        </button>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">Vì sao {{ selName }} mỏi?</span>
+      <section style="background: #2C2C2E; border-radius: 22px; overflow: hidden">
+        <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="3">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 6px 16px; border-top: {{ r.border }}; box-sizing: border-box">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-size: 15px; font-weight: 600">{{ r.exercise }}</span>
+              <span style="font-size: 13px; color: #A1A1A8">{{ r.when }} · {{ r.sets }}</span>
+            </div>
+            <span style="font: 700 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: {{ r.color }}">+{{ r.add }}</span>
+          </div>
+        </sc-for>
+      </section>
+      <p style="margin: 0; padding: 0 16px; font-size: 13px; line-height: 1.45; color: #A1A1A8">{{ tip }}</p>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 'upper' };
+  }
+  renderVals() {
+    const colorOf = (p) => p >= 80 ? '#48484A' : p >= 65 ? '#8E4B48' : p >= 40 ? '#C9504A' : '#FF453A';
+    const H = {
+      upper: { name: 'Ngực trên', pct: 35, eta: 'còn 22 giờ' },
+      middle: { name: 'Ngực giữa', pct: 52, eta: 'còn 14 giờ' },
+      lower: { name: 'Ngực dưới', pct: 90, eta: 'sẵn sàng' }
+    };
+    const log = [
+      { exercise: 'Đẩy ngực dốc lên tạ đòn', when: 'Thứ Năm 12/11, 18:40', sets: '4 set · 50 kg × 8–10', add: { upper: 44, middle: 16, lower: 0 } },
+      { exercise: 'Đẩy ngực ngang tạ đơn', when: 'Thứ Năm 12/11, 19:05', sets: '3 set · 22 kg × 10', add: { upper: 12, middle: 30, lower: 8 } },
+      { exercise: 'Ép ngực cáp chéo', when: 'Thứ Năm 12/11, 19:20', sets: '3 set · 15 kg × 12', add: { upper: 0, middle: 12, lower: 6 } },
+      { exercise: 'Hít đất', when: 'Thứ Hai 9/11', sets: '3 set · 15 rep (đã giảm theo thời gian)', add: { upper: 3, middle: 6, lower: 4 } }
+    ];
+    const sel = this.state.sel;
+    const fill = {}, stroke = {};
+    Object.keys(H).forEach((k) => {
+      fill[k] = colorOf(H[k].pct);
+      stroke[k] = k === sel ? '#FFFFFF' : 'none';
+    });
+    const heads = Object.keys(H).map((k, i) => ({
+      name: H[k].name, pct: H[k].pct, eta: H[k].eta, color: colorOf(H[k].pct),
+      pressed: k === sel ? 'true' : 'false',
+      bg: k === sel ? '#3A3A3C' : 'transparent',
+      border: i === 0 ? '0' : '0.5px solid #48484A',
+      pick: () => this.setState({ sel: k })
+    }));
+    const reasons = log
+      .filter((e) => e.add[sel] > 0)
+      .sort((a, b) => b.add[sel] - a.add[sel])
+      .slice(0, 3)
+      .map((e, i) => ({
+        exercise: e.exercise, when: e.when, sets: e.sets, add: e.add[sel],
+        color: e.add[sel] >= 25 ? '#FF6B5F' : '#C9504A',
+        border: i === 0 ? '0' : '0.5px solid #48484A'
+      }));
+    const tips = {
+      upper: 'Bài dốc lên nhấn mạnh ngực trên. Để ngực trên nghỉ thêm ~1 ngày; nếu vẫn muốn tập ngực hôm nay, chọn nhún xà kép hoặc ép cáp từ trên xuống.',
+      middle: 'Ngực giữa mỏi vừa – tập nhẹ được, giảm 1–2 set so với bình thường.',
+      lower: 'Ngực dưới đã sẵn sàng. Bài nhắm vào phần này: nhún xà kép, đẩy ngực dốc xuống, ép cáp từ trên xuống.'
+    };
+    return {
+      fill, stroke, heads, reasons,
+      selName: H[sel].name.toLowerCase(),
+      tip: tips[sel],
+      pickUpper: () => this.setState({ sel: 'upper' }),
+      pickMiddle: () => this.setState({ sel: 'middle' }),
+      pickLower: () => this.setState({ sel: 'lower' }),
+      figureLabel: 'Ngực trên 35 %, ngực giữa 52 %, ngực dưới 90 %'
+    };
+  }
+}
+</script>
+</body>
+</html>

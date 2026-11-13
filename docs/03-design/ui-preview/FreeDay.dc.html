@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Ngày tự do và ngân sách tuần</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="position: absolute; left: 0; right: 0; top: 10px; bottom: 0; background: #1C1C1E; border-radius: 38px 38px 0 0; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+    <span aria-hidden="true" style="align-self: center; width: 36px; height: 5px; border-radius: 3px; background: #48484A"></span>
+    <header style="display: flex; align-items: center; gap: 8px">
+      <a href="Diary.dc.html" aria-label="Đóng" style="width: 44px; height: 44px; border-radius: 22px; background: #2C2C2E; color: #EBEBF5; display: flex; align-items: center; justify-content: center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+      <h1 style="margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 600">Ngày tự do & ngân sách tuần</h1>
+      <span style="width: 44px"></span>
+    </header>
+
+    <section style="background: #2C2C2E; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 15px; font-weight: 600">Ngân sách tuần</span>
+        <span style="font-size: 13px; color: #A1A1A8">9.290 / 15.050 kcal</span>
+      </div>
+      <div role="img" aria-label="Kcal mỗi ngày từ thứ Hai tới hôm nay so với mục tiêu 2.150" style="position: relative; height: 110px; display: flex; align-items: flex-end; gap: 14px; padding-bottom: 18px; box-sizing: border-box">
+        <span style="position: absolute; left: 0; right: 0; top: 16px; border-top: 1px dashed #8E8E93"></span>
+        <sc-for list="{{ bars }}" as="b" hint-placeholder-count="7">
+          <div style="flex: 1; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center">
+            <span style="width: 100%; height: {{ b.h }}px; border-radius: 6px; background: {{ b.fill }}"></span>
+            <span style="position: absolute; bottom: -18px; font-size: 11px; color: #A1A1A8">{{ b.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; color: #A1A1A8">Còn 5.760 kcal cho hôm nay và 2 ngày cuối tuần.</span>
+    </section>
+
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-radius: 22px; background: #2C2C2E">
+      <span style="flex: 1; font-size: 17px">Tuần này đã dùng</span>
+      <span style="display: flex; gap: 6px"><span style="width: 22px; height: 22px; border-radius: 6px; background: #8F84FF"></span><span style="width: 22px; height: 22px; border-radius: 6px; box-shadow: inset 0 0 0 2px #5A5A60"></span></span>
+      <span style="font-size: 15px; color: #A1A1A8">1/2</span>
+    </div>
+
+    <div role="group" aria-label="Cách xử lý phần ăn thêm" style="display: flex; padding: 2px; border-radius: 10px; background: rgba(118,118,128,0.24)">
+      <button onClick="{{ comp }}" aria-pressed="{{ cPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ cBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Bù trong tuần</button>
+      <button onClick="{{ noComp }}" aria-pressed="{{ nPressed }}" style="flex: 1; height: 32px; border: 0; border-radius: 8px; background: {{ nBg }}; color: #FFFFFF; font: 600 13px -apple-system, 'Segoe UI', sans-serif">Không bù</button>
+    </div>
+
+    <section style="background: #221E3A; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 13px; color: #C3BDFF">Báo giá nếu bật hôm nay</span>
+      <span style="font: 700 26px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">≈ +1.100 kcal</span>
+      <span style="font-size: 15px; line-height: 1.45; color: #E2DFFA">{{ quote }}</span>
+    </section>
+    <p style="margin: 0; padding: 0 4px; font-size: 13px; color: #A1A1A8; line-height: 1.45">Ngày tự do vẫn cần ghi món để có dữ liệu. Ăn vượt số ngày đã đặt sẽ bị trừ điểm theo mức khắt khe.</p>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px">
+    <a href="Diary.dc.html" style="height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; color: #0E0B22; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(143,132,255,0.92); border: 0.5px solid rgba(255,255,255,0.45)">Bật ngày tự do hôm nay</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'comp' };
+  }
+  renderVals() {
+    const data = [['T2', 2050], ['T3', 2200], ['T4', 1980], ['T5', 2150], ['T6', 910], ['T7', 0], ['CN', 0]];
+    const max = 2600, H = 92;
+    const bars = data.map(([label, v], i) => {
+      const h = v === 0 ? 4 : Math.round((v / max) * H);
+      return {
+        label, x: i * 46 + 8, tx: i * 46 + 23, h, y: H - h,
+        fill: i === 4 ? '#4BE3A7' : v === 0 ? '#3A3A3C' : v > 2150 * 1.1 ? '#FFB36B' : '#636366'
+      };
+    });
+    const c = this.state.mode === 'comp';
+    return {
+      bars,
+      quote: c ? 'Hai ngày còn lại mỗi ngày −180 kcal (1.970). Ngày về đích giữ nguyên: 14/03.' : 'Mục tiêu các ngày khác giữ nguyên. Ngày về đích lùi khoảng 2 ngày: 16/03.',
+      cBg: c ? '#636366' : 'transparent', nBg: c ? 'transparent' : '#636366',
+      cPressed: c ? 'true' : 'false', nPressed: c ? 'false' : 'true',
+      comp: () => this.setState({ mode: 'comp' }),
+      noComp: () => this.setState({ mode: 'no' })
+    };
+  }
+}
+</script>
+</body>
+</html>

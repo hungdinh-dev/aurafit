@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Buổi tập</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 18px">
+
+    <header style="display: flex; align-items: center; gap: 8px">
+      <a href="Main.dc.html" aria-label="Thu nhỏ buổi tập" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"></path></svg></a>
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center">
+        <span style="font-size: 17px; font-weight: 600">Thân trên</span>
+        <span style="font: 500 13px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #4BE3A7">24:18</span>
+      </div>
+      <button aria-label="Tuỳ chọn buổi tập" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 13px; color: #A1A1A8">Bài 1/6</span>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700">Bench Press</h1>
+      <span style="font-size: 15px; color: #A1A1A8">4 × 8–10 rep · nghỉ 2 phút · <a href="WorkoutSet.dc.html" style="text-decoration: none">Ghi set chi tiết ›</a></span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <section aria-label="Các set" style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ sets }}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 8px 0 16px; border-top: {{ s.border }}">
+            <span style="width: 26px; font: 600 15px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #A1A1A8">{{ s.n }}</span>
+            <span style="flex: 1; font: 600 20px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: {{ s.textColor }}">{{ s.kg }} kg <span style="font-weight: 500; color: #A1A1A8">×</span> {{ s.reps }}</span>
+            <button onClick="{{ s.toggle }}" role="checkbox" aria-checked="{{ s.checked }}" aria-label="Hoàn thành set {{ s.n }}" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: none; display: flex; align-items: center; justify-content: center">
+              <span style="width: 28px; height: 28px; border-radius: 14px; background: {{ s.checkBg }}; box-shadow: {{ s.checkRing }}; display: flex; align-items: center; justify-content: center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{ s.checkColor }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+            </button>
+          </div>
+        </sc-for>
+        <button style="width: 100%; min-height: 52px; padding: 0 16px; border: 0; border-top: 0.5px solid #38383A; background: none; color: #4BE3A7; text-align: left; font: 400 17px -apple-system, 'Segoe UI', sans-serif">Thêm set</button>
+      </section>
+      <p style="margin: 0; padding: 0 16px; font-size: 13px; line-height: 1.45; color: #4BE3A7">Set 2 chạm đỉnh 10 rep → các set sau dùng 62,5 kg.</p>
+      <p style="margin: 0; padding: 0 16px; font-size: 13px; color: #A1A1A8">PR 60 kg × 10 · 1RM ước tính 80 kg</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">Tiếp theo</span>
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ next }}" as="e" hint-placeholder-count="3">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-top: {{ e.border }}">
+            <span style="flex: 1; font-size: 17px">{{ e.name }}</span>
+            <span style="font-size: 15px; color: #A1A1A8">{{ e.scheme }}</span>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 98px; height: 56px; border-radius: 28px; padding: 0 6px 0 18px; display: flex; align-items: center; gap: 12px; background: rgba(58,58,64,0.5); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 30px rgba(0,0,0,0.5)">
+    <span aria-label="Đang nghỉ, còn 1 phút 12 giây" style="font: 700 22px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif; color: #4BE3A7">1:12</span>
+    <span style="flex: 1; font-size: 13px; color: #EBEBF5; line-height: 1.3">Nghỉ · tiếp set 3<br><span style="color: #A1A1A8">62,5 kg × 8–10</span></span>
+    <button style="height: 44px; padding: 0 16px; border: 0; border-radius: 22px; background: rgba(255,255,255,0.14); color: #FFFFFF; font: 600 15px -apple-system, 'Segoe UI', sans-serif">Bỏ qua</button>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px">
+    <a href="Celebrate.dc.html" style="height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 17px; font-weight: 600; text-decoration: none; background: rgba(58,58,64,0.5); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">Kết thúc buổi tập</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: [true, true, false, false] };
+  }
+  renderVals() {
+    const plan = [['60', '10'], ['60', '10'], ['62,5', '8–10'], ['62,5', '8–10']];
+    const sets = plan.map(([kg, reps], i) => {
+      const d = this.state.done[i];
+      return {
+        n: i + 1, kg, reps,
+        border: i === 0 ? '0' : '0.5px solid #38383A',
+        textColor: d ? '#FFFFFF' : '#8E8E93',
+        checked: d ? 'true' : 'false',
+        checkBg: d ? '#4BE3A7' : 'transparent',
+        checkRing: d ? 'none' : 'inset 0 0 0 2px #48484A',
+        checkColor: d ? '#00140C' : 'transparent',
+        toggle: () => {
+          const next = this.state.done.slice();
+          next[i] = !next[i];
+          this.setState({ done: next });
+        }
+      };
+    });
+    const next = [
+      { name: 'Chèo tạ đơn', scheme: '3 × 10–12' },
+      { name: 'Đẩy vai tạ đơn', scheme: '3 × 8–10' },
+      { name: 'Kéo cáp mặt', scheme: '3 × 12–15' }
+    ].map((e, i) => Object.assign(e, { border: i === 0 ? '0' : '0.5px solid #38383A' }));
+    return { sets, next };
+  }
+}
+</script>
+</body>
+</html>

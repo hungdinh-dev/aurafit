@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AuraFit – Nhật ký</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#4BE3A7}a:hover{color:#7BF0C2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #000000; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; box-sizing: border-box">
+  <div style="padding: 12px 16px 0; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="display: flex; justify-content: flex-end">
+      <button aria-label="Chọn ngày" style="width: 44px; height: 44px; border-radius: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg></button>
+    </div>
+
+    <h1 style="margin: -8px 0 0; font-size: 34px; font-weight: 700">Nhật ký</h1>
+
+    <div role="group" aria-label="Chọn ngày trong tuần" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+        <button onClick="{{ d.pick }}" aria-pressed="{{ d.pressed }}" style="height: 60px; border: 0; border-radius: 18px; background: none; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: inherit">
+          <span style="font-size: 12px; color: #A1A1A8">{{ d.label }}</span>
+          <span style="width: 32px; height: 32px; border-radius: 16px; background: {{ d.bg }}; color: {{ d.color }}; display: flex; align-items: center; justify-content: center; font: 600 16px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ d.num }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <section aria-label="Story bữa ăn của bạn bè" style="display: flex; gap: 14px">
+      <button style="display: flex; flex-direction: column; align-items: center; gap: 6px; border: 0; background: none; color: #A1A1A8; font: 500 11px -apple-system, 'Segoe UI', sans-serif; padding: 0">
+        <span style="width: 52px; height: 52px; border-radius: 26px; background: #1C1C1E; display: flex; align-items: center; justify-content: center; color: #4BE3A7">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>Mời bạn</button>
+      <sc-for list="{{ friends }}" as="f" hint-placeholder-count="4">
+        <button style="display: flex; flex-direction: column; align-items: center; gap: 6px; border: 0; background: none; color: #FFFFFF; font: 500 11px -apple-system, 'Segoe UI', sans-serif; padding: 0">
+          <span style="width: 52px; height: 52px; border-radius: 26px; padding: 2px; box-sizing: border-box; border: 2px solid {{ f.ring }}; display: flex">
+            <span style="flex: 1; border-radius: 50%; background: {{ f.bg }}; display: flex; align-items: center; justify-content: center; font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ f.initial }}</span></span>{{ f.name }}</button>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font: 700 28px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">910 <span style="font-size: 15px; font-weight: 500; color: #A1A1A8; font-family: -apple-system, 'Segoe UI', sans-serif">/ 2.150 kcal</span></span>
+        <span style="font-size: 13px; color: #A1A1A8">còn 1.240</span>
+      </div>
+      <div style="height: 4px; border-radius: 2px; background: #2C2C2E; overflow: hidden"><div style="width: 42%; height: 100%; background: #4BE3A7"></div></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; color: #A1A1A8; padding-left: 16px">Bữa ăn</span>
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <sc-for list="{{ meals }}" as="m" hint-placeholder-count="3">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 0 16px; border-top: {{ m.border }}">
+            <div role="img" aria-label="Ảnh {{ m.name }}" style="width: 48px; height: 48px; border-radius: 12px; background: {{ m.tile }}; flex-shrink: 0"></div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-size: 17px">{{ m.name }}</span>
+              <span style="font-size: 13px; color: #A1A1A8">{{ m.meta }}</span>
+            </div>
+            <span style="font: 600 17px ui-rounded, 'SF Pro Rounded', -apple-system, sans-serif">{{ m.kcal }}</span>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <section style="background: #1C1C1E; border-radius: 26px; overflow: hidden">
+        <a href="FreeDay.dc.html" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; color: #FFFFFF; font: 400 17px -apple-system, 'Segoe UI', sans-serif; text-decoration: none">
+          <span style="width: 30px; height: 30px; border-radius: 8px; background: #5E5CE6; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></span>
+          <span style="flex: 1">Ngày tự do</span>
+          <span style="font-size: 15px; color: #A1A1A8">1/2 tuần này</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A5A60" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </section>
+      <p style="margin: 0; padding: 0 16px; font-size: 13px; line-height: 1.45; color: #A1A1A8">Bật hôm nay ≈ +1.100 kcal. Bù trong tuần: các ngày còn lại −180 kcal, về đích vẫn 14/03.</p>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 26px; display: flex; gap: 10px; align-items: center">
+    <nav aria-label="Điều hướng chính" style="flex: 1; height: 62px; border-radius: 31px; padding: 4px; display: flex; gap: 2px; background: rgba(58,58,64,0.45); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 0.5px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 30px rgba(0,0,0,0.5)">
+      <a href="Main.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11L12 3.5l8.5 7.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"></path></svg>Hôm nay</a>
+      <a href="Diary.dc.html" style="flex: 1; border-radius: 27px; background: rgba(255,255,255,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #4BE3A7; font-size: 10px; font-weight: 600; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path></svg>Nhật ký</a>
+      <a href="TrainPlan.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"></path></svg>Tập</a>
+      <a href="Profile.dc.html" style="flex: 1; border-radius: 27px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #EBEBF5; font-size: 10px; font-weight: 500; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1-4 4-6 8-6s7 2 8 6"></path></svg>Tôi</a>
+    </nav>
+    <a href="AddFood.dc.html" aria-label="Chụp món" style="width: 62px; height: 62px; border-radius: 31px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #00140C; background: rgba(75,227,167,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 0.5px solid rgba(255,255,255,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(75,227,167,0.28)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4.5h6l1.6 2H20a1.5 1.5 0 0 1 1.5 1.5v10.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 4 6.5h3.4z"></path><circle cx="12" cy="13" r="3.6" fill="#4BE3A7"></circle></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { day: 13 };
+  }
+  renderVals() {
+    const labels = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+    const days = labels.map((label, i) => {
+      const num = 9 + i;
+      const on = this.state.day === num;
+      const future = num > 13;
+      return {
+        label, num,
+        pressed: on ? 'true' : 'false',
+        bg: on ? '#4BE3A7' : 'transparent',
+        color: on ? '#00140C' : (future ? '#5A5A60' : '#FFFFFF'),
+        pick: () => this.setState({ day: num })
+      };
+    });
+    const meals = [
+      { name: 'Cà phê sữa đá', meta: '07:05 · Món của tôi', kcal: '130', tile: '#4A3A24' },
+      { name: 'Cơm gà xối mỡ', meta: '12:20 · Ảnh · AI', kcal: '640', tile: '#4A4220' },
+      { name: 'Sữa chua Hy Lạp', meta: '15:40 · Mã vạch', kcal: '140', tile: '#2C3A48' }
+    ].map((m, i) => Object.assign(m, { border: i === 0 ? '0' : '0.5px solid #38383A' }));
+    return {
+      days,
+      meals,
+      friends: [
+        { name: 'Minh', initial: 'M', ring: '#4BE3A7', bg: '#24413A' },
+        { name: 'Lan', initial: 'L', ring: '#4BE3A7', bg: '#3A2E5C' },
+        { name: 'Tuấn', initial: 'T', ring: '#38383A', bg: '#2C2C2E' },
+        { name: 'Vy', initial: 'V', ring: '#38383A', bg: '#4A2A3F' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
