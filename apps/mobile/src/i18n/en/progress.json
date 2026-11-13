@@ -1,3 +1,98 @@
 {
-  "title": "Progress & charts"
+  "title": "Progress & charts",
+  "screenTitle": "Progress",
+  "range": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year"
+  },
+  "rangeA11y": "Time range",
+  "metricA11y": "Metric",
+  "metric": {
+    "kcal": "Calories",
+    "protein": "Protein",
+    "water": "Water",
+    "sleep": "Sleep",
+    "weight": "Weight"
+  },
+  "avgLabel": {
+    "kcal": "average kcal / day",
+    "protein": "average g protein / day",
+    "water": "average ml water / day",
+    "sleep": "average minutes of sleep / night",
+    "weight": "average kg"
+  },
+  "targetNote": "Dashed line: target {{target}} · orange: more than 10 % over",
+  "chartA11y": "{{metric}} chart by {{range}}, average {{avg}}",
+  "heatmap": "Daily score · {{weeks}} weeks",
+  "heatmapAvg": "Avg {{value}}",
+  "heatmapA11y": "Daily score calendar for the last {{weeks}} weeks, average {{value}}",
+  "heatmapLess": "Low",
+  "heatmapMore": "High",
+  "review": "Week in review {{range}}",
+  "reviewBody": "Avg score {{avg}} · {{passed}}/{{days}} days passed · best day {{best}} ({{bestScore}}).",
+  "reviewDelta": "Versus last week: {{delta}} points.",
+  "reviewEmpty": "No day has been scored this week yet.",
+  "empty": "No data for this range yet.",
+  "signInNeeded": "Sign in to see your charts. Showing an empty frame.",
+  "error": "Couldn't load data.",
+  "retry": "Retry",
+  "me": {
+    "title": "Me",
+    "guest": "You",
+    "level": "Lv {{level}}",
+    "xp": "{{xp}} / {{next}} XP · never lost",
+    "aura": "30-day Aura",
+    "tier": {
+      "gray": "Gray",
+      "green": "Green",
+      "blue": "Blue",
+      "purple": "Purple",
+      "gold": "Gold",
+      "red": "Fire red"
+    },
+    "toNextTier": "{{points}} points to reach {{tier}}.",
+    "topTier": "You are at the highest Aura tier.",
+    "streak_one": "{{count}}-day streak",
+    "streak_other": "{{count}}-day streak",
+    "shields_one": "{{count}} shield",
+    "shields_other": "{{count}} shields",
+    "stats": "30-day stats",
+    "stat": {
+      "diet_discipline": "Diet discipline",
+      "protein": "Protein",
+      "sleep": "Sleep",
+      "water": "Water",
+      "training": "Training",
+      "strength": "Strength",
+      "body_progress": "Body progress",
+      "self_growth": "Self growth"
+    },
+    "statA11y": "{{name}} {{value}} out of 100",
+    "noStats": "Stats appear after a few scored days.",
+    "boss": "Weekly boss · {{name}}",
+    "bossName": {
+      "sugar_demon": "Sugar Demon",
+      "sloth": "Sloth",
+      "night_owl": "Night Owl",
+      "drought": "Drought",
+      "protein_thief": "Protein Thief",
+      "scatterbrain": "Scatterbrain"
+    },
+    "bossWon": "Boss defeated this week!",
+    "bossHint": "Every passed day is a hit.",
+    "noBoss": "A new weekly boss appears on Monday.",
+    "links": {
+      "progress": "Progress & charts",
+      "friends": "Friends",
+      "tasks": "Healthy living",
+      "health": "Log health",
+      "quests": "Daily quests",
+      "settings": "Settings"
+    },
+    "friendsValue_one": "{{count}} friend",
+    "friendsValue_other": "{{count}} friends",
+    "preview": "Preview – sign in to see your real level and stats."
+  }
 }

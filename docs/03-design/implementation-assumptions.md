@@ -47,3 +47,19 @@ Cập nhật: 13/11/2026 · nhánh `feat/beta-build`.
 ## 4. Backend (`supabase/`)
 
 Phần bổ sung ngoài tài liệu DB (bảng `task_templates`, `exercises.home_friendly`, `set_logs.distance_m`, `ai_requests.error`, bucket `task-photos`, view tổng hợp tuần/tháng/năm, 5 hàm server) được liệt kê ở `supabase/README.md` §9 và `docs/04-database/CHANGELOG.md`.
+
+## 5. App (`apps/mobile`) – phần còn tạm / chưa làm
+
+| # | Điểm | Ghi chú |
+|---|---|---|
+| A1 | Nhân vật Kai/Mira, bản đồ cơ | Hình tạm (hào quang + chữ cái; ô theo nhóm cơ). Props đã cố định: `CharacterAvatar` (`src/features/coach/components`), `MuscleMap` (`src/features/recovery/components`) – thay hình thật vào sau |
+| A2 | Apple Health | Màn + adapter có sẵn, HealthKit chưa cài (cần development build); nhập tay chạy được |
+| A3 | Nhắc nhở | Chỉ nhắc uống nước được lên lịch; nhắc cân, nhắc bữa mới là công tắc |
+| A4 | Mục tiêu ban đầu | Lưu với `reason = manual` vì app chỉ được chèn loại này; nên chuyển sang RPC server tính `initial` |
+| A5 | Mã vạch lạ | Chưa tra Open Food Facts phía server; màn gợi ý "mô tả bằng chữ" |
+| A6 | Phục hồi cơ, PR | Tính trên máy từ set đã ghi; server chưa ghi `muscle_recovery`, `personal_records` |
+| A7 | Buổi tập đang chạy | Giữ trong bộ nhớ, mất khi tắt app – cần lưu cục bộ |
+| A8 | Readiness | Chưa có yếu tố thời lượng ngủ (thiếu cột mục tiêu ngủ) |
+| A9 | Rep từng bên | Chỉ ghi bên yếu hơn; lời mời bạn bè là mã chữ + chia sẻ, chưa có ảnh QR |
+| A10 | Khối lượng tuần | Hiện theo 18 cơ thay vì 9 nhóm như mockup |
+| A11 | Onboarding | Chưa có mức vận động "rất cao"; giờ chỉnh bằng nút ±15/30 phút thay vì bộ chọn giờ |

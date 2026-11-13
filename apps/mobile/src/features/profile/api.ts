@@ -70,10 +70,11 @@ export function useCompleteOnboarding() {
         return;
       }
       assertSupabase();
-      const { error } = await supabase.from('profiles').upsert(
-        { user_id: user.id, onboarding_completed_at: new Date().toISOString(), timezone: deviceTimeZone() },
-        { onConflict: 'user_id' }
-      );
+      // The row is created by the auth trigger; clients have UPDATE (not INSERT) on profiles.
+      const { error } = await supabase
+        .from('profiles')
+        .update({ onboarding_completed_at: new Date().toISOString(), timezone: deviceTimeZone() })
+        .eq('user_id', user.id);
       if (error) throw error;
       mark(user.id);
     },

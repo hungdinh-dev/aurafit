@@ -3,5 +3,88 @@
     "title": "Về bạn",
     "body": "Chiều cao, cân nặng, tuổi và mức vận động giúp AuraFit tính mục tiêu cho bạn.",
     "finish": "Bắt đầu dùng AuraFit"
+  },
+  "progress": "Bước {{step}}/{{total}}",
+  "sex": "Giới tính",
+  "male": "Nam",
+  "female": "Nữ",
+  "birthYear": "Năm sinh",
+  "height": "Chiều cao",
+  "weight": "Cân nặng",
+  "unitCm": "cm",
+  "unitKg": "kg",
+  "activity": "Mức vận động hằng ngày",
+  "activities": {
+    "sedentary": { "label": "Ít", "desc": "Ngồi nhiều, gần như không tập" },
+    "light": { "label": "Nhẹ", "desc": "Tập 1–2 buổi/tuần" },
+    "moderate": { "label": "Vừa", "desc": "Tập 3–5 buổi/tuần" },
+    "active": { "label": "Nhiều", "desc": "Tập 6–7 buổi/tuần hoặc việc nặng" }
+  },
+  "goal": "Mục tiêu",
+  "goals": {
+    "lose_fat": { "label": "Giảm mỡ", "sub": "thâm hụt kcal" },
+    "maintain": { "label": "Giữ cân", "sub": "cân bằng" },
+    "gain_muscle": { "label": "Tăng cơ", "sub": "dư kcal nhẹ" }
+  },
+  "pace": "Tốc độ",
+  "paces": {
+    "slow": "Nhẹ",
+    "medium": "Vừa",
+    "fast": "Nhanh",
+    "auto": "App quyết"
+  },
+  "paceLose": "−{{kg}} kg/tuần",
+  "paceGain": "+{{kg}} kg/tuần",
+  "paceMaintain": "Giữ cân không cần chọn tốc độ.",
+  "paceAuto": "App chọn theo % mỡ, trình độ và mức tuân thủ của bạn.",
+  "seeTargets": "Xem mục tiêu của tôi",
+  "issues": {
+    "age_out_of_range": "Năm sinh cần cho tuổi từ 13 đến 100.",
+    "height_out_of_range": "Chiều cao cần từ 100 đến 250 cm.",
+    "weight_out_of_range": "Cân nặng cần từ 25 đến 350 kg."
+  },
+  "result": {
+    "title": "Mục tiêu mỗi ngày",
+    "kcal": "{{kcal}} kcal",
+    "bmr": "BMR (năng lượng nghỉ)",
+    "tdee": "× {{factor}} vận động = TDEE {{tdee}}",
+    "lose": "Giảm {{kg}} kg/tuần",
+    "gain": "Tăng {{kg}} kg/tuần",
+    "maintain": "Giữ cân",
+    "floor": "Đã nâng lên mức an toàn tối thiểu {{kcal}} kcal (không thấp hơn BMR và 1.200/1.500 kcal).",
+    "autoPace": "App chọn tốc độ {{pace}}: {{reason}}.",
+    "reasons": {
+      "body_fat_high": "% mỡ cao nên giảm nhanh vẫn an toàn",
+      "body_fat_mid": "% mỡ trung bình",
+      "body_fat_low": "% mỡ thấp nên giảm chậm để giữ cơ",
+      "bmi_high": "BMI cao nên giảm nhanh vẫn an toàn",
+      "bmi_mid": "BMI trung bình",
+      "bmi_low": "BMI thấp nên giảm chậm để giữ cơ",
+      "experience_beginner": "người mới tập tăng cơ nhanh hơn",
+      "experience_intermediate": "đã tập một thời gian nên tăng chậm",
+      "experience_advanced": "tập lâu năm nên tăng chậm",
+      "experience_unknown": "mặc định cho người mới",
+      "low_adherence": "giảm một bậc vì tuần qua chưa đều",
+      "user_choice": "theo lựa chọn của bạn",
+      "maintain": "giữ cân"
+    },
+    "protein": "Protein",
+    "carb": "Carb",
+    "fat": "Fat",
+    "grams": "{{g}} g",
+    "sugarMax": "Đường ≤ {{g}} g",
+    "strictnessTitle": "Huấn luyện viên khắt khe tới đâu?",
+    "freeDays": "Ngày tự do mỗi tuần",
+    "freeDaysSub": "Mặc định bù trong tuần",
+    "error": "Thiếu thông số. Quay lại bước trước nhé."
+  },
+  "character": {
+    "title": "Chọn người đồng hành",
+    "body": "Hào quang sáng dần khi bạn sống khoẻ đều đặn. Đổi lúc nào cũng được.",
+    "name": "Tên",
+    "namePlaceholder": "Tên người đồng hành",
+    "voice": "Giọng nói chuyện",
+    "start": "Bắt đầu cùng {{name}}",
+    "saveError": "Không lưu được thông tin. Kiểm tra mạng rồi thử lại nhé."
   }
 }

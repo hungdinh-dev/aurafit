@@ -196,7 +196,11 @@ await as(B, async () => {
   const r = await count(`select count(*) from public.meal_entries`);
   r === 1 ? ok('B (friend) sees A shared meal today') : bad(`B sees ${r} meals`);
   const items = await count(`select count(*) from public.meal_items`);
-  items === 0 ? ok('B cannot read A meal_items directly') : bad(`B reads ${items} meal_items`);
+  // 20261113001200: friends may read the dishes of a meal shared today (FRD-02 story).
+  items === 1 ? ok('B (friend) reads dishes of A shared meal today') : bad(`B reads ${items} meal_items`);
+  await expectErr('B cannot change A meal_items', () => db.exec(`update public.meal_items set kcal = 1 where meal_entry_id = '${mealId}' returning id`).then((res) => {
+    if (!res.at(-1)?.rows.length) throw new Error('no rows updated');
+  }), /no rows updated/);
   await expectOk('B reacts to A meal', () => db.exec(`insert into public.meal_reactions (meal_entry_id, user_id, reaction) values ('${mealId}', '${B}', 'fire')`));
   const pc = await count(`select count(*) from public.public_coach_state`);
   pc === 2 ? ok('B sees self + A in public_coach_state') : bad(`public_coach_state rows ${pc}`);

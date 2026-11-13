@@ -1,3 +1,95 @@
 {
-  "title": "Tiến độ & biểu đồ"
+  "title": "Tiến độ & biểu đồ",
+  "screenTitle": "Tiến độ",
+  "range": {
+    "day": "Ngày",
+    "week": "Tuần",
+    "month": "Tháng",
+    "year": "Năm"
+  },
+  "rangeA11y": "Khoảng thời gian",
+  "metricA11y": "Chỉ số",
+  "metric": {
+    "kcal": "Calo",
+    "protein": "Protein",
+    "water": "Nước",
+    "sleep": "Giấc ngủ",
+    "weight": "Cân nặng"
+  },
+  "avgLabel": {
+    "kcal": "kcal trung bình / ngày",
+    "protein": "g protein trung bình / ngày",
+    "water": "ml nước trung bình / ngày",
+    "sleep": "phút ngủ trung bình / đêm",
+    "weight": "kg trung bình"
+  },
+  "targetNote": "Đường gạch: mục tiêu {{target}} · cam: vượt hơn 10 %",
+  "chartA11y": "Biểu đồ {{metric}} theo {{range}}, trung bình {{avg}}",
+  "heatmap": "Điểm ngày · {{weeks}} tuần",
+  "heatmapAvg": "TB {{value}}",
+  "heatmapA11y": "Lịch điểm ngày {{weeks}} tuần gần nhất, trung bình {{value}}",
+  "heatmapLess": "Thấp",
+  "heatmapMore": "Cao",
+  "review": "Tổng kết tuần {{range}}",
+  "reviewBody": "Điểm TB {{avg}} · {{passed}}/{{days}} ngày đạt · ngày tốt nhất {{best}} ({{bestScore}}).",
+  "reviewDelta": "So với tuần trước: {{delta}} điểm.",
+  "reviewEmpty": "Chưa có ngày nào được chấm điểm trong tuần này.",
+  "empty": "Chưa có dữ liệu cho khoảng này.",
+  "signInNeeded": "Đăng nhập để xem biểu đồ của bạn. Đang hiện khung trống.",
+  "error": "Không tải được dữ liệu.",
+  "retry": "Thử lại",
+  "me": {
+    "title": "Tôi",
+    "guest": "Bạn",
+    "level": "Lv {{level}}",
+    "xp": "{{xp}} / {{next}} XP · không bao giờ mất",
+    "aura": "Aura 30 ngày",
+    "tier": {
+      "gray": "Xám",
+      "green": "Xanh lá",
+      "blue": "Xanh dương",
+      "purple": "Tím",
+      "gold": "Vàng",
+      "red": "Đỏ lửa"
+    },
+    "toNextTier": "Còn {{points}} điểm để lên {{tier}}.",
+    "topTier": "Bạn đang ở bậc Aura cao nhất.",
+    "streak_other": "Streak {{count}} ngày",
+    "shields_other": "{{count}} khiên",
+    "stats": "Chỉ số 30 ngày",
+    "stat": {
+      "diet_discipline": "Kỷ luật ăn",
+      "protein": "Protein",
+      "sleep": "Giấc ngủ",
+      "water": "Nước",
+      "training": "Tập luyện",
+      "strength": "Sức mạnh",
+      "body_progress": "Tiến độ cơ thể",
+      "self_growth": "Phát triển bản thân"
+    },
+    "statA11y": "{{name}} {{value}} trên 100",
+    "noStats": "Chỉ số sẽ hiện sau vài ngày được chấm điểm.",
+    "boss": "Boss tuần · {{name}}",
+    "bossName": {
+      "sugar_demon": "Quỷ Đường",
+      "sloth": "Lười Biếng",
+      "night_owl": "Cú Đêm",
+      "drought": "Hạn Hán",
+      "protein_thief": "Kẻ Trộm Protein",
+      "scatterbrain": "Đãng Trí"
+    },
+    "bossWon": "Đã hạ boss tuần này!",
+    "bossHint": "Mỗi ngày đạt là một đòn đánh.",
+    "noBoss": "Boss tuần mới xuất hiện vào thứ Hai.",
+    "links": {
+      "progress": "Tiến độ & biểu đồ",
+      "friends": "Bạn bè",
+      "tasks": "Sống chất lượng",
+      "health": "Ghi sức khoẻ",
+      "quests": "Nhiệm vụ hằng ngày",
+      "settings": "Cài đặt"
+    },
+    "friendsValue_other": "{{count}} bạn",
+    "preview": "Đang xem thử – đăng nhập để thấy cấp độ và chỉ số thật."
+  }
 }

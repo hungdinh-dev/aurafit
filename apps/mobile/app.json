@@ -54,6 +54,22 @@
         {
           "color": "#4BE3A7"
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "AuraFit dùng camera để chụp món ăn và quét mã vạch.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "AuraFit cần quyền xem ảnh để bạn chọn ảnh món ăn.",
+          "cameraPermission": "AuraFit dùng camera để chụp món ăn.",
+          "microphonePermission": false
+        }
       ]
     ],
     "experiments": {

@@ -1,3 +1,73 @@
 {
-  "title": "Friends"
+  "title": "Friends",
+  "qr": "Invite code",
+  "invite": {
+    "title": "Invite a friend to train",
+    "meta": "Link valid for 7 days · up to 5 people",
+    "share": "Share invite link",
+    "message": "Train with me on AuraFit! Open {{link}} or enter the code {{code}}.",
+    "code": "Your invite code",
+    "codeA11y": "Invite code {{code}}",
+    "qrNote": "Friends enter this code in Friends to connect instantly.",
+    "error": "Couldn't create the invite link."
+  },
+  "add": {
+    "label": "Username",
+    "placeholder": "Search by username",
+    "action": "Add friend",
+    "notFound": "@{{username}} not found.",
+    "sent": "Request sent to @{{username}}.",
+    "error": "Couldn't send the request."
+  },
+  "redeem": {
+    "label": "Invite code",
+    "placeholder": "Enter a friend's invite code",
+    "action": "Use code",
+    "done": "You are now friends!",
+    "error": "The code is invalid or expired."
+  },
+  "request": {
+    "wants": "@{{username}} wants to be friends",
+    "decline": "Ignore",
+    "accept": "Accept"
+  },
+  "duo": {
+    "title": "Duo streak with {{name}} · {{count}} days",
+    "body": "Both of you need to pass the day to keep the duo streak.",
+    "start": "Start a duo streak",
+    "started": "Duo streak started"
+  },
+  "list": "Friends",
+  "meta": "Streak {{streak}} · {{tier}} Aura",
+  "pendingOut": "Waiting for approval",
+  "empty": "No friends yet. Share an invite link to train together!",
+  "signInNeeded": "Sign in to add friends and see meal stories.",
+  "error": "Couldn't load your friends.",
+  "retry": "Retry",
+  "openStory": "Open {{name}}'s story",
+  "story": {
+    "title": "Meal story",
+    "empty": "{{name}} hasn't shared a meal today.",
+    "slot": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snack": "Snack"
+    },
+    "nutrition": "{{kcal}} kcal · Protein {{protein}} g",
+    "itemsHidden": "Only the owner can see the meal details.",
+    "reaction": {
+      "fire": "On fire",
+      "clap": "Clap",
+      "heart": "Love",
+      "drool": "Yum",
+      "strong": "Strong"
+    },
+    "react": "React {{reaction}}",
+    "reacted": "Reacted {{reaction}}",
+    "reactError": "Couldn't send the reaction.",
+    "prev": "Previous meal",
+    "next": "Next meal",
+    "position": "{{index}}/{{total}}"
+  }
 }

@@ -3,5 +3,163 @@
   "streak_one": "{{count}}-day streak",
   "streak_other": "{{count}}-day streak",
   "shields_one": "{{count}} shield",
-  "shields_other": "{{count}} shields"
+  "shields_other": "{{count}} shields",
+  "shieldsFragments": "{{shields}} shields, {{fragments}} shield fragments",
+  "avatar": {
+    "label": "{{name}}, {{aura}} aura, feeling {{mood}}"
+  },
+  "aura": {
+    "gray": "Gray",
+    "green": "Green",
+    "blue": "Blue",
+    "purple": "Purple",
+    "gold": "Gold",
+    "red": "Red"
+  },
+  "moods": {
+    "radiant": "radiant",
+    "sleepy": "sleepy",
+    "thirsty": "thirsty",
+    "hungry": "hungry",
+    "fired_up": "fired up",
+    "sad": "sad",
+    "neutral": "calm"
+  },
+  "voices": {
+    "bestie": "Bestie",
+    "coach": "Coach",
+    "drama": "Drama"
+  },
+  "strictness": {
+    "gentle": "Gentle",
+    "standard": "Standard",
+    "hardcore": "Hardcore"
+  },
+  "strictnessRule": "kcal ±{{pct}} % · streak from {{pass}} pts · {{shield}}",
+  "shieldAuto": "shields protect automatically",
+  "shieldManual": "arm shields yourself",
+  "strictnessNote": "Can be changed at most once a week.",
+  "strictnessLocked": "Strictness can only change once every 7 days.",
+  "lineWithName": "{{name}} · {{line}}",
+  "lines": {
+    "bestie": {
+      "radiant": "You're on fire today, keep that energy!",
+      "sleepy": "Short night… let's get to bed early tonight.",
+      "thirsty": "Glow up without water? Grab a 250 ml glass.",
+      "hungry": "No meals logged yet? Snap whatever you eat for me.",
+      "fired_up": "The streak is burning! Don't let it go out.",
+      "sad": "Losing the streak stings, but today is a fresh start.",
+      "neutral": "Every logged meal is a step closer to your goal.",
+      "protein_low": "Protein's a bit low – {{grams}} g to go. The chicken in My foods is waiting."
+    },
+    "coach": {
+      "radiant": "High score. Hold this pace until the end of the day.",
+      "sleepy": "Under 6 hours of sleep. Train light, bed before 23:30.",
+      "thirsty": "Water is under 40 % of target. Drink 250 ml now.",
+      "hungry": "No meals logged. Log breakfast/lunch now.",
+      "fired_up": "Streak of 7+ days. Keep passing every day.",
+      "sad": "Streak reset. Today's goal: pass the score.",
+      "neutral": "Log every meal, drink enough, sleep enough – the score follows.",
+      "protein_low": "{{grams}} g protein missing. Prioritise protein at the next meal."
+    },
+    "drama": {
+      "radiant": "You're shining so bright today I need sunglasses!",
+      "sleepy": "I'm yawning my jaw off… please sleep early tonight!",
+      "thirsty": "I'm drying out like a cactus… save me with a glass of water!",
+      "hungry": "My stomach is a war drum… tell me what you ate!",
+      "fired_up": "The streak fire is sky-high! Nobody can stop us!",
+      "sad": "The streak vanished like a dream… but legends come back!",
+      "neutral": "A calm day… too calm. Do something epic!",
+      "protein_low": "{{grams}} g protein missing – my muscles are screaming!"
+    }
+  },
+  "quest": {
+    "title": "Quests & Boss",
+    "todayXp": "Today +{{xp}} / {{total}} XP",
+    "why": "{{stat}} – your stat to improve",
+    "footer": "Picked from your weakest stats. Failing costs nothing.",
+    "empty": "Today's quests appear once yesterday is closed (03:00).",
+    "done": "Done",
+    "notDone": "Not done",
+    "codes": {
+      "sleep_before_2330": "Sleep before 23:30",
+      "wake_on_time": "Wake up on time",
+      "protein_breakfast_30g": "30 g protein at breakfast",
+      "hit_protein_target": "Hit your protein target",
+      "water_before_10": "500 ml water before 10:00",
+      "hit_water_target": "Drink your water target",
+      "log_all_meals": "Log all meals",
+      "kcal_in_range": "Keep kcal within target",
+      "complete_workout": "Finish your workout",
+      "walk_8000_steps": "Walk 8,000 steps",
+      "beat_last_session": "Beat your last session",
+      "weigh_in": "Morning weigh-in",
+      "complete_all_tasks": "Finish all quality-living tasks",
+      "complete_one_task": "Finish one quality-living task"
+    }
+  },
+  "stats": {
+    "diet_discipline": "Diet discipline",
+    "protein": "Protein",
+    "sleep": "Sleep",
+    "water": "Water",
+    "training": "Training",
+    "strength": "Strength",
+    "body_progress": "Body progress",
+    "self_growth": "Self-growth"
+  },
+  "boss": {
+    "title": "Weekly boss",
+    "week": "Weekly boss {{range}}",
+    "hits": "{{hits}}/{{required}}",
+    "hitsA11y": "{{hits}} of {{required}} hits landed",
+    "rewards": "Rewards",
+    "rewardBadge": "{{name}} badge",
+    "rewardFragment_one": "+{{count}} shield fragment",
+    "rewardFragment_other": "+{{count}} shield fragments",
+    "rewardAccessory": "New accessory for {{name}}",
+    "won": "Boss defeated this week!",
+    "empty": "A new boss appears every Monday.",
+    "codes": {
+      "sugar_demon": {
+        "name": "Sugar Demon",
+        "rule": "Keep sugar under your limit on at least 5 of 7 days. Each day is one hit."
+      },
+      "sloth": {
+        "name": "Sloth",
+        "rule": "Finish your scheduled workouts. Each session is one hit."
+      },
+      "night_owl": {
+        "name": "Night Owl",
+        "rule": "Sleep before 23:30 on at least 5 nights. Each night is one hit."
+      },
+      "drought": {
+        "name": "Drought",
+        "rule": "Hit your water target on at least 5 of 7 days. Each day is one hit."
+      },
+      "protein_thief": {
+        "name": "Protein Thief",
+        "rule": "Hit your protein target on at least 5 of 7 days. Each day is one hit."
+      },
+      "scatterbrain": {
+        "name": "Scatterbrain",
+        "rule": "Finish your quality-living tasks on at least 5 of 7 days."
+      }
+    }
+  },
+  "celebrate": {
+    "title": "Excellent day",
+    "points": "points yesterday",
+    "fragments": "shield fragments {{have}}/3",
+    "streakDays": "day streak",
+    "level": "current level",
+    "share": "Share",
+    "shareMessage": "I scored {{score}} on AuraFit yesterday, {{streak}}-day streak!",
+    "empty": "No closed day yet.",
+    "line": {
+      "bestie": "{{score}} points?? Absolutely peak. A shield fragment just landed in your pocket.",
+      "coach": "{{score}} points. Excellent day – keep this rhythm.",
+      "drama": "{{score}} points!!! I'm crying with pride…"
+    }
+  }
 }
