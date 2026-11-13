@@ -1,3 +1,31 @@
-# Database connection helper scripts (contains passwords)
+# Dependencies
+node_modules/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
 db-push.bat
 db-push.ps1
+
+# Expo / React Native
+.expo/
+dist/
+web-build/
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Tooling
+coverage/
+*.tsbuildinfo
+.DS_Store
+npm-debug.log*
