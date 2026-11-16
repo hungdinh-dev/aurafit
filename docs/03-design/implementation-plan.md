@@ -71,14 +71,14 @@ Mọi bảng bật RLS: chỉ chủ dữ liệu đọc/ghi. Ngoại lệ duy nh�
 ## 4. Việc theo từng mốc
 
 ### M0 – Nền móng
-- [ ] Tag `legacy-v0`; dọn repo; tạo npm workspaces.
-- [ ] Expo app mới (SDK ổn định mới nhất), TypeScript strict, Expo Router, NativeWind cho bố cục, font hệ thống SF Pro (D-039).
-- [ ] i18n vi/en; quy tắc lint chặn chuỗi giao diện viết cứng.
-- [ ] Bộ UI theo `design-language.md`: tab bar native (Liquid Glass), header tiêu đề lớn, danh sách nhóm, nút dạng viên thuốc, vòng / thanh tiến độ, nút chụp nổi bằng kính, sheet; SF Symbols, haptics; sáng/tối (D-040).
-- [ ] Supabase CLI; migration đầu tiên (`profiles` + RLS); sinh type TypeScript.
-- [ ] Đăng nhập Google + email OTP; lưu phiên bằng SecureStore; màn chào và đăng nhập.
-- [ ] `packages/core` + Jest; CI GitHub Actions chạy typecheck, lint, test.
-- [ ] Hồ sơ EAS development build; cài lên iPhone.
+- [x] Tag `legacy-v0`; dọn repo; tạo npm workspaces.
+- [x] Expo app mới (SDK ổn định mới nhất), TypeScript strict, Expo Router, NativeWind cho bố cục, font hệ thống SF Pro (D-039).
+- [x] i18n vi/en; quy tắc lint chặn chuỗi giao diện viết cứng.
+- [x] Bộ UI theo `design-language.md`: tab bar native (Liquid Glass), header tiêu đề lớn, danh sách nhóm, nút dạng viên thuốc, vòng / thanh tiến độ, nút chụp nổi bằng kính, sheet; SF Symbols, haptics; sáng/tối (D-040).
+- [x] Supabase CLI; migration đầu tiên (`profiles` + RLS); sinh type TypeScript.
+- [x] Đăng nhập Google + email OTP; lưu phiên bằng SecureStore; màn chào và đăng nhập. *(Code xong; bật provider Google + mẫu email OTP trên Supabase: `m0-checklist.md`.)*
+- [x] `packages/core` + Jest; CI GitHub Actions chạy typecheck, lint, test. *(Chạy cục bộ xanh; GitHub Actions bị khoá do thanh toán tài khoản.)*
+- [ ] Hồ sơ EAS development build; cài lên iPhone. *(`eas.json` có sẵn; cài lên máy thật cần Apple Developer Program – tạm dùng Expo Go, xem `m0-checklist.md`.)*
 - **Xong khi:** đăng nhập Google trên iPhone thật, đổi được vi/en, CI xanh.
 
 ### Spike AI (song song M0)

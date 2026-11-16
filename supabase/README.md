@@ -7,7 +7,7 @@ streaks and shields are **server-authoritative** (only the service role / Edge F
 ```text
 supabase/
 ├── config.toml                 CLI config (no secrets)
-├── migrations/                 11 migrations, one+ per module, dependency order (last = backfill of existing auth users)
+├── migrations/                 13 migrations, one+ per module, dependency order (+ backfill, follow-ups)
 ├── seed/
 │   ├── build-seed.mjs          CSV + data/*.mjs → 01_catalog.sql, 02_exercises.sql, 03_program_templates.sql
 │   ├── data/                   catalog.mjs (groups, 18 muscles, 37 heads, equipment, task templates, badges),
@@ -20,7 +20,9 @@ supabase/
 │   ├── analyze-text/           text description → same shape
 │   ├── close-day/              hourly cron: score each user's day at 03:00 local time
 │   └── weekly-review/          weekly summary + adaptive TDEE (Sunday ≥ 20:00 local)
-└── scripts/pglite-check/       offline SQL validation + Database type generator
+└── scripts/
+    ├── bundle-functions.mjs    one bundled index.js + deno.json per function → supabase/.deploy/ (gitignored)
+    └── pglite-check/           offline SQL validation + Database type generator
 ```
 
 ## 1. Link a project
@@ -52,10 +54,13 @@ Local stack: `supabase start` then `supabase db reset` (migrations + seed).
 (template: `functions/.env.example`):
 
 ```bash
-supabase secrets set GEMINI_API_KEY=... AI_MODEL_FAST=gemini-flash-latest CRON_SECRET=$(openssl rand -hex 32)
+supabase secrets set GEMINI_API_KEY=... AI_MODEL_FAST=gemini-flash-latest
 # optional: AI_MODEL_STRONG, AI_DAILY_PHOTO_LIMIT (15), AI_DAILY_TEXT_LIMIT (50), AI_TIMEOUT_MS,
 #           AI_PRICE_INPUT_PER_MTOK (0.5), AI_PRICE_OUTPUT_PER_MTOK (3), AI_PRICES_JSON, AI_PROVIDER (gemini)
 ```
+
+Or in the dashboard: Edge Functions → Secrets. `CRON_SECRET` is optional: the cron token lives in Vault
+(§5) and the functions check it through `public.is_cron_token`.
 
 Use a **paid** Gemini key before real users (launch-plan.md §4, D-047).
 
@@ -73,8 +78,14 @@ supabase functions deploy weekly-review
   `"unstable": ["sloppy-imports"]` because the TS packages use extensionless imports.
 - `verify_jwt` is set per function in `config.toml`: true for analyze-*, false for close-day /
   weekly-review (they check `CRON_SECRET` or a user JWT themselves).
-- ⚠️ Not verified yet: bundling files outside `supabase/` (packages/core, packages/db). If the CLI
-  refuses, deploy with `--use-api`, or vendor the packages into `functions/_shared/` with a copy step.
+- **What is deployed** (project `aurafit`, 16/11/2026): the bundle from
+  `node supabase/scripts/bundle-functions.mjs` – one minified `index.js` per function (packages/core and
+  packages/db inlined, only `zod` / `@supabase/supabase-js` stay external) plus a `deno.json` with those two
+  imports. It was uploaded through the Supabase MCP `deploy_edge_function` (entrypoint `index.js`,
+  import map `deno.json`, `verify_jwt` as in `config.toml`), because no Supabase CLI login was available.
+  Redeploy after changing a function, packages/core or packages/db: rebundle, then upload
+  `supabase/.deploy/<name>/` the same way (or `supabase functions deploy <name> --use-api` once the CLI is
+  logged in).
 
 ### Function contracts
 
@@ -82,8 +93,8 @@ supabase functions deploy weekly-review
 |---|---|---|---|
 | `analyze-meal` | user JWT | `{ photo_path: "<uid>/<file>.jpg", meal_slot?, hint?, reanalyze? }` – photo already in bucket `meal-photos` (≤ 4 MB, ~1024 px) | `{ ai_request_id, model, analysis: { is_food, items[], overall_confidence, clarifying_questions[≤3]{ id, question, item_index, options[2–4]{ label, is_default, adjustment{kcal, protein_g, carb_g, fat_g, sugar_g} } }, notes }, totals, low_confidence, quota{used, limit} }`; 429 `quota_exceeded` |
 | `analyze-text` | user JWT | `{ text, meal_slot? }` | same as above |
-| `close-day` | `Bearer CRON_SECRET` | `{ now?, user_id?, max_backfill_days?, limit?, dry_run? }` | counts + per-day outcomes |
-| `weekly-review` | user JWT → read-only summary + TDEE preview; `CRON_SECRET` → applies `weekly_adjust` targets | `{ now?, dry_run? }` | summary / results |
+| `close-day` | Bearer Vault `cron_secret` (or `CRON_SECRET` / service role key) | `{ now?, user_id?, max_backfill_days?, limit?, dry_run? }` | counts + per-day outcomes |
+| `weekly-review` | user JWT → read-only summary + TDEE preview; cron token → applies `weekly_adjust` targets | `{ now?, dry_run? }` | summary / results |
 
 The app saves the confirmed meal itself (`meal_entries` + `meal_items` with `ai_request_id`);
 clarifying answers are applied on the device (no second AI call, D-014). "Phân tích lại" =
@@ -93,11 +104,13 @@ clarifying answers are applied on the device (no second AI call, D-014). "Phân 
 ## 5. Schedule close-day (pg_cron + pg_net + Vault)
 
 The migration enables `pg_cron` / `pg_net` and creates `private.invoke_edge_function(name, body)`,
-which reads two Vault secrets. Run once per environment in the SQL editor (values are NOT in git):
+which reads two Vault secrets. Run once per environment in the SQL editor (values are NOT in git).
+The cron token is generated inside the database and never leaves it; close-day / weekly-review accept it
+via `public.is_cron_token` (migration `20261116020000`), so it does not have to be copied anywhere:
 
 ```sql
 select vault.create_secret('https://<project-ref>.supabase.co', 'project_url');
-select vault.create_secret('<same value as CRON_SECRET>', 'cron_secret');
+select vault.create_secret(encode(extensions.gen_random_bytes(32), 'hex'), 'cron_secret');
 
 select cron.schedule('close-day-hourly', '5 * * * *',
   $$ select private.invoke_edge_function('close-day', '{"source":"cron"}'::jsonb) $$);
@@ -109,7 +122,11 @@ Why hourly: the day closes at **03:00 in each user's timezone** (gamification.md
 `public.due_close_days()` which (user, date) pairs are due (backfills ≤ 3 days, never before
 onboarding) and persists each with `public.apply_close_day()` – one transaction per day, idempotent.
 Check runs: `select * from cron.job_run_details order by start_time desc limit 20;`
-Manual run: `curl -X POST -H "Authorization: Bearer $CRON_SECRET" https://<ref>.supabase.co/functions/v1/close-day -d '{"dry_run":true}'`.
+Manual dry run (SQL editor): `select private.invoke_edge_function('close-day', '{"dry_run":true}'::jsonb);`
+then `select status_code, content from net._http_response order by id desc limit 1;`.
+
+**State of project `aurafit` (16/11/2026):** both Vault secrets exist, jobs `close-day-hourly` and
+`weekly-review-hourly-sunday` are scheduled, and a dry run of both functions through this path returned 200.
 
 ### Coach logic (`@aurafit/core`)
 
@@ -137,8 +154,9 @@ close-day has no scoring logic of its own; `close-day/coach-adapter.ts` only map
 supabase gen types typescript --linked --schema public > packages/db/src/database.types.ts
 ```
 
-Without a project (current state) the file is generated from the migrations by
-`scripts/pglite-check/gen-types.mjs` (see §7). Typecheck: `npx tsc --noEmit -p packages/db/tsconfig.json`.
+The current file comes from the live project (`generate_typescript_types`, migrations up to
+`20261116020000`). Regenerate it after every migration. Without a project, `scripts/pglite-check/gen-types.mjs`
+(§7) produces the same shape from the migrations. Typecheck: `npx tsc --noEmit -p packages/db/tsconfig.json`.
 
 ## 7. Validate without Supabase (PGlite)
 

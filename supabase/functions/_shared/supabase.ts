@@ -44,16 +44,28 @@ function timingSafeEqual(a: string, b: string): boolean {
   return diff === 0;
 }
 
-/** True when the caller presents CRON_SECRET or the service role key as bearer token. */
-export function isServiceCaller(req: Request): boolean {
+/**
+ * True when the bearer token is a service credential: CRON_SECRET or the service role key from the
+ * function env, or the 'cron_secret' Vault entry that pg_cron sends (checked by the database through
+ * public.is_cron_token, so the value never has to be copied into function secrets).
+ */
+export async function isServiceCaller(req: Request): Promise<boolean> {
   const token = bearer(req);
   if (!token) return false;
   const secrets = [envOptional('CRON_SECRET'), envOptional('SUPABASE_SERVICE_ROLE_KEY')].filter(
     (s): s is string => typeof s === 'string' && s.length >= 16,
   );
-  return secrets.some((s) => timingSafeEqual(token, s));
+  if (secrets.some((s) => timingSafeEqual(token, s))) return true;
+  // User JWTs (header.payload.signature) never match the Vault token: skip the database round trip.
+  if (token.length < 32 || token.split('.').length === 3) return false;
+  const { data, error } = await createAdminClient().rpc('is_cron_token', { p_token: token });
+  if (error) {
+    console.error('is_cron_token failed', error.message);
+    return false;
+  }
+  return data === true;
 }
 
-export function requireServiceCaller(req: Request): void {
-  if (!isServiceCaller(req)) throw new HttpError(401, 'unauthorized', 'Service credentials required');
+export async function requireServiceCaller(req: Request): Promise<void> {
+  if (!(await isServiceCaller(req))) throw new HttpError(401, 'unauthorized', 'Service credentials required');
 }

@@ -35,7 +35,9 @@ file_size_limit = "20MiB"
 [auth]
 enabled = true
 site_url = "aurafit://"
-additional_redirect_urls = ["aurafit://auth-callback", "exp://127.0.0.1:8081"]
+# Must match apps/mobile/src/lib/auth.ts authRedirectUri(): aurafit://auth/callback in builds,
+# exp://<host>:<port>/--/auth/callback in Expo Go (hence the wildcard).
+additional_redirect_urls = ["aurafit://auth/callback", "exp://**"]
 jwt_expiry = 3600
 enable_refresh_token_rotation = true
 enable_signup = true

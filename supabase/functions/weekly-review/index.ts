@@ -97,7 +97,7 @@ serve(async (req) => {
   const now = body.now ? new Date(body.now) : new Date();
 
   // ---------------------------------------------------------------- user mode
-  if (!isServiceCaller(req)) {
+  if (!(await isServiceCaller(req))) {
     const { user, client } = await requireUser(req);
     const { data: profile } = await client.from('profiles').select('timezone').eq('user_id', user.id).maybeSingle();
     const tz = profile?.timezone ?? 'Asia/Ho_Chi_Minh';
