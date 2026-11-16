@@ -25,7 +25,7 @@ The app starts without `.env`: the welcome screen shows "Supabase is not configu
 
 ## Supabase Auth settings (one-time, in the Supabase dashboard)
 
-- **Google**: Auth → Providers → Google, add the Web + iOS client IDs. Auth → URL Configuration → Redirect URLs: add `aurafit://auth/callback` (dev/production builds) and `exp://**` (Expo Go).
+- **Google**: Auth → Providers → Google, add the **Web** client ID + secret (the app uses the browser OAuth flow, so the iOS client ID is only needed if we switch to native Google Sign-In). Auth → URL Configuration → Redirect URLs: add `aurafit://auth/callback` (dev/production builds) and `exp://**` (Expo Go). Step-by-step (Vietnamese): `docs/03-design/m0-checklist.md`.
 - **Email OTP**: Auth → Email Templates → Magic Link must include `{{ .Token }}` so users receive a 6-digit code.
 
 ## TestFlight (EAS, no Mac needed)

@@ -23,6 +23,7 @@ android/
 # Supabase local
 supabase/.branches/
 supabase/.temp/
+supabase/.deploy/
 
 # Tooling
 coverage/

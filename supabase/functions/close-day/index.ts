@@ -1,4 +1,4 @@
-// POST /functions/v1/close-day  (service only: Bearer CRON_SECRET or service role key)
+// POST /functions/v1/close-day  (service only: Bearer Vault cron_secret, CRON_SECRET or service role key)
 // Called hourly by pg_cron (see migrations/…_close_day_cron.sql). For every user whose local
 // clock passed 03:00 of the next day (public.due_close_days), it loads the day (load.ts), runs
 // `coach.closeDay` from @aurafit/core (coach-adapter.ts) and persists everything atomically via
@@ -49,7 +49,7 @@ async function closeUserDay(admin: Db, userId: string, localDate: string, timezo
 }
 
 serve(async (req) => {
-  requireServiceCaller(req);
+  await requireServiceCaller(req);
   const body = await readJson(req, BodySchema);
   const admin = createAdminClient();
 
